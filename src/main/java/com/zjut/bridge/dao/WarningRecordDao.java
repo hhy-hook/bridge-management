@@ -1,7 +1,9 @@
 package com.zjut.bridge.dao;
 
 import com.zjut.bridge.pojo.entity.WarningRecord;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface WarningRecordDao {
     int deleteByPrimaryKey(Integer warningId);
 

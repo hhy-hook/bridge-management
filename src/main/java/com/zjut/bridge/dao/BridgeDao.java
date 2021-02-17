@@ -1,7 +1,9 @@
 package com.zjut.bridge.dao;
 
 import com.zjut.bridge.pojo.entity.Bridge;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface BridgeDao {
     int deleteByPrimaryKey(Integer bridgeId);
 

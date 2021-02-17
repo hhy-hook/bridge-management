@@ -1,7 +1,9 @@
 package com.zjut.bridge.dao;
 
 import com.zjut.bridge.pojo.entity.ShortDataStree;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface ShortDataStreeDao {
     int deleteByPrimaryKey(Integer shortDataStreeId);
 

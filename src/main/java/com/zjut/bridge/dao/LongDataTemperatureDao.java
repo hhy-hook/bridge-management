@@ -1,7 +1,9 @@
 package com.zjut.bridge.dao;
 
 import com.zjut.bridge.pojo.entity.LongDataTemperature;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface LongDataTemperatureDao {
     int deleteByPrimaryKey(Integer longDataTemperatureId);
 
