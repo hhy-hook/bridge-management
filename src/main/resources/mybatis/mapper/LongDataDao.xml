@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.LongDataDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.LongData">
+    <id column="long_data_id" jdbcType="INTEGER" property="longDataId" />
+    <result column="long_data_stree_id" jdbcType="INTEGER" property="longDataStreeId" />
+    <result column="long_data_temperature_id" jdbcType="INTEGER" property="longDataTemperatureId" />
+    <result column="long_data_seam_id" jdbcType="INTEGER" property="longDataSeamId" />
+    <result column="long_data_settlement_id" jdbcType="INTEGER" property="longDataSettlementId" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
+    <result column="long_data_date" jdbcType="DATE" property="longDataDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    long_data_id, long_data_stree_id, long_data_temperature_id, long_data_seam_id, long_data_settlement_id, 
+    bridge_id, long_data_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from long_data
+    where long_data_id = #{longDataId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from long_data
+    where long_data_id = #{longDataId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="long_data_id" keyProperty="longDataId" parameterType="com.zjut.bridge.pojo.entity.LongData" useGeneratedKeys="true">
+    insert into long_data (long_data_stree_id, long_data_temperature_id, 
+      long_data_seam_id, long_data_settlement_id, bridge_id, 
+      long_data_date)
+    values (#{longDataStreeId,jdbcType=INTEGER}, #{longDataTemperatureId,jdbcType=INTEGER}, 
+      #{longDataSeamId,jdbcType=INTEGER}, #{longDataSettlementId,jdbcType=INTEGER}, #{bridgeId,jdbcType=INTEGER}, 
+      #{longDataDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="long_data_id" keyProperty="longDataId" parameterType="com.zjut.bridge.pojo.entity.LongData" useGeneratedKeys="true">
+    insert into long_data
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="longDataStreeId != null">
+        long_data_stree_id,
+      </if>
+      <if test="longDataTemperatureId != null">
+        long_data_temperature_id,
+      </if>
+      <if test="longDataSeamId != null">
+        long_data_seam_id,
+      </if>
+      <if test="longDataSettlementId != null">
+        long_data_settlement_id,
+      </if>
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
+      <if test="longDataDate != null">
+        long_data_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="longDataStreeId != null">
+        #{longDataStreeId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataTemperatureId != null">
+        #{longDataTemperatureId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataSeamId != null">
+        #{longDataSeamId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataSettlementId != null">
+        #{longDataSettlementId,jdbcType=INTEGER},
+      </if>
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataDate != null">
+        #{longDataDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.LongData">
+    update long_data
+    <set>
+      <if test="longDataStreeId != null">
+        long_data_stree_id = #{longDataStreeId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataTemperatureId != null">
+        long_data_temperature_id = #{longDataTemperatureId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataSeamId != null">
+        long_data_seam_id = #{longDataSeamId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataSettlementId != null">
+        long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER},
+      </if>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="longDataDate != null">
+        long_data_date = #{longDataDate,jdbcType=DATE},
+      </if>
+    </set>
+    where long_data_id = #{longDataId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.LongData">
+    update long_data
+    set long_data_stree_id = #{longDataStreeId,jdbcType=INTEGER},
+      long_data_temperature_id = #{longDataTemperatureId,jdbcType=INTEGER},
+      long_data_seam_id = #{longDataSeamId,jdbcType=INTEGER},
+      long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER},
+      bridge_id = #{bridgeId,jdbcType=INTEGER},
+      long_data_date = #{longDataDate,jdbcType=DATE}
+    where long_data_id = #{longDataId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.LongDataTemperatureDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.LongDataTemperature">
+    <id column="long_data_temperature_id" jdbcType="INTEGER" property="longDataTemperatureId" />
+    <result column="long_data_temperature_a1" jdbcType="REAL" property="longDataTemperatureA1" />
+    <result column="long_data_temperature_a2" jdbcType="REAL" property="longDataTemperatureA2" />
+    <result column="long_data_temperature_b1" jdbcType="REAL" property="longDataTemperatureB1" />
+    <result column="long_data_temperature_b2" jdbcType="REAL" property="longDataTemperatureB2" />
+    <result column="long_data_temperature_c1" jdbcType="REAL" property="longDataTemperatureC1" />
+    <result column="long_data_temperature_c2" jdbcType="REAL" property="longDataTemperatureC2" />
+    <result column="long_data_temperature_d1" jdbcType="REAL" property="longDataTemperatureD1" />
+    <result column="long_data_temperature_d2" jdbcType="REAL" property="longDataTemperatureD2" />
+    <result column="long_data_temperature_e1" jdbcType="REAL" property="longDataTemperatureE1" />
+    <result column="long_data_temperature_e2" jdbcType="REAL" property="longDataTemperatureE2" />
+    <result column="long_data_temperature_f1" jdbcType="REAL" property="longDataTemperatureF1" />
+    <result column="long_data_temperature_f2" jdbcType="REAL" property="longDataTemperatureF2" />
+    <result column="long_data_temperature_g1" jdbcType="REAL" property="longDataTemperatureG1" />
+    <result column="long_data_temperature_g2" jdbcType="REAL" property="longDataTemperatureG2" />
+    <result column="long_data_temperature_h1" jdbcType="REAL" property="longDataTemperatureH1" />
+    <result column="long_data_temperature_h2" jdbcType="REAL" property="longDataTemperatureH2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    long_data_temperature_id, long_data_temperature_a1, long_data_temperature_a2, long_data_temperature_b1, 
+    long_data_temperature_b2, long_data_temperature_c1, long_data_temperature_c2, long_data_temperature_d1, 
+    long_data_temperature_d2, long_data_temperature_e1, long_data_temperature_e2, long_data_temperature_f1, 
+    long_data_temperature_f2, long_data_temperature_g1, long_data_temperature_g2, long_data_temperature_h1, 
+    long_data_temperature_h2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from long_data_temperature
+    where long_data_temperature_id = #{longDataTemperatureId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from long_data_temperature
+    where long_data_temperature_id = #{longDataTemperatureId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="long_data_temperature_id" keyProperty="longDataTemperatureId" parameterType="com.zjut.bridge.pojo.entity.LongDataTemperature" useGeneratedKeys="true">
+    insert into long_data_temperature (long_data_temperature_a1, long_data_temperature_a2, 
+      long_data_temperature_b1, long_data_temperature_b2, 
+      long_data_temperature_c1, long_data_temperature_c2, 
+      long_data_temperature_d1, long_data_temperature_d2, 
+      long_data_temperature_e1, long_data_temperature_e2, 
+      long_data_temperature_f1, long_data_temperature_f2, 
+      long_data_temperature_g1, long_data_temperature_g2, 
+      long_data_temperature_h1, long_data_temperature_h2)
+    values (#{longDataTemperatureA1,jdbcType=REAL}, #{longDataTemperatureA2,jdbcType=REAL}, 
+      #{longDataTemperatureB1,jdbcType=REAL}, #{longDataTemperatureB2,jdbcType=REAL}, 
+      #{longDataTemperatureC1,jdbcType=REAL}, #{longDataTemperatureC2,jdbcType=REAL}, 
+      #{longDataTemperatureD1,jdbcType=REAL}, #{longDataTemperatureD2,jdbcType=REAL}, 
+      #{longDataTemperatureE1,jdbcType=REAL}, #{longDataTemperatureE2,jdbcType=REAL}, 
+      #{longDataTemperatureF1,jdbcType=REAL}, #{longDataTemperatureF2,jdbcType=REAL}, 
+      #{longDataTemperatureG1,jdbcType=REAL}, #{longDataTemperatureG2,jdbcType=REAL}, 
+      #{longDataTemperatureH1,jdbcType=REAL}, #{longDataTemperatureH2,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="long_data_temperature_id" keyProperty="longDataTemperatureId" parameterType="com.zjut.bridge.pojo.entity.LongDataTemperature" useGeneratedKeys="true">
+    insert into long_data_temperature
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="longDataTemperatureA1 != null">
+        long_data_temperature_a1,
+      </if>
+      <if test="longDataTemperatureA2 != null">
+        long_data_temperature_a2,
+      </if>
+      <if test="longDataTemperatureB1 != null">
+        long_data_temperature_b1,
+      </if>
+      <if test="longDataTemperatureB2 != null">
+        long_data_temperature_b2,
+      </if>
+      <if test="longDataTemperatureC1 != null">
+        long_data_temperature_c1,
+      </if>
+      <if test="longDataTemperatureC2 != null">
+        long_data_temperature_c2,
+      </if>
+      <if test="longDataTemperatureD1 != null">
+        long_data_temperature_d1,
+      </if>
+      <if test="longDataTemperatureD2 != null">
+        long_data_temperature_d2,
+      </if>
+      <if test="longDataTemperatureE1 != null">
+        long_data_temperature_e1,
+      </if>
+      <if test="longDataTemperatureE2 != null">
+        long_data_temperature_e2,
+      </if>
+      <if test="longDataTemperatureF1 != null">
+        long_data_temperature_f1,
+      </if>
+      <if test="longDataTemperatureF2 != null">
+        long_data_temperature_f2,
+      </if>
+      <if test="longDataTemperatureG1 != null">
+        long_data_temperature_g1,
+      </if>
+      <if test="longDataTemperatureG2 != null">
+        long_data_temperature_g2,
+      </if>
+      <if test="longDataTemperatureH1 != null">
+        long_data_temperature_h1,
+      </if>
+      <if test="longDataTemperatureH2 != null">
+        long_data_temperature_h2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="longDataTemperatureA1 != null">
+        #{longDataTemperatureA1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureA2 != null">
+        #{longDataTemperatureA2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureB1 != null">
+        #{longDataTemperatureB1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureB2 != null">
+        #{longDataTemperatureB2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureC1 != null">
+        #{longDataTemperatureC1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureC2 != null">
+        #{longDataTemperatureC2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureD1 != null">
+        #{longDataTemperatureD1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureD2 != null">
+        #{longDataTemperatureD2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureE1 != null">
+        #{longDataTemperatureE1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureE2 != null">
+        #{longDataTemperatureE2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureF1 != null">
+        #{longDataTemperatureF1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureF2 != null">
+        #{longDataTemperatureF2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureG1 != null">
+        #{longDataTemperatureG1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureG2 != null">
+        #{longDataTemperatureG2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureH1 != null">
+        #{longDataTemperatureH1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureH2 != null">
+        #{longDataTemperatureH2,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.LongDataTemperature">
+    update long_data_temperature
+    <set>
+      <if test="longDataTemperatureA1 != null">
+        long_data_temperature_a1 = #{longDataTemperatureA1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureA2 != null">
+        long_data_temperature_a2 = #{longDataTemperatureA2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureB1 != null">
+        long_data_temperature_b1 = #{longDataTemperatureB1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureB2 != null">
+        long_data_temperature_b2 = #{longDataTemperatureB2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureC1 != null">
+        long_data_temperature_c1 = #{longDataTemperatureC1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureC2 != null">
+        long_data_temperature_c2 = #{longDataTemperatureC2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureD1 != null">
+        long_data_temperature_d1 = #{longDataTemperatureD1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureD2 != null">
+        long_data_temperature_d2 = #{longDataTemperatureD2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureE1 != null">
+        long_data_temperature_e1 = #{longDataTemperatureE1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureE2 != null">
+        long_data_temperature_e2 = #{longDataTemperatureE2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureF1 != null">
+        long_data_temperature_f1 = #{longDataTemperatureF1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureF2 != null">
+        long_data_temperature_f2 = #{longDataTemperatureF2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureG1 != null">
+        long_data_temperature_g1 = #{longDataTemperatureG1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureG2 != null">
+        long_data_temperature_g2 = #{longDataTemperatureG2,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureH1 != null">
+        long_data_temperature_h1 = #{longDataTemperatureH1,jdbcType=REAL},
+      </if>
+      <if test="longDataTemperatureH2 != null">
+        long_data_temperature_h2 = #{longDataTemperatureH2,jdbcType=REAL},
+      </if>
+    </set>
+    where long_data_temperature_id = #{longDataTemperatureId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.LongDataTemperature">
+    update long_data_temperature
+    set long_data_temperature_a1 = #{longDataTemperatureA1,jdbcType=REAL},
+      long_data_temperature_a2 = #{longDataTemperatureA2,jdbcType=REAL},
+      long_data_temperature_b1 = #{longDataTemperatureB1,jdbcType=REAL},
+      long_data_temperature_b2 = #{longDataTemperatureB2,jdbcType=REAL},
+      long_data_temperature_c1 = #{longDataTemperatureC1,jdbcType=REAL},
+      long_data_temperature_c2 = #{longDataTemperatureC2,jdbcType=REAL},
+      long_data_temperature_d1 = #{longDataTemperatureD1,jdbcType=REAL},
+      long_data_temperature_d2 = #{longDataTemperatureD2,jdbcType=REAL},
+      long_data_temperature_e1 = #{longDataTemperatureE1,jdbcType=REAL},
+      long_data_temperature_e2 = #{longDataTemperatureE2,jdbcType=REAL},
+      long_data_temperature_f1 = #{longDataTemperatureF1,jdbcType=REAL},
+      long_data_temperature_f2 = #{longDataTemperatureF2,jdbcType=REAL},
+      long_data_temperature_g1 = #{longDataTemperatureG1,jdbcType=REAL},
+      long_data_temperature_g2 = #{longDataTemperatureG2,jdbcType=REAL},
+      long_data_temperature_h1 = #{longDataTemperatureH1,jdbcType=REAL},
+      long_data_temperature_h2 = #{longDataTemperatureH2,jdbcType=REAL}
+    where long_data_temperature_id = #{longDataTemperatureId,jdbcType=INTEGER}
+  </update>
+</mapper>

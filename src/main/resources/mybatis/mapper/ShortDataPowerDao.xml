@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.ShortDataPowerDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.ShortDataPower">
+    <id column="short_data_power_id" jdbcType="INTEGER" property="shortDataPowerId" />
+    <result column="short_data_power_a1" jdbcType="REAL" property="shortDataPowerA1" />
+    <result column="short_data_power_a2" jdbcType="REAL" property="shortDataPowerA2" />
+    <result column="short_data_power_b1" jdbcType="REAL" property="shortDataPowerB1" />
+    <result column="short_data_power_b2" jdbcType="REAL" property="shortDataPowerB2" />
+    <result column="short_data_power_c1" jdbcType="REAL" property="shortDataPowerC1" />
+    <result column="short_data_power_c2" jdbcType="REAL" property="shortDataPowerC2" />
+    <result column="short_data_power_d1" jdbcType="REAL" property="shortDataPowerD1" />
+    <result column="short_data_power_d2" jdbcType="REAL" property="shortDataPowerD2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    short_data_power_id, short_data_power_a1, short_data_power_a2, short_data_power_b1, 
+    short_data_power_b2, short_data_power_c1, short_data_power_c2, short_data_power_d1, 
+    short_data_power_d2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from short_data_power
+    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from short_data_power
+    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="short_data_power_id" keyProperty="shortDataPowerId" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower" useGeneratedKeys="true">
+    insert into short_data_power (short_data_power_a1, short_data_power_a2, short_data_power_b1, 
+      short_data_power_b2, short_data_power_c1, short_data_power_c2, 
+      short_data_power_d1, short_data_power_d2)
+    values (#{shortDataPowerA1,jdbcType=REAL}, #{shortDataPowerA2,jdbcType=REAL}, #{shortDataPowerB1,jdbcType=REAL}, 
+      #{shortDataPowerB2,jdbcType=REAL}, #{shortDataPowerC1,jdbcType=REAL}, #{shortDataPowerC2,jdbcType=REAL}, 
+      #{shortDataPowerD1,jdbcType=REAL}, #{shortDataPowerD2,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="short_data_power_id" keyProperty="shortDataPowerId" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower" useGeneratedKeys="true">
+    insert into short_data_power
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shortDataPowerA1 != null">
+        short_data_power_a1,
+      </if>
+      <if test="shortDataPowerA2 != null">
+        short_data_power_a2,
+      </if>
+      <if test="shortDataPowerB1 != null">
+        short_data_power_b1,
+      </if>
+      <if test="shortDataPowerB2 != null">
+        short_data_power_b2,
+      </if>
+      <if test="shortDataPowerC1 != null">
+        short_data_power_c1,
+      </if>
+      <if test="shortDataPowerC2 != null">
+        short_data_power_c2,
+      </if>
+      <if test="shortDataPowerD1 != null">
+        short_data_power_d1,
+      </if>
+      <if test="shortDataPowerD2 != null">
+        short_data_power_d2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shortDataPowerA1 != null">
+        #{shortDataPowerA1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerA2 != null">
+        #{shortDataPowerA2,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerB1 != null">
+        #{shortDataPowerB1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerB2 != null">
+        #{shortDataPowerB2,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerC1 != null">
+        #{shortDataPowerC1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerC2 != null">
+        #{shortDataPowerC2,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerD1 != null">
+        #{shortDataPowerD1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerD2 != null">
+        #{shortDataPowerD2,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower">
+    update short_data_power
+    <set>
+      <if test="shortDataPowerA1 != null">
+        short_data_power_a1 = #{shortDataPowerA1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerA2 != null">
+        short_data_power_a2 = #{shortDataPowerA2,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerB1 != null">
+        short_data_power_b1 = #{shortDataPowerB1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerB2 != null">
+        short_data_power_b2 = #{shortDataPowerB2,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerC1 != null">
+        short_data_power_c1 = #{shortDataPowerC1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerC2 != null">
+        short_data_power_c2 = #{shortDataPowerC2,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerD1 != null">
+        short_data_power_d1 = #{shortDataPowerD1,jdbcType=REAL},
+      </if>
+      <if test="shortDataPowerD2 != null">
+        short_data_power_d2 = #{shortDataPowerD2,jdbcType=REAL},
+      </if>
+    </set>
+    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower">
+    update short_data_power
+    set short_data_power_a1 = #{shortDataPowerA1,jdbcType=REAL},
+      short_data_power_a2 = #{shortDataPowerA2,jdbcType=REAL},
+      short_data_power_b1 = #{shortDataPowerB1,jdbcType=REAL},
+      short_data_power_b2 = #{shortDataPowerB2,jdbcType=REAL},
+      short_data_power_c1 = #{shortDataPowerC1,jdbcType=REAL},
+      short_data_power_c2 = #{shortDataPowerC2,jdbcType=REAL},
+      short_data_power_d1 = #{shortDataPowerD1,jdbcType=REAL},
+      short_data_power_d2 = #{shortDataPowerD2,jdbcType=REAL}
+    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+  </update>
+</mapper>

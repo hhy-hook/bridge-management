@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.InspectorDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.Inspector">
+    <id column="inspector_id" jdbcType="INTEGER" property="inspectorId" />
+    <result column="inspector_account" jdbcType="VARCHAR" property="inspectorAccount" />
+    <result column="inspector_password" jdbcType="VARCHAR" property="inspectorPassword" />
+    <result column="inspector_name" jdbcType="VARCHAR" property="inspectorName" />
+    <result column="inspector_phone" jdbcType="VARCHAR" property="inspectorPhone" />
+    <result column="inspector_email" jdbcType="VARCHAR" property="inspectorEmail" />
+    <result column="inspector_age" jdbcType="INTEGER" property="inspectorAge" />
+    <result column="inspector_address" jdbcType="VARCHAR" property="inspectorAddress" />
+    <result column="inspector_img" jdbcType="VARCHAR" property="inspectorImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    inspector_id, inspector_account, inspector_password, inspector_name, inspector_phone, 
+    inspector_email, inspector_age, inspector_address, inspector_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inspector
+    where inspector_id = #{inspectorId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inspector
+    where inspector_id = #{inspectorId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="inspector_id" keyProperty="inspectorId" parameterType="com.zjut.bridge.pojo.entity.Inspector" useGeneratedKeys="true">
+    insert into inspector (inspector_account, inspector_password, 
+      inspector_name, inspector_phone, inspector_email, 
+      inspector_age, inspector_address, inspector_img
+      )
+    values (#{inspectorAccount,jdbcType=VARCHAR}, #{inspectorPassword,jdbcType=VARCHAR}, 
+      #{inspectorName,jdbcType=VARCHAR}, #{inspectorPhone,jdbcType=VARCHAR}, #{inspectorEmail,jdbcType=VARCHAR}, 
+      #{inspectorAge,jdbcType=INTEGER}, #{inspectorAddress,jdbcType=VARCHAR}, #{inspectorImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="inspector_id" keyProperty="inspectorId" parameterType="com.zjut.bridge.pojo.entity.Inspector" useGeneratedKeys="true">
+    insert into inspector
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="inspectorAccount != null">
+        inspector_account,
+      </if>
+      <if test="inspectorPassword != null">
+        inspector_password,
+      </if>
+      <if test="inspectorName != null">
+        inspector_name,
+      </if>
+      <if test="inspectorPhone != null">
+        inspector_phone,
+      </if>
+      <if test="inspectorEmail != null">
+        inspector_email,
+      </if>
+      <if test="inspectorAge != null">
+        inspector_age,
+      </if>
+      <if test="inspectorAddress != null">
+        inspector_address,
+      </if>
+      <if test="inspectorImg != null">
+        inspector_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="inspectorAccount != null">
+        #{inspectorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorPassword != null">
+        #{inspectorPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorName != null">
+        #{inspectorName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorPhone != null">
+        #{inspectorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorEmail != null">
+        #{inspectorEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorAge != null">
+        #{inspectorAge,jdbcType=INTEGER},
+      </if>
+      <if test="inspectorAddress != null">
+        #{inspectorAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorImg != null">
+        #{inspectorImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.Inspector">
+    update inspector
+    <set>
+      <if test="inspectorAccount != null">
+        inspector_account = #{inspectorAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorPassword != null">
+        inspector_password = #{inspectorPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorName != null">
+        inspector_name = #{inspectorName,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorPhone != null">
+        inspector_phone = #{inspectorPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorEmail != null">
+        inspector_email = #{inspectorEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorAge != null">
+        inspector_age = #{inspectorAge,jdbcType=INTEGER},
+      </if>
+      <if test="inspectorAddress != null">
+        inspector_address = #{inspectorAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectorImg != null">
+        inspector_img = #{inspectorImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where inspector_id = #{inspectorId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.Inspector">
+    update inspector
+    set inspector_account = #{inspectorAccount,jdbcType=VARCHAR},
+      inspector_password = #{inspectorPassword,jdbcType=VARCHAR},
+      inspector_name = #{inspectorName,jdbcType=VARCHAR},
+      inspector_phone = #{inspectorPhone,jdbcType=VARCHAR},
+      inspector_email = #{inspectorEmail,jdbcType=VARCHAR},
+      inspector_age = #{inspectorAge,jdbcType=INTEGER},
+      inspector_address = #{inspectorAddress,jdbcType=VARCHAR},
+      inspector_img = #{inspectorImg,jdbcType=VARCHAR}
+    where inspector_id = #{inspectorId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.LongDataStreeDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.LongDataStree">
+    <id column="long_data_stree_id" jdbcType="INTEGER" property="longDataStreeId" />
+    <result column="long_data_stree_a1" jdbcType="REAL" property="longDataStreeA1" />
+    <result column="long_data_stree_a2" jdbcType="REAL" property="longDataStreeA2" />
+    <result column="long_data_stree_b1" jdbcType="REAL" property="longDataStreeB1" />
+    <result column="long_data_stree_b2" jdbcType="REAL" property="longDataStreeB2" />
+    <result column="long_data_stree_c1" jdbcType="REAL" property="longDataStreeC1" />
+    <result column="long_data_stree_c2" jdbcType="REAL" property="longDataStreeC2" />
+    <result column="long_data_stree_d1" jdbcType="REAL" property="longDataStreeD1" />
+    <result column="long_data_stree_d2" jdbcType="REAL" property="longDataStreeD2" />
+    <result column="long_data_stree_e1" jdbcType="REAL" property="longDataStreeE1" />
+    <result column="long_data_stree_e2" jdbcType="REAL" property="longDataStreeE2" />
+    <result column="long_data_stree_f1" jdbcType="REAL" property="longDataStreeF1" />
+    <result column="long_data_stree_f2" jdbcType="REAL" property="longDataStreeF2" />
+    <result column="long_data_stree_g1" jdbcType="REAL" property="longDataStreeG1" />
+    <result column="long_data_stree_g2" jdbcType="REAL" property="longDataStreeG2" />
+    <result column="long_data_stree_h1" jdbcType="REAL" property="longDataStreeH1" />
+    <result column="long_data_stree_h2" jdbcType="REAL" property="longDataStreeH2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    long_data_stree_id, long_data_stree_a1, long_data_stree_a2, long_data_stree_b1, long_data_stree_b2, 
+    long_data_stree_c1, long_data_stree_c2, long_data_stree_d1, long_data_stree_d2, long_data_stree_e1, 
+    long_data_stree_e2, long_data_stree_f1, long_data_stree_f2, long_data_stree_g1, long_data_stree_g2, 
+    long_data_stree_h1, long_data_stree_h2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from long_data_stree
+    where long_data_stree_id = #{longDataStreeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from long_data_stree
+    where long_data_stree_id = #{longDataStreeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="long_data_stree_id" keyProperty="longDataStreeId" parameterType="com.zjut.bridge.pojo.entity.LongDataStree" useGeneratedKeys="true">
+    insert into long_data_stree (long_data_stree_a1, long_data_stree_a2, long_data_stree_b1, 
+      long_data_stree_b2, long_data_stree_c1, long_data_stree_c2, 
+      long_data_stree_d1, long_data_stree_d2, long_data_stree_e1, 
+      long_data_stree_e2, long_data_stree_f1, long_data_stree_f2, 
+      long_data_stree_g1, long_data_stree_g2, long_data_stree_h1, 
+      long_data_stree_h2)
+    values (#{longDataStreeA1,jdbcType=REAL}, #{longDataStreeA2,jdbcType=REAL}, #{longDataStreeB1,jdbcType=REAL}, 
+      #{longDataStreeB2,jdbcType=REAL}, #{longDataStreeC1,jdbcType=REAL}, #{longDataStreeC2,jdbcType=REAL}, 
+      #{longDataStreeD1,jdbcType=REAL}, #{longDataStreeD2,jdbcType=REAL}, #{longDataStreeE1,jdbcType=REAL}, 
+      #{longDataStreeE2,jdbcType=REAL}, #{longDataStreeF1,jdbcType=REAL}, #{longDataStreeF2,jdbcType=REAL}, 
+      #{longDataStreeG1,jdbcType=REAL}, #{longDataStreeG2,jdbcType=REAL}, #{longDataStreeH1,jdbcType=REAL}, 
+      #{longDataStreeH2,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="long_data_stree_id" keyProperty="longDataStreeId" parameterType="com.zjut.bridge.pojo.entity.LongDataStree" useGeneratedKeys="true">
+    insert into long_data_stree
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="longDataStreeA1 != null">
+        long_data_stree_a1,
+      </if>
+      <if test="longDataStreeA2 != null">
+        long_data_stree_a2,
+      </if>
+      <if test="longDataStreeB1 != null">
+        long_data_stree_b1,
+      </if>
+      <if test="longDataStreeB2 != null">
+        long_data_stree_b2,
+      </if>
+      <if test="longDataStreeC1 != null">
+        long_data_stree_c1,
+      </if>
+      <if test="longDataStreeC2 != null">
+        long_data_stree_c2,
+      </if>
+      <if test="longDataStreeD1 != null">
+        long_data_stree_d1,
+      </if>
+      <if test="longDataStreeD2 != null">
+        long_data_stree_d2,
+      </if>
+      <if test="longDataStreeE1 != null">
+        long_data_stree_e1,
+      </if>
+      <if test="longDataStreeE2 != null">
+        long_data_stree_e2,
+      </if>
+      <if test="longDataStreeF1 != null">
+        long_data_stree_f1,
+      </if>
+      <if test="longDataStreeF2 != null">
+        long_data_stree_f2,
+      </if>
+      <if test="longDataStreeG1 != null">
+        long_data_stree_g1,
+      </if>
+      <if test="longDataStreeG2 != null">
+        long_data_stree_g2,
+      </if>
+      <if test="longDataStreeH1 != null">
+        long_data_stree_h1,
+      </if>
+      <if test="longDataStreeH2 != null">
+        long_data_stree_h2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="longDataStreeA1 != null">
+        #{longDataStreeA1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeA2 != null">
+        #{longDataStreeA2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeB1 != null">
+        #{longDataStreeB1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeB2 != null">
+        #{longDataStreeB2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeC1 != null">
+        #{longDataStreeC1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeC2 != null">
+        #{longDataStreeC2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeD1 != null">
+        #{longDataStreeD1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeD2 != null">
+        #{longDataStreeD2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeE1 != null">
+        #{longDataStreeE1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeE2 != null">
+        #{longDataStreeE2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeF1 != null">
+        #{longDataStreeF1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeF2 != null">
+        #{longDataStreeF2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeG1 != null">
+        #{longDataStreeG1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeG2 != null">
+        #{longDataStreeG2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeH1 != null">
+        #{longDataStreeH1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeH2 != null">
+        #{longDataStreeH2,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.LongDataStree">
+    update long_data_stree
+    <set>
+      <if test="longDataStreeA1 != null">
+        long_data_stree_a1 = #{longDataStreeA1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeA2 != null">
+        long_data_stree_a2 = #{longDataStreeA2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeB1 != null">
+        long_data_stree_b1 = #{longDataStreeB1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeB2 != null">
+        long_data_stree_b2 = #{longDataStreeB2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeC1 != null">
+        long_data_stree_c1 = #{longDataStreeC1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeC2 != null">
+        long_data_stree_c2 = #{longDataStreeC2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeD1 != null">
+        long_data_stree_d1 = #{longDataStreeD1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeD2 != null">
+        long_data_stree_d2 = #{longDataStreeD2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeE1 != null">
+        long_data_stree_e1 = #{longDataStreeE1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeE2 != null">
+        long_data_stree_e2 = #{longDataStreeE2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeF1 != null">
+        long_data_stree_f1 = #{longDataStreeF1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeF2 != null">
+        long_data_stree_f2 = #{longDataStreeF2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeG1 != null">
+        long_data_stree_g1 = #{longDataStreeG1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeG2 != null">
+        long_data_stree_g2 = #{longDataStreeG2,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeH1 != null">
+        long_data_stree_h1 = #{longDataStreeH1,jdbcType=REAL},
+      </if>
+      <if test="longDataStreeH2 != null">
+        long_data_stree_h2 = #{longDataStreeH2,jdbcType=REAL},
+      </if>
+    </set>
+    where long_data_stree_id = #{longDataStreeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.LongDataStree">
+    update long_data_stree
+    set long_data_stree_a1 = #{longDataStreeA1,jdbcType=REAL},
+      long_data_stree_a2 = #{longDataStreeA2,jdbcType=REAL},
+      long_data_stree_b1 = #{longDataStreeB1,jdbcType=REAL},
+      long_data_stree_b2 = #{longDataStreeB2,jdbcType=REAL},
+      long_data_stree_c1 = #{longDataStreeC1,jdbcType=REAL},
+      long_data_stree_c2 = #{longDataStreeC2,jdbcType=REAL},
+      long_data_stree_d1 = #{longDataStreeD1,jdbcType=REAL},
+      long_data_stree_d2 = #{longDataStreeD2,jdbcType=REAL},
+      long_data_stree_e1 = #{longDataStreeE1,jdbcType=REAL},
+      long_data_stree_e2 = #{longDataStreeE2,jdbcType=REAL},
+      long_data_stree_f1 = #{longDataStreeF1,jdbcType=REAL},
+      long_data_stree_f2 = #{longDataStreeF2,jdbcType=REAL},
+      long_data_stree_g1 = #{longDataStreeG1,jdbcType=REAL},
+      long_data_stree_g2 = #{longDataStreeG2,jdbcType=REAL},
+      long_data_stree_h1 = #{longDataStreeH1,jdbcType=REAL},
+      long_data_stree_h2 = #{longDataStreeH2,jdbcType=REAL}
+    where long_data_stree_id = #{longDataStreeId,jdbcType=INTEGER}
+  </update>
+</mapper>

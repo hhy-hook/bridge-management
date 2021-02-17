@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.InspectionReportDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.InspectionReport">
+    <id column="inspection_id" jdbcType="INTEGER" property="inspectionId" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
+    <result column="inspector_id" jdbcType="INTEGER" property="inspectorId" />
+    <result column="inspection_note" jdbcType="VARCHAR" property="inspectionNote" />
+    <result column="inspection_date" jdbcType="DATE" property="inspectionDate" />
+    <result column="inspection_img" jdbcType="VARCHAR" property="inspectionImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    inspection_id, bridge_id, inspector_id, inspection_note, inspection_date, inspection_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inspection_report
+    where inspection_id = #{inspectionId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inspection_report
+    where inspection_id = #{inspectionId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="inspection_id" keyProperty="inspectionId" parameterType="com.zjut.bridge.pojo.entity.InspectionReport" useGeneratedKeys="true">
+    insert into inspection_report (bridge_id, inspector_id, inspection_note, 
+      inspection_date, inspection_img)
+    values (#{bridgeId,jdbcType=INTEGER}, #{inspectorId,jdbcType=INTEGER}, #{inspectionNote,jdbcType=VARCHAR}, 
+      #{inspectionDate,jdbcType=DATE}, #{inspectionImg,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="inspection_id" keyProperty="inspectionId" parameterType="com.zjut.bridge.pojo.entity.InspectionReport" useGeneratedKeys="true">
+    insert into inspection_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
+      <if test="inspectorId != null">
+        inspector_id,
+      </if>
+      <if test="inspectionNote != null">
+        inspection_note,
+      </if>
+      <if test="inspectionDate != null">
+        inspection_date,
+      </if>
+      <if test="inspectionImg != null">
+        inspection_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectorId != null">
+        #{inspectorId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectionNote != null">
+        #{inspectionNote,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionDate != null">
+        #{inspectionDate,jdbcType=DATE},
+      </if>
+      <if test="inspectionImg != null">
+        #{inspectionImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.InspectionReport">
+    update inspection_report
+    <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectorId != null">
+        inspector_id = #{inspectorId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectionNote != null">
+        inspection_note = #{inspectionNote,jdbcType=VARCHAR},
+      </if>
+      <if test="inspectionDate != null">
+        inspection_date = #{inspectionDate,jdbcType=DATE},
+      </if>
+      <if test="inspectionImg != null">
+        inspection_img = #{inspectionImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where inspection_id = #{inspectionId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.InspectionReport">
+    update inspection_report
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      inspector_id = #{inspectorId,jdbcType=INTEGER},
+      inspection_note = #{inspectionNote,jdbcType=VARCHAR},
+      inspection_date = #{inspectionDate,jdbcType=DATE},
+      inspection_img = #{inspectionImg,jdbcType=VARCHAR}
+    where inspection_id = #{inspectionId,jdbcType=INTEGER}
+  </update>
+</mapper>

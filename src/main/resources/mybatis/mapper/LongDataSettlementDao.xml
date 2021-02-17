@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.LongDataSettlementDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.LongDataSettlement">
+    <id column="long_data_settlement_id" jdbcType="INTEGER" property="longDataSettlementId" />
+    <result column="long_data_settlement_a1" jdbcType="REAL" property="longDataSettlementA1" />
+    <result column="long_data_settlement_b1" jdbcType="REAL" property="longDataSettlementB1" />
+    <result column="long_data_settlement_c1" jdbcType="REAL" property="longDataSettlementC1" />
+    <result column="long_data_settlement_d1" jdbcType="REAL" property="longDataSettlementD1" />
+    <result column="long_data_settlement_e1" jdbcType="REAL" property="longDataSettlementE1" />
+    <result column="long_data_settlement_f1" jdbcType="REAL" property="longDataSettlementF1" />
+    <result column="long_data_settlement_g1" jdbcType="REAL" property="longDataSettlementG1" />
+    <result column="long_data_settlement_h1" jdbcType="REAL" property="longDataSettlementH1" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    long_data_settlement_id, long_data_settlement_a1, long_data_settlement_b1, long_data_settlement_c1, 
+    long_data_settlement_d1, long_data_settlement_e1, long_data_settlement_f1, long_data_settlement_g1, 
+    long_data_settlement_h1
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from long_data_settlement
+    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from long_data_settlement
+    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="long_data_settlement_id" keyProperty="longDataSettlementId" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement" useGeneratedKeys="true">
+    insert into long_data_settlement (long_data_settlement_a1, long_data_settlement_b1, 
+      long_data_settlement_c1, long_data_settlement_d1, long_data_settlement_e1, 
+      long_data_settlement_f1, long_data_settlement_g1, long_data_settlement_h1
+      )
+    values (#{longDataSettlementA1,jdbcType=REAL}, #{longDataSettlementB1,jdbcType=REAL}, 
+      #{longDataSettlementC1,jdbcType=REAL}, #{longDataSettlementD1,jdbcType=REAL}, #{longDataSettlementE1,jdbcType=REAL}, 
+      #{longDataSettlementF1,jdbcType=REAL}, #{longDataSettlementG1,jdbcType=REAL}, #{longDataSettlementH1,jdbcType=REAL}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="long_data_settlement_id" keyProperty="longDataSettlementId" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement" useGeneratedKeys="true">
+    insert into long_data_settlement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="longDataSettlementA1 != null">
+        long_data_settlement_a1,
+      </if>
+      <if test="longDataSettlementB1 != null">
+        long_data_settlement_b1,
+      </if>
+      <if test="longDataSettlementC1 != null">
+        long_data_settlement_c1,
+      </if>
+      <if test="longDataSettlementD1 != null">
+        long_data_settlement_d1,
+      </if>
+      <if test="longDataSettlementE1 != null">
+        long_data_settlement_e1,
+      </if>
+      <if test="longDataSettlementF1 != null">
+        long_data_settlement_f1,
+      </if>
+      <if test="longDataSettlementG1 != null">
+        long_data_settlement_g1,
+      </if>
+      <if test="longDataSettlementH1 != null">
+        long_data_settlement_h1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="longDataSettlementA1 != null">
+        #{longDataSettlementA1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementB1 != null">
+        #{longDataSettlementB1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementC1 != null">
+        #{longDataSettlementC1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementD1 != null">
+        #{longDataSettlementD1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementE1 != null">
+        #{longDataSettlementE1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementF1 != null">
+        #{longDataSettlementF1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementG1 != null">
+        #{longDataSettlementG1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementH1 != null">
+        #{longDataSettlementH1,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement">
+    update long_data_settlement
+    <set>
+      <if test="longDataSettlementA1 != null">
+        long_data_settlement_a1 = #{longDataSettlementA1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementB1 != null">
+        long_data_settlement_b1 = #{longDataSettlementB1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementC1 != null">
+        long_data_settlement_c1 = #{longDataSettlementC1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementD1 != null">
+        long_data_settlement_d1 = #{longDataSettlementD1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementE1 != null">
+        long_data_settlement_e1 = #{longDataSettlementE1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementF1 != null">
+        long_data_settlement_f1 = #{longDataSettlementF1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementG1 != null">
+        long_data_settlement_g1 = #{longDataSettlementG1,jdbcType=REAL},
+      </if>
+      <if test="longDataSettlementH1 != null">
+        long_data_settlement_h1 = #{longDataSettlementH1,jdbcType=REAL},
+      </if>
+    </set>
+    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement">
+    update long_data_settlement
+    set long_data_settlement_a1 = #{longDataSettlementA1,jdbcType=REAL},
+      long_data_settlement_b1 = #{longDataSettlementB1,jdbcType=REAL},
+      long_data_settlement_c1 = #{longDataSettlementC1,jdbcType=REAL},
+      long_data_settlement_d1 = #{longDataSettlementD1,jdbcType=REAL},
+      long_data_settlement_e1 = #{longDataSettlementE1,jdbcType=REAL},
+      long_data_settlement_f1 = #{longDataSettlementF1,jdbcType=REAL},
+      long_data_settlement_g1 = #{longDataSettlementG1,jdbcType=REAL},
+      long_data_settlement_h1 = #{longDataSettlementH1,jdbcType=REAL}
+    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+  </update>
+</mapper>

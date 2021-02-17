@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.WarningRecordDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.WarningRecord">
+    <id column="warning_id" jdbcType="INTEGER" property="warningId" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
+    <result column="warning_level" jdbcType="INTEGER" property="warningLevel" />
+    <result column="warning_point" jdbcType="VARCHAR" property="warningPoint" />
+    <result column="warning_date" jdbcType="DATE" property="warningDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    warning_id, bridge_id, warning_level, warning_point, warning_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from warning_record
+    where warning_id = #{warningId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from warning_record
+    where warning_id = #{warningId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="warning_id" keyProperty="warningId" parameterType="com.zjut.bridge.pojo.entity.WarningRecord" useGeneratedKeys="true">
+    insert into warning_record (bridge_id, warning_level, warning_point, 
+      warning_date)
+    values (#{bridgeId,jdbcType=INTEGER}, #{warningLevel,jdbcType=INTEGER}, #{warningPoint,jdbcType=VARCHAR}, 
+      #{warningDate,jdbcType=DATE})
+  </insert>
+  <insert id="insertSelective" keyColumn="warning_id" keyProperty="warningId" parameterType="com.zjut.bridge.pojo.entity.WarningRecord" useGeneratedKeys="true">
+    insert into warning_record
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
+      <if test="warningLevel != null">
+        warning_level,
+      </if>
+      <if test="warningPoint != null">
+        warning_point,
+      </if>
+      <if test="warningDate != null">
+        warning_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="warningLevel != null">
+        #{warningLevel,jdbcType=INTEGER},
+      </if>
+      <if test="warningPoint != null">
+        #{warningPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="warningDate != null">
+        #{warningDate,jdbcType=DATE},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.WarningRecord">
+    update warning_record
+    <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="warningLevel != null">
+        warning_level = #{warningLevel,jdbcType=INTEGER},
+      </if>
+      <if test="warningPoint != null">
+        warning_point = #{warningPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="warningDate != null">
+        warning_date = #{warningDate,jdbcType=DATE},
+      </if>
+    </set>
+    where warning_id = #{warningId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.WarningRecord">
+    update warning_record
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      warning_level = #{warningLevel,jdbcType=INTEGER},
+      warning_point = #{warningPoint,jdbcType=VARCHAR},
+      warning_date = #{warningDate,jdbcType=DATE}
+    where warning_id = #{warningId,jdbcType=INTEGER}
+  </update>
+</mapper>

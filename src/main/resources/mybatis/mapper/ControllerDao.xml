@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.ControllerDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.Controller">
+    <id column="controller_id" jdbcType="INTEGER" property="controllerId" />
+    <result column="controller_account" jdbcType="VARCHAR" property="controllerAccount" />
+    <result column="controller_password" jdbcType="VARCHAR" property="controllerPassword" />
+    <result column="controller_name" jdbcType="VARCHAR" property="controllerName" />
+    <result column="controller_phone" jdbcType="VARCHAR" property="controllerPhone" />
+    <result column="controller_email" jdbcType="VARCHAR" property="controllerEmail" />
+    <result column="controller_age" jdbcType="INTEGER" property="controllerAge" />
+    <result column="controller_address" jdbcType="VARCHAR" property="controllerAddress" />
+    <result column="controller_img" jdbcType="VARCHAR" property="controllerImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    controller_id, controller_account, controller_password, controller_name, controller_phone, 
+    controller_email, controller_age, controller_address, controller_img
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from controller
+    where controller_id = #{controllerId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from controller
+    where controller_id = #{controllerId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="controller_id" keyProperty="controllerId" parameterType="com.zjut.bridge.pojo.entity.Controller" useGeneratedKeys="true">
+    insert into controller (controller_account, controller_password, 
+      controller_name, controller_phone, controller_email, 
+      controller_age, controller_address, controller_img
+      )
+    values (#{controllerAccount,jdbcType=VARCHAR}, #{controllerPassword,jdbcType=VARCHAR}, 
+      #{controllerName,jdbcType=VARCHAR}, #{controllerPhone,jdbcType=VARCHAR}, #{controllerEmail,jdbcType=VARCHAR}, 
+      #{controllerAge,jdbcType=INTEGER}, #{controllerAddress,jdbcType=VARCHAR}, #{controllerImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="controller_id" keyProperty="controllerId" parameterType="com.zjut.bridge.pojo.entity.Controller" useGeneratedKeys="true">
+    insert into controller
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="controllerAccount != null">
+        controller_account,
+      </if>
+      <if test="controllerPassword != null">
+        controller_password,
+      </if>
+      <if test="controllerName != null">
+        controller_name,
+      </if>
+      <if test="controllerPhone != null">
+        controller_phone,
+      </if>
+      <if test="controllerEmail != null">
+        controller_email,
+      </if>
+      <if test="controllerAge != null">
+        controller_age,
+      </if>
+      <if test="controllerAddress != null">
+        controller_address,
+      </if>
+      <if test="controllerImg != null">
+        controller_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="controllerAccount != null">
+        #{controllerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerPassword != null">
+        #{controllerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerName != null">
+        #{controllerName,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerPhone != null">
+        #{controllerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerEmail != null">
+        #{controllerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerAge != null">
+        #{controllerAge,jdbcType=INTEGER},
+      </if>
+      <if test="controllerAddress != null">
+        #{controllerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerImg != null">
+        #{controllerImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.Controller">
+    update controller
+    <set>
+      <if test="controllerAccount != null">
+        controller_account = #{controllerAccount,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerPassword != null">
+        controller_password = #{controllerPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerName != null">
+        controller_name = #{controllerName,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerPhone != null">
+        controller_phone = #{controllerPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerEmail != null">
+        controller_email = #{controllerEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerAge != null">
+        controller_age = #{controllerAge,jdbcType=INTEGER},
+      </if>
+      <if test="controllerAddress != null">
+        controller_address = #{controllerAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerImg != null">
+        controller_img = #{controllerImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where controller_id = #{controllerId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.Controller">
+    update controller
+    set controller_account = #{controllerAccount,jdbcType=VARCHAR},
+      controller_password = #{controllerPassword,jdbcType=VARCHAR},
+      controller_name = #{controllerName,jdbcType=VARCHAR},
+      controller_phone = #{controllerPhone,jdbcType=VARCHAR},
+      controller_email = #{controllerEmail,jdbcType=VARCHAR},
+      controller_age = #{controllerAge,jdbcType=INTEGER},
+      controller_address = #{controllerAddress,jdbcType=VARCHAR},
+      controller_img = #{controllerImg,jdbcType=VARCHAR}
+    where controller_id = #{controllerId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.LongDataSeamDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.LongDataSeam">
+    <id column="long_data_seam_id" jdbcType="INTEGER" property="longDataSeamId" />
+    <result column="long_data_seam_a1" jdbcType="REAL" property="longDataSeamA1" />
+    <result column="long_data_seam_b1" jdbcType="REAL" property="longDataSeamB1" />
+    <result column="long_data_seam_c1" jdbcType="REAL" property="longDataSeamC1" />
+    <result column="long_data_seam_d1" jdbcType="REAL" property="longDataSeamD1" />
+    <result column="long_data_seam_e1" jdbcType="REAL" property="longDataSeamE1" />
+    <result column="long_data_seam_f1" jdbcType="REAL" property="longDataSeamF1" />
+    <result column="long_data_seam_g1" jdbcType="REAL" property="longDataSeamG1" />
+    <result column="long_data_seam_h1" jdbcType="REAL" property="longDataSeamH1" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    long_data_seam_id, long_data_seam_a1, long_data_seam_b1, long_data_seam_c1, long_data_seam_d1, 
+    long_data_seam_e1, long_data_seam_f1, long_data_seam_g1, long_data_seam_h1
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from long_data_seam
+    where long_data_seam_id = #{longDataSeamId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from long_data_seam
+    where long_data_seam_id = #{longDataSeamId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="long_data_seam_id" keyProperty="longDataSeamId" parameterType="com.zjut.bridge.pojo.entity.LongDataSeam" useGeneratedKeys="true">
+    insert into long_data_seam (long_data_seam_a1, long_data_seam_b1, long_data_seam_c1, 
+      long_data_seam_d1, long_data_seam_e1, long_data_seam_f1, 
+      long_data_seam_g1, long_data_seam_h1)
+    values (#{longDataSeamA1,jdbcType=REAL}, #{longDataSeamB1,jdbcType=REAL}, #{longDataSeamC1,jdbcType=REAL}, 
+      #{longDataSeamD1,jdbcType=REAL}, #{longDataSeamE1,jdbcType=REAL}, #{longDataSeamF1,jdbcType=REAL}, 
+      #{longDataSeamG1,jdbcType=REAL}, #{longDataSeamH1,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="long_data_seam_id" keyProperty="longDataSeamId" parameterType="com.zjut.bridge.pojo.entity.LongDataSeam" useGeneratedKeys="true">
+    insert into long_data_seam
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="longDataSeamA1 != null">
+        long_data_seam_a1,
+      </if>
+      <if test="longDataSeamB1 != null">
+        long_data_seam_b1,
+      </if>
+      <if test="longDataSeamC1 != null">
+        long_data_seam_c1,
+      </if>
+      <if test="longDataSeamD1 != null">
+        long_data_seam_d1,
+      </if>
+      <if test="longDataSeamE1 != null">
+        long_data_seam_e1,
+      </if>
+      <if test="longDataSeamF1 != null">
+        long_data_seam_f1,
+      </if>
+      <if test="longDataSeamG1 != null">
+        long_data_seam_g1,
+      </if>
+      <if test="longDataSeamH1 != null">
+        long_data_seam_h1,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="longDataSeamA1 != null">
+        #{longDataSeamA1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamB1 != null">
+        #{longDataSeamB1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamC1 != null">
+        #{longDataSeamC1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamD1 != null">
+        #{longDataSeamD1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamE1 != null">
+        #{longDataSeamE1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamF1 != null">
+        #{longDataSeamF1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamG1 != null">
+        #{longDataSeamG1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamH1 != null">
+        #{longDataSeamH1,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.LongDataSeam">
+    update long_data_seam
+    <set>
+      <if test="longDataSeamA1 != null">
+        long_data_seam_a1 = #{longDataSeamA1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamB1 != null">
+        long_data_seam_b1 = #{longDataSeamB1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamC1 != null">
+        long_data_seam_c1 = #{longDataSeamC1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamD1 != null">
+        long_data_seam_d1 = #{longDataSeamD1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamE1 != null">
+        long_data_seam_e1 = #{longDataSeamE1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamF1 != null">
+        long_data_seam_f1 = #{longDataSeamF1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamG1 != null">
+        long_data_seam_g1 = #{longDataSeamG1,jdbcType=REAL},
+      </if>
+      <if test="longDataSeamH1 != null">
+        long_data_seam_h1 = #{longDataSeamH1,jdbcType=REAL},
+      </if>
+    </set>
+    where long_data_seam_id = #{longDataSeamId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.LongDataSeam">
+    update long_data_seam
+    set long_data_seam_a1 = #{longDataSeamA1,jdbcType=REAL},
+      long_data_seam_b1 = #{longDataSeamB1,jdbcType=REAL},
+      long_data_seam_c1 = #{longDataSeamC1,jdbcType=REAL},
+      long_data_seam_d1 = #{longDataSeamD1,jdbcType=REAL},
+      long_data_seam_e1 = #{longDataSeamE1,jdbcType=REAL},
+      long_data_seam_f1 = #{longDataSeamF1,jdbcType=REAL},
+      long_data_seam_g1 = #{longDataSeamG1,jdbcType=REAL},
+      long_data_seam_h1 = #{longDataSeamH1,jdbcType=REAL}
+    where long_data_seam_id = #{longDataSeamId,jdbcType=INTEGER}
+  </update>
+</mapper>

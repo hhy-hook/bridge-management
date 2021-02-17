@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.ShortDataStreeDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.ShortDataStree">
+    <id column="short_data_stree_id" jdbcType="INTEGER" property="shortDataStreeId" />
+    <result column="short_data_stree_a1" jdbcType="REAL" property="shortDataStreeA1" />
+    <result column="short_data_stree_a2" jdbcType="REAL" property="shortDataStreeA2" />
+    <result column="short_data_stree_b1" jdbcType="REAL" property="shortDataStreeB1" />
+    <result column="short_data_stree_b2" jdbcType="REAL" property="shortDataStreeB2" />
+    <result column="short_data_stree_c1" jdbcType="REAL" property="shortDataStreeC1" />
+    <result column="short_data_stree_c2" jdbcType="REAL" property="shortDataStreeC2" />
+    <result column="short_data_stree_d1" jdbcType="REAL" property="shortDataStreeD1" />
+    <result column="short_data_stree_d2" jdbcType="REAL" property="shortDataStreeD2" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    short_data_stree_id, short_data_stree_a1, short_data_stree_a2, short_data_stree_b1, 
+    short_data_stree_b2, short_data_stree_c1, short_data_stree_c2, short_data_stree_d1, 
+    short_data_stree_d2
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from short_data_stree
+    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from short_data_stree
+    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="short_data_stree_id" keyProperty="shortDataStreeId" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree" useGeneratedKeys="true">
+    insert into short_data_stree (short_data_stree_a1, short_data_stree_a2, short_data_stree_b1, 
+      short_data_stree_b2, short_data_stree_c1, short_data_stree_c2, 
+      short_data_stree_d1, short_data_stree_d2)
+    values (#{shortDataStreeA1,jdbcType=REAL}, #{shortDataStreeA2,jdbcType=REAL}, #{shortDataStreeB1,jdbcType=REAL}, 
+      #{shortDataStreeB2,jdbcType=REAL}, #{shortDataStreeC1,jdbcType=REAL}, #{shortDataStreeC2,jdbcType=REAL}, 
+      #{shortDataStreeD1,jdbcType=REAL}, #{shortDataStreeD2,jdbcType=REAL})
+  </insert>
+  <insert id="insertSelective" keyColumn="short_data_stree_id" keyProperty="shortDataStreeId" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree" useGeneratedKeys="true">
+    insert into short_data_stree
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shortDataStreeA1 != null">
+        short_data_stree_a1,
+      </if>
+      <if test="shortDataStreeA2 != null">
+        short_data_stree_a2,
+      </if>
+      <if test="shortDataStreeB1 != null">
+        short_data_stree_b1,
+      </if>
+      <if test="shortDataStreeB2 != null">
+        short_data_stree_b2,
+      </if>
+      <if test="shortDataStreeC1 != null">
+        short_data_stree_c1,
+      </if>
+      <if test="shortDataStreeC2 != null">
+        short_data_stree_c2,
+      </if>
+      <if test="shortDataStreeD1 != null">
+        short_data_stree_d1,
+      </if>
+      <if test="shortDataStreeD2 != null">
+        short_data_stree_d2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shortDataStreeA1 != null">
+        #{shortDataStreeA1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeA2 != null">
+        #{shortDataStreeA2,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeB1 != null">
+        #{shortDataStreeB1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeB2 != null">
+        #{shortDataStreeB2,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeC1 != null">
+        #{shortDataStreeC1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeC2 != null">
+        #{shortDataStreeC2,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeD1 != null">
+        #{shortDataStreeD1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeD2 != null">
+        #{shortDataStreeD2,jdbcType=REAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree">
+    update short_data_stree
+    <set>
+      <if test="shortDataStreeA1 != null">
+        short_data_stree_a1 = #{shortDataStreeA1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeA2 != null">
+        short_data_stree_a2 = #{shortDataStreeA2,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeB1 != null">
+        short_data_stree_b1 = #{shortDataStreeB1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeB2 != null">
+        short_data_stree_b2 = #{shortDataStreeB2,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeC1 != null">
+        short_data_stree_c1 = #{shortDataStreeC1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeC2 != null">
+        short_data_stree_c2 = #{shortDataStreeC2,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeD1 != null">
+        short_data_stree_d1 = #{shortDataStreeD1,jdbcType=REAL},
+      </if>
+      <if test="shortDataStreeD2 != null">
+        short_data_stree_d2 = #{shortDataStreeD2,jdbcType=REAL},
+      </if>
+    </set>
+    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree">
+    update short_data_stree
+    set short_data_stree_a1 = #{shortDataStreeA1,jdbcType=REAL},
+      short_data_stree_a2 = #{shortDataStreeA2,jdbcType=REAL},
+      short_data_stree_b1 = #{shortDataStreeB1,jdbcType=REAL},
+      short_data_stree_b2 = #{shortDataStreeB2,jdbcType=REAL},
+      short_data_stree_c1 = #{shortDataStreeC1,jdbcType=REAL},
+      short_data_stree_c2 = #{shortDataStreeC2,jdbcType=REAL},
+      short_data_stree_d1 = #{shortDataStreeD1,jdbcType=REAL},
+      short_data_stree_d2 = #{shortDataStreeD2,jdbcType=REAL}
+    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+  </update>
+</mapper>
