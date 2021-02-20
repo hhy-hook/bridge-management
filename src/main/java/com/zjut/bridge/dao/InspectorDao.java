@@ -16,4 +16,6 @@ public interface InspectorDao {
     int updateByPrimaryKeySelective(Inspector record);
 
     int updateByPrimaryKey(Inspector record);
+
+    Inspector selectByAccount(String account);
 }

@@ -22,7 +22,12 @@
     from inspector
     where inspector_id = #{inspectorId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectByAccount" resultType="com.zjut.bridge.pojo.entity.Inspector">
+      select <include refid="Base_Column_List" />
+      from inspector
+      where inspector_account = #{inspectorAccount,jdbcType=VARCHAR}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from inspector
     where inspector_id = #{inspectorId,jdbcType=INTEGER}
   </delete>
