@@ -1,10 +1,7 @@
 package com.zjut.bridge.controller;
 
-import com.zjut.bridge.dao.InspectorDao;
 import com.zjut.bridge.pojo.entity.Inspector;
 import com.zjut.bridge.service.InspectorService;
-import org.apache.ibatis.annotations.Mapper;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +25,8 @@ public class IndexController {
         boolean loginResult = inspectorService.login(inspector);
 
         if(loginResult){
-            return "home";
+            model.addAttribute("successMsg","登录成功");
+            return "controller/c_inspector";
         }
         model.addAttribute("errorMsg","手机号或密码输入错误!");
         return "index";

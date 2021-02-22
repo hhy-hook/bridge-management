@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>管理员人员 界面 </title>
+  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">管理员</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+          梅寒箫
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="">基本资料</a></dd>
+          <dd><a href="">安全设置</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出登录</a></li>
+    </ul>
+  </div>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">工作人员</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_inspector}">巡检人员</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a th:href="@{/controller/front/c_bridge}">桥梁</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">预警</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_alert_history}">预警记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">维护</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="c_maintain_advice">维护建议</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">消息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_message}">全部消息</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
+    </div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+	  <legend>预警记录</legend>
+	</fieldset>
+    <div style="padding: 15px;">
+		<table class="layui-hide" id="test" lay-filter="test"></table> 
+		<script type="text/html" id="barDemo">
+		  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+		</script>
+	</div>
+  </div>
+  
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    中小型桥梁智能管养系统
+  </div>
+</div>
+<script th:src="@{/layui/layui.all.js}"></script>
+
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //各种基于事件的操作，下面会有进一步介绍
+});
+
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#test1' //指定元素
+  });
+});
+
+layui.use('table', function(){
+  var table = layui.table;
+})
+
+
+</script>
+
+<script>
+   layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+    notice: function() {
+        //示范一个公告层
+        layer.open({
+            type: 2//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层)
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,area: ['550px','535px']//定义宽高
+            ,shade: 0.8//遮幕
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+			,closeBtn: 1
+            ,btnAlign: 'c'//按钮排列：居中对齐
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: 'c_add_i.html'//跳转到想要的界面，这里是我自己项目的跳转界面
+            ,
+            success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.find('.layui-layer-btn0').attr({
+                    href: '${path}'
+                    , target: '_blank'
+                });
+            }
+        })
+    }}
+            $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });})
+</script>
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'user.json'
+    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+      title: '提示'
+      ,layEvent: 'LAYTABLE_TIPS'
+      ,icon: 'layui-icon-tips'
+    }]
+	,cellMinWidth: 80
+    ,title: '用户数据表'
+    ,cols: [
+        [{type: 'checkbox', fixed: 'left'}
+      ,{field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
+      ,{field:'username', title:'用户名', edit: 'text'}
+      ,{field:'email', title:'邮箱', edit: 'text', templet: function(res){
+        return '<em>'+ res.email +'</em>'
+      }}
+      ,{field:'sex', title:'性别', edit: 'text', sort: true}
+      ,{field:'city', title:'城市'}
+      ,{field:'sign', title:'签名'}
+      ,{field:'experience', title:'积分', sort: true}
+      ,{field:'logins', title:'登入次数', sort: true}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}]
+      ]
+    ,page: true
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选');
+      break;
+      
+      //自定义头工具栏右侧图标 - 提示
+     
+      break;
+    };
+  });
+  
+  //监听行工具事件
+});
+</script>
+</body>
+</html>

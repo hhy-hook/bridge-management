@@ -7,6 +7,8 @@ spring:
     password: hehaiyu123
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/service
+  mvc:
+    static-path-pattern: /**
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
