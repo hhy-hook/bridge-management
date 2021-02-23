@@ -1,11 +1,13 @@
 package com.zjut.bridge.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.zjut.bridge.dao.InspectorDao;
 import com.zjut.bridge.pojo.entity.Inspector;
 import com.zjut.bridge.service.InspectorService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class InspectorServiceImpl implements InspectorService {
@@ -27,5 +29,23 @@ public class InspectorServiceImpl implements InspectorService {
             }
         }
         return false;
+    }
+
+    @Override
+    public List<Inspector> selectInspectors() {
+        return inspectorDao.selectInspectors();
+    }
+
+    @Override
+    public JSONObject addInspector(Inspector inspector) {
+        JSONObject json = new JSONObject();
+        if(inspectorDao.insertSelective(inspector) == 1){
+            json.put("msg","success");
+            json.put("code","0");
+        }else{
+            json.put("msg","error");
+            json.put("code","222222");
+        }
+        return json;
     }
 }

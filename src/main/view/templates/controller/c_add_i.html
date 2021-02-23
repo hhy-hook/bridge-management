@@ -10,30 +10,36 @@
 		<div class="layui-container">  
 		<div class="layui-header">
 		</div>
-		<form class="layui-form" action="">
+		<form class="layui-form" th:action="@{/inspector/addInspector}">
+			<div class="layui-form-item">
+				<label class="layui-form-label">姓名</label>
+				<div class="layui-input-block">
+					<input type="text" name="inspectorName" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+				</div>
+			</div>
 		  <div class="layui-form-item">
-		    <label class="layui-form-label">姓名</label>
+		    <label class="layui-form-label">用户名</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="title" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+		      <input type="text" name="inspectorAccount" required  lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">密码</label>
 		    <div class="layui-input-inline">
-		      <input type="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" value="123456">
+		      <input type="password" name="inspectorPassword" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input" value="123456">
 		    </div>
-		    <div class="layui-form-mid layui-word-aux">默认为123456</div>
+		    <div class="layui-form-mid layui-word-aux">初始密码默认为123456</div>
 		  </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">联系方式</label>
 		    <div class="layui-input-block">
-		      <input type="text" name="phone" required  lay-verify="required" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+		      <input type="text" name="inspectorPhone" required  lay-verify="required" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">邮箱</label>
 		    <div class="layui-input-block">
-		      <input type="email" name="email" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+		      <input type="email" name="inspectorEmail" required  lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
 		    </div>
 		  </div>
 		  <div class="layui-form-item">
@@ -45,7 +51,7 @@
 		  <div class="layui-form-item">
 		    <label class="layui-form-label">居住城市</label>
 		    <div class="layui-input-block">
-		      <select name="city" lay-verify="required">
+		      <select name="inspectorAddress" lay-verify="required">
 		        <option value=""></option>
 		        <option value="0">北京</option>
 		        <option value="1">上海</option>
@@ -82,8 +88,8 @@
 	  
 	  //监听提交
 	  form.on('submit(formDemo)', function(data){
-	    layer.msg(JSON.stringify(data.field));
-	    return false;
+	    //layer.msg(JSON.stringify(data.field));
+	    return true;
 	  });
 	});
 	

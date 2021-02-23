@@ -3,6 +3,8 @@ package com.zjut.bridge.dao;
 import com.zjut.bridge.pojo.entity.Inspector;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface InspectorDao {
     int deleteByPrimaryKey(Integer inspectorId);
@@ -18,4 +20,6 @@ public interface InspectorDao {
     int updateByPrimaryKey(Inspector record);
 
     Inspector selectByAccount(String account);
+
+    List<Inspector> selectInspectors();
 }

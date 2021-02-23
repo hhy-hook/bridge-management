@@ -1,10 +1,13 @@
 package com.zjut.bridge.controller;
 
+import com.zjut.bridge.pojo.entity.Inspector;
 import com.zjut.bridge.service.ControllerService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/controller")
@@ -36,9 +39,7 @@ public class ControllerController {
     }
 
     @RequestMapping("front/c_inspector")
-    String c_inspector(){
-        return "controller/c_inspector";
-    }
+    String c_inspector(Model model){ return "controller/c_inspector"; }
 
     @RequestMapping("front/c_add_i")
     String c_add_i(){
