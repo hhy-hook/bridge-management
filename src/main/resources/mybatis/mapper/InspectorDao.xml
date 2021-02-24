@@ -31,7 +31,11 @@
       select <include refid="Base_Column_List" />
       from inspector
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectMaxPrimaryKey" resultType="java.lang.Integer">
+    select max(inspector_id)
+    from inspector
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from inspector
     where inspector_id = #{inspectorId,jdbcType=INTEGER}
   </delete>

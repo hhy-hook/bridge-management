@@ -22,4 +22,6 @@ public interface InspectorDao {
     Inspector selectByAccount(String account);
 
     List<Inspector> selectInspectors();
+
+    int selectMaxPrimaryKey();
 }
