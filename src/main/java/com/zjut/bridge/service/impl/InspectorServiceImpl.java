@@ -53,4 +53,22 @@ public class InspectorServiceImpl implements InspectorService {
     public Inspector selectByAccount(String inspectorAccount) {
         return inspectorDao.selectByAccount(inspectorAccount);
     }
+
+    @Override
+    public JSONObject modifyInspector(Inspector inspector) {
+        JSONObject json = new JSONObject();
+        if(inspectorDao.updateByPrimaryKeySelective(inspector) == 1){
+            json.put("msg","success");
+            json.put("code","0");
+        }else{
+            json.put("msg","error");
+            json.put("code","222222");
+        }
+        return json;
+    }
+
+    @Override
+    public Inspector selectByPrimaryKey(Integer inspectorId) {
+        return inspectorDao.selectByPrimaryKey(inspectorId);
+    }
 }

@@ -55,11 +55,23 @@ public class InspectorController{
         JSONObject json = inspectorService.addInspector(inspector);
         if(json.get("msg").equals("success")){
             model.addAttribute("msg","添加用户成功!");
-
         }else{
             model.addAttribute("msg","添加用户失败!");
         }
         return "controller/c_inspector";
+    }
+
+    @RequestMapping("modifyInspector")
+    String modifyInspector(Inspector inspector,Model model){
+        JSONObject json = inspectorService.modifyInspector(inspector);
+        Inspector dbuser = inspectorService.selectByPrimaryKey(inspector.getInspectorId());
+        if(json.get("msg").equals("success")){
+            model.addAttribute("user",dbuser);
+            model.addAttribute("msg","添加用户成功!");
+        }else{
+            model.addAttribute("msg","添加用户失败!");
+        }
+        return "inspector/i_self";
     }
 
     @RequestMapping("addReport")

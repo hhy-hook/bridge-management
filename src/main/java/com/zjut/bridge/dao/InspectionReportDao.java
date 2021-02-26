@@ -3,6 +3,8 @@ package com.zjut.bridge.dao;
 import com.zjut.bridge.pojo.entity.InspectionReport;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface InspectionReportDao {
     int deleteByPrimaryKey(Integer inspectionId);
@@ -18,4 +20,6 @@ public interface InspectionReportDao {
     int updateByPrimaryKey(InspectionReport record);
 
     int selectMaxPrimaryKey();
+
+    List<InspectionReport> selectReports();
 }

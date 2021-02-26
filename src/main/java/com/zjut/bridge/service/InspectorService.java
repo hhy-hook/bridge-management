@@ -13,4 +13,8 @@ public interface InspectorService {
     JSONObject addInspector(Inspector inspector);
 
     Inspector selectByAccount(String inspectorAccount);
+
+    JSONObject modifyInspector(Inspector inspector);
+
+    Inspector selectByPrimaryKey(Integer inspectorId);
 }

@@ -7,6 +7,7 @@ import com.zjut.bridge.service.InspectionReportService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Service
 public class InspectionReportServiceImpl implements InspectionReportService {
@@ -30,5 +31,10 @@ public class InspectionReportServiceImpl implements InspectionReportService {
     @Override
     public int selectMaxPrimaryKey() {
         return inspectionReportDao.selectMaxPrimaryKey();
+    }
+
+    @Override
+    public List<InspectionReport> selectReports() {
+        return inspectionReportDao.selectReports();
     }
 }
