@@ -16,4 +16,6 @@ public interface InspectionReportDao {
     int updateByPrimaryKeySelective(InspectionReport record);
 
     int updateByPrimaryKey(InspectionReport record);
+
+    int selectMaxPrimaryKey();
 }

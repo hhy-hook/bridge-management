@@ -48,4 +48,9 @@ public class InspectorServiceImpl implements InspectorService {
         }
         return json;
     }
+
+    @Override
+    public Inspector selectByAccount(String inspectorAccount) {
+        return inspectorDao.selectByAccount(inspectorAccount);
+    }
 }

@@ -11,4 +11,6 @@ public interface InspectorService {
     public List<Inspector> selectInspectors();
 
     JSONObject addInspector(Inspector inspector);
+
+    Inspector selectByAccount(String inspectorAccount);
 }

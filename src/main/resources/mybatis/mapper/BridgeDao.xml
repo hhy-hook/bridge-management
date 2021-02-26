@@ -20,7 +20,12 @@
     from bridge
     where bridge_id = #{bridgeId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectBridges" resultType="com.zjut.bridge.pojo.entity.Bridge">
+      select
+      <include refid="Base_Column_List" />
+      from bridge
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from bridge
     where bridge_id = #{bridgeId,jdbcType=INTEGER}
   </delete>

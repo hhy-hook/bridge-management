@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>巡检人员 界面 </title>
+  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<script>
+  function nofind() {
+    var img = document.getElementById("headPic");
+    img.src = "/upload/user/默认头像.svg";
+    img.onerror = null;
+  }
+</script>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">巡检人员</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img th:src="@{${user.inspectorImg}}" class="layui-nav-img" id="headPic" onerror="nofind()">
+          <span th:text="${user.inspectorName}"/>
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a th:href="@{/inspector/front/i_self}">基本资料</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出登录</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item">
+          <a href="javascript:;">巡检</a>
+          <dl class="layui-nav-child">
+            <dd><a th:href="@{/inspector/front/i_report}">巡检打卡</a></dd>
+            <dd><a th:href="@{/inspector/front/i_report_history}">巡检记录</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a th:href="@{/inspector/front/i_bridge}">桥梁</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">预警</a>
+          <dl class="layui-nav-child">
+            <dd><a th:href="@{/inspector/front/i_alert_history}">预警记录</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">消息</a>
+          <dl class="layui-nav-child">
+            <dd><a href="@{/inspector/front/i_message}">全部消息</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="layui-body">
+    <div class="layui-fluid">
+        <div class="layui-row layui-col-space15">
+          <div class="layui-col-md12">
+            <div class="layui-card">
+              <div class="layui-card-header">设置我的资料</div>
+              <div class="layui-card-body" pad15>
+                
+                <div class="layui-form" lay-filter="">
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">我的角色</label>
+                    <div class="layui-input-inline">
+                      <select name="role" lay-verify="">
+                        <option value="1" selected>管理员</option>
+                        <option value="2" disabled>巡检人员</option>
+                      </select> 
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">当前角色不可更改为其它角色</div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">用户名</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="username" value="xianxin" readonly class="layui-input">
+                    </div>
+                    <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">昵称</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="nickname" value="贤心" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">性别</label>
+                    <div class="layui-input-block">
+                      <input type="radio" name="sex" value="男" title="男">
+                      <input type="radio" name="sex" value="女" title="女" checked>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">手机</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="cellphone" value="" lay-verify="phone" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <label class="layui-form-label">邮箱</label>
+                    <div class="layui-input-inline">
+                      <input type="text" name="email" value="" lay-verify="email" autocomplete="off" class="layui-input">
+                    </div>
+                  </div>
+                  <div class="layui-form-item layui-form-text">
+                    <label class="layui-form-label">备注</label>
+                    <div class="layui-input-block">
+                      <textarea name="remarks" placeholder="请输入内容" class="layui-textarea"></textarea>
+                    </div>
+                  </div>
+                  <div class="layui-form-item">
+                    <div class="layui-input-block">
+                      <button class="layui-btn" lay-submit lay-filter="setmyinfo">确认修改</button>
+                      <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  </div>
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    中小型桥梁智能管养系统
+  </div>
+</div>
+<script th:src="@{/layui/layui.all.js}"></script>
+
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#test'
+    ,url:'user.json'
+    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
+    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
+      title: '提示'
+      ,layEvent: 'LAYTABLE_TIPS'
+      ,icon: 'layui-icon-tips'
+    }]
+	,cellMinWidth: 80
+    ,title: '用户数据表'
+    ,cols: [
+            [{type: 'checkbox', fixed: 'left'}
+      ,{field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
+      ,{field:'username', title:'用户名', edit: 'text'}
+      ,{field:'email', title:'邮箱', edit: 'text', templet: function(res){
+        return '<em>'+ res.email +'</em>'
+      }}
+      ,{field:'sex', title:'性别', edit: 'text', sort: true}
+      ,{field:'city', title:'城市'}
+      ,{field:'sign', title:'签名'}
+      ,{field:'experience', title:'积分', sort: true}
+      ,{field:'logins', title:'登入次数', sort: true}
+      ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}]
+    ]
+    ,page: true
+  });
+  
+  //头工具栏事件
+  table.on('toolbar(test)', function(obj){
+    var checkStatus = table.checkStatus(obj.config.id);
+    switch(obj.event){
+      case 'getCheckData':
+        var data = checkStatus.data;
+        layer.alert(JSON.stringify(data));
+      break;
+      case 'getCheckLength':
+        var data = checkStatus.data;
+        layer.msg('选中了：'+ data.length + ' 个');
+      break;
+      case 'isAll':
+        layer.msg(checkStatus.isAll ? '全选': '未全选');
+      break;
+      
+      //自定义头工具栏右侧图标 - 提示
+     
+      break;
+    };
+  });
+  
+  //监听行工具事件
+});
+</script>
+<script>
+//JavaScript代码区域
+layui.use('element', function(){
+  var element = layui.element;
+  
+});
+layui.use('form', function(){
+  var form = layui.form;
+  
+  //各种基于事件的操作，下面会有进一步介绍
+});
+
+layui.use('laydate', function(){
+  var laydate = layui.laydate;
+  
+  //执行一个laydate实例
+  laydate.render({
+    elem: '#test1' //指定元素
+  });
+});
+
+layui.use('table', function(){
+  var table = layui.table;
+})
+
+
+</script>
+
+<script>
+   layui.use('layer', function(){ //独立版的layer无需执行这一句
+        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
+
+        //触发事件
+        var active = {
+    notice: function() {
+        //示范一个公告层
+        layer.open({
+            type: 2//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层)
+            ,title: false //不显示标题栏
+            ,closeBtn: false
+            ,area: ['550px','535px']//定义宽高
+            ,shade: 0.8//遮幕
+            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
+			,closeBtn: 1
+            ,btnAlign: 'c'//按钮排列：居中对齐
+            ,moveType: 1 //拖拽模式，0或者1
+            ,content: 'c_add_i.html'//跳转到想要的界面，这里是我自己项目的跳转界面
+            ,
+            success: function (layero) {
+                var btn = layero.find('.layui-layer-btn');
+                btn.find('.layui-layer-btn0').attr({
+                    href: '${path}'
+                    , target: '_blank'
+                });
+            }
+        })
+    }}
+            $('#layerDemo .layui-btn').on('click', function(){
+            var othis = $(this), method = othis.data('method');
+            active[method] ? active[method].call(this, othis) : '';
+        });})
+        </script>
+</body>
+</html>

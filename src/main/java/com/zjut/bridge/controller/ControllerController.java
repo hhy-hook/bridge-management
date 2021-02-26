@@ -45,4 +45,9 @@ public class ControllerController {
     String c_add_i(){
         return "controller/c_add_i";
     }
+
+    @RequestMapping("front/c_self")
+    String c_self(){
+        return "controller/c_self";
+    }
 }

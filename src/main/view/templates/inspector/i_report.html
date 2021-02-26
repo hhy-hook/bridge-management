@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>巡检人员 界面 </title>
+  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+</head>
+<script>
+	function nofind() {
+		var img = document.getElementById("headPic");
+		img.src = "/upload/user/默认头像.svg";
+		img.onerror = null;
+	}
+</script>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo">巡检人员</div>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img th:src="@{${user.inspectorImg}}" class="layui-nav-img" id="headPic" onerror="nofind()">
+			<span th:text="${user.inspectorName}"/>
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a th:href="@{/inspector/front/i_self}">基本资料</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="">退出登录</a></li>
+    </ul>
+  </div>
+
+	<div class="layui-side layui-bg-black">
+		<div class="layui-side-scroll">
+			<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+			<ul class="layui-nav layui-nav-tree"  lay-filter="test">
+				<li class="layui-nav-item">
+					<a href="javascript:;">巡检</a>
+					<dl class="layui-nav-child">
+						<dd><a th:href="@{/inspector/front/i_report}">巡检打卡</a></dd>
+						<dd><a th:href="@{/inspector/front/i_report_history}">巡检记录</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a th:href="@{/inspector/front/i_bridge}">桥梁</a>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">预警</a>
+					<dl class="layui-nav-child">
+						<dd><a th:href="@{/inspector/front/i_alert_history}">预警记录</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item">
+					<a href="javascript:;">消息</a>
+					<dl class="layui-nav-child">
+						<dd><a href="@{/inspector/front/i_message}">全部消息</a></dd>
+					</dl>
+				</li>
+			</ul>
+		</div>
+	</div>
+  
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+	  <legend>巡检打卡</legend>
+	</fieldset>
+
+	  <form class="layui-form" th:action="@{/report/addReport}">
+		  <div class="layui-form-item">
+			  <label class="layui-form-label">姓名</label>
+			  <div class="layui-input-block">
+				  <select name="bridgeId" lay-filter="aihao">
+					  <option value=""></option>
+					  <option th:value="${t.bridgeId}" th:each="t:${bridges}" th:text="${t.bridgeName}"></option>
+				  </select>
+				  <input type="hidden" name="inspectorId" th:value="${user.inspectorId}" />
+			  </div>
+		  </div>
+		  <div class="layui-form-item">
+			  <label class="layui-form-label">姓名</label>
+			  <div class="layui-input-block">
+				  <input type="text" name="inspectionNote" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+			  </div>
+		  </div>
+		  <div class="layui-form-item">
+			  <div class="layui-input-block">
+				  <input type="hidden" id="picSrc" name="inspectionImg" value="" />
+				  <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+				  <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+			  </div>
+		  </div>
+	  </form>
+
+		  <div class="layui-form-item">
+		  <div class="layui-upload" style="margin-left: 20px">
+			  <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
+			  <div class="layui-upload-list">
+				  <table class="layui-table">
+					  <thead>
+					  <tr><th>文件名</th>
+						  <th>大小</th>
+						  <th>状态</th>
+						  <th>操作</th>
+					  </tr></thead>
+					  <tbody id="demoList"></tbody>
+				  </table>
+			  </div>
+			  <button type="button" class="layui-btn" id="testListAction1">开始上传</button>
+		  </div>
+		  </div>
+		  <div class="layui-form-item">
+			  <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="progressBar" style="margin-left: 20px">
+				  <div class="layui-progress-bar" lay-percent="0%"></div>
+			  </div>
+		  </div>
+	<script type="text/html" id="barDemo">
+	  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+	</script>
+  </div>
+  <div class="layui-footer">
+    <!-- 底部固定区域 -->
+    中小型桥梁智能管养系统
+  </div>
+</div>
+<script th:src="@{/layui/layui.all.js}"></script>
+<script>
+	//form表单验证
+	layui.use('form', function(){
+		var form = layui.form;
+		//监听提交
+		form.on('submit(formDemo)', function(data){
+			//layer.msg(JSON.stringify(data.field));
+			return true;
+		});
+	});
+
+	layui.use('upload', function() {
+		var $ = layui.jquery,
+				upload = layui.upload,
+				element = layui.element;
+		//多文件列表示例
+		var demoListView = $('#demoList')
+				, uploadListIns = upload.render({
+			elem: '#testList'
+			, url: '/upload/report' //改成您自己的上传接口
+			, accept: 'file'
+			, multiple: true
+			, auto: false
+			, bindAction: '#testListAction1'
+			, exts: 'jpg|png|'
+			, progress: function (e, percent) {
+				console.log(JSON.stringify(e));
+				console.log("进度：" + e + '%');
+				element.progress('progressBar', e + '%');
+			}
+			, choose: function (obj) {
+				var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+				//读取本地文件
+				obj.preview(function (index, file, result) {
+					var tr = $(['<tr id="upload-' + index + '">'
+						, '<td>' + file.name + '</td>'
+						, '<td>' + (file.size / 1024).toFixed(1) + 'kb</td>'
+						, '<td>等待上传</td>'
+						, '<td>'
+						, '<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+						, '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+						, '</td>'
+						, '</tr>'].join(''));
+
+					//单个重传
+					tr.find('.demo-reload').on('click', function () {
+						obj.upload(index, file);
+					});
+
+					//删除
+					tr.find('.demo-delete').on('click', function () {
+						delete files[index]; //删除对应的文件
+						tr.remove();
+						uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+					});
+
+					demoListView.append(tr);
+				});
+			}
+			, done: function (res, index, upload) {
+				if (res.code > 0) {
+					this.error(index, upload);
+				}//上传成功
+				//document.getElementById("img_url").value = res.data.src;
+				var tr = demoListView.find('tr#upload-'+ index)
+						,tds = tr.children();
+				tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+				tds.eq(3).html(''); //清空操作
+				var src = document.getElementById("picSrc");
+				src.value = src.value + res.data + ";";
+				layer.msg('上传成功')
+				return delete this.files[index]; //删除文件队列已经上传成功的文件
+			}
+			, error: function (index, upload) {
+				var tr = demoListView.find('tr#upload-' + index)
+						, tds = tr.children();
+				tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+				tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+				return layer.msg('上传失败');
+			}
+		});
+	});
+</script>
+</body>
+</html>

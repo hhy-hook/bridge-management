@@ -18,7 +18,11 @@
     from inspection_report
     where inspection_id = #{inspectionId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectMaxPrimaryKey" resultType="java.lang.Integer">
+      select max(inspection_id)
+      from inspection_report
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from inspection_report
     where inspection_id = #{inspectionId,jdbcType=INTEGER}
   </delete>
