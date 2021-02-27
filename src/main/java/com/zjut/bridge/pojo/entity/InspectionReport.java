@@ -1,6 +1,7 @@
 package com.zjut.bridge.pojo.entity;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**

@@ -1,6 +1,7 @@
 package com.zjut.bridge.dao;
 
 import com.zjut.bridge.pojo.entity.InspectionReport;
+import com.zjut.bridge.pojo.vo.ReportVO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface InspectionReportDao {
 
     int selectMaxPrimaryKey();
 
-    List<InspectionReport> selectReports();
+    List<ReportVO> selectReports();
 }

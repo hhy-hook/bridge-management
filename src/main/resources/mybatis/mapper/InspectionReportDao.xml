@@ -6,7 +6,7 @@
     <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
     <result column="inspector_id" jdbcType="INTEGER" property="inspectorId" />
     <result column="inspection_note" jdbcType="VARCHAR" property="inspectionNote" />
-    <result column="inspection_date" jdbcType="DATE" property="inspectionDate" />
+    <result column="inspection_date" jdbcType="TIMESTAMP" property="inspectionDate" />
     <result column="inspection_img" jdbcType="VARCHAR" property="inspectionImg" />
   </resultMap>
   <sql id="Base_Column_List">
@@ -22,7 +22,7 @@
       select max(inspection_id)
       from inspection_report
     </select>
-    <select id="selectReports" resultType="com.zjut.bridge.pojo.entity.InspectionReport">
+    <select id="selectReports" resultType="com.zjut.bridge.pojo.vo.ReportVO">
       select <include refid="Base_Column_List" />
       from inspection_report
     </select>
@@ -34,7 +34,7 @@
     insert into inspection_report (bridge_id, inspector_id, inspection_note, 
       inspection_date, inspection_img)
     values (#{bridgeId,jdbcType=INTEGER}, #{inspectorId,jdbcType=INTEGER}, #{inspectionNote,jdbcType=VARCHAR}, 
-      #{inspectionDate,jdbcType=DATE}, #{inspectionImg,jdbcType=VARCHAR})
+      #{inspectionDate,jdbcType=TIMESTAMP}, #{inspectionImg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="inspection_id" keyProperty="inspectionId" parameterType="com.zjut.bridge.pojo.entity.InspectionReport" useGeneratedKeys="true">
     insert into inspection_report
@@ -66,7 +66,7 @@
         #{inspectionNote,jdbcType=VARCHAR},
       </if>
       <if test="inspectionDate != null">
-        #{inspectionDate,jdbcType=DATE},
+        #{inspectionDate,jdbcType=TIMESTAMP},
       </if>
       <if test="inspectionImg != null">
         #{inspectionImg,jdbcType=VARCHAR},
@@ -86,7 +86,7 @@
         inspection_note = #{inspectionNote,jdbcType=VARCHAR},
       </if>
       <if test="inspectionDate != null">
-        inspection_date = #{inspectionDate,jdbcType=DATE},
+        inspection_date = #{inspectionDate,jdbcType=TIMESTAMP},
       </if>
       <if test="inspectionImg != null">
         inspection_img = #{inspectionImg,jdbcType=VARCHAR},
@@ -99,7 +99,7 @@
     set bridge_id = #{bridgeId,jdbcType=INTEGER},
       inspector_id = #{inspectorId,jdbcType=INTEGER},
       inspection_note = #{inspectionNote,jdbcType=VARCHAR},
-      inspection_date = #{inspectionDate,jdbcType=DATE},
+      inspection_date = #{inspectionDate,jdbcType=TIMESTAMP},
       inspection_img = #{inspectionImg,jdbcType=VARCHAR}
     where inspection_id = #{inspectionId,jdbcType=INTEGER}
   </update>

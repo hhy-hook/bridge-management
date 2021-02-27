@@ -70,7 +70,7 @@
 
 	  <form class="layui-form" th:action="@{/report/addReport}">
 		  <div class="layui-form-item">
-			  <label class="layui-form-label">内容</label>
+			  <label class="layui-form-label">检测桥梁</label>
 			  <div class="layui-input-block">
 				  <select name="bridgeId" lay-filter="aihao">
 					  <option value=""></option>
@@ -80,9 +80,31 @@
 			  </div>
 		  </div>
 		  <div class="layui-form-item">
-			  <label class="layui-form-label">姓名</label>
+			  <label class="layui-form-label">内容</label>
 			  <div class="layui-input-block">
-				  <input type="text" name="inspectionNote" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+				  <textarea name="inspectionNote" placeholder="请输入内容" class="layui-textarea" lay-verify="required"></textarea>
+			  </div>
+		  </div>
+		  <div class="layui-form-item">
+			  <div class="layui-upload" style="margin-left: 20px">
+				  <button type="button" class="layui-btn layui-btn-normal" id="testList" style="margin-left: 40px">选择多文件</button>
+				  <button type="button" class="layui-btn" id="testListAction1">开始上传</button>
+				  <div class="layui-upload-list" style="margin-left: 40px">
+					  <table class="layui-table">
+						  <thead>
+						  <tr><th>文件名</th>
+							  <th>大小</th>
+							  <th>状态</th>
+							  <th>操作</th>
+						  </tr></thead>
+						  <tbody id="demoList"></tbody>
+					  </table>
+				  </div>
+			  </div>
+		  </div>
+		  <div class="layui-form-item" style="margin-left: 40px">
+			  <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="progressBar" style="margin-left: 20px">
+				  <div class="layui-progress-bar" lay-percent="0%"></div>
 			  </div>
 		  </div>
 		  <div class="layui-form-item">
@@ -93,32 +115,6 @@
 			  </div>
 		  </div>
 	  </form>
-
-		  <div class="layui-form-item">
-		  <div class="layui-upload" style="margin-left: 20px">
-			  <button type="button" class="layui-btn layui-btn-normal" id="testList">选择多文件</button>
-			  <div class="layui-upload-list">
-				  <table class="layui-table">
-					  <thead>
-					  <tr><th>文件名</th>
-						  <th>大小</th>
-						  <th>状态</th>
-						  <th>操作</th>
-					  </tr></thead>
-					  <tbody id="demoList"></tbody>
-				  </table>
-			  </div>
-			  <button type="button" class="layui-btn" id="testListAction1">开始上传</button>
-		  </div>
-		  </div>
-		  <div class="layui-form-item">
-			  <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="progressBar" style="margin-left: 20px">
-				  <div class="layui-progress-bar" lay-percent="0%"></div>
-			  </div>
-		  </div>
-	<script type="text/html" id="barDemo">
-	  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-	</script>
   </div>
   <div class="layui-footer">
     <!-- 底部固定区域 -->

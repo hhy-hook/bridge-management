@@ -1,8 +1,11 @@
 package com.zjut.bridge.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zjut.bridge.dao.BridgeDao;
 import com.zjut.bridge.dao.InspectionReportDao;
+import com.zjut.bridge.pojo.entity.Bridge;
 import com.zjut.bridge.pojo.entity.InspectionReport;
+import com.zjut.bridge.pojo.vo.ReportVO;
 import com.zjut.bridge.service.InspectionReportService;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +17,9 @@ public class InspectionReportServiceImpl implements InspectionReportService {
 
     @Resource
     InspectionReportDao inspectionReportDao;
+
+    @Resource
+    BridgeDao bridgeDao;
 
     @Override
     public JSONObject addReport(InspectionReport inspectionReport) {
@@ -34,7 +40,12 @@ public class InspectionReportServiceImpl implements InspectionReportService {
     }
 
     @Override
-    public List<InspectionReport> selectReports() {
-        return inspectionReportDao.selectReports();
+    public List<ReportVO> selectReports() {
+        List<ReportVO> origin = inspectionReportDao.selectReports();
+        for(ReportVO r : origin){
+            Bridge bridge = bridgeDao.selectByPrimaryKey(r.getBridgeId());
+            r.setBridge(bridge);
+        }
+        return origin;
     }
 }

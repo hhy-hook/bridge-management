@@ -3,9 +3,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>管理员人员 界面 </title>
+  <title>管理员人员界面 </title>
   <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
+<script>
+  function nofind() {
+    var img = document.getElementById("headPic");
+    img.src = "/upload/user/默认头像.svg";
+    img.onerror = null;
+  }
+</script>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
@@ -14,8 +21,8 @@
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
         <a href="javascript:;">
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-          梅寒箫
+          <img th:src="@{${user.controllerImg}}" class="layui-nav-img" id="headPic" onerror="nofind()">
+          <span th:text="${user.controllerName}"/>
         </a>
         <dl class="layui-nav-child">
           <dd><a th:href="@{/controller/front/c_self}">基本资料</a></dd>
@@ -69,6 +76,7 @@
               <div class="layui-card-body" pad15>
                 
                 <div class="layui-form" lay-filter="">
+                  <form th:action="@{/controller/modifyController}" method="post">
                   <div class="layui-form-item">
                     <label class="layui-form-label">我的角色</label>
                     <div class="layui-input-inline">
@@ -82,33 +90,33 @@
                   <div class="layui-form-item">
                     <label class="layui-form-label">用户名</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="username" value="xianxin" readonly class="layui-input">
+                      <input type="text" name="controllerAccount" th:value="${user.controllerAccount}" readonly class="layui-input">
                     </div>
                     <div class="layui-form-mid layui-word-aux">不可修改。一般用于后台登入名</div>
                   </div>
                   <div class="layui-form-item">
                     <label class="layui-form-label">昵称</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="nickname" value="贤心" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
+                      <input type="text" name="controllerName" th:value="${user.controllerName}" lay-verify="nickname" autocomplete="off" placeholder="请输入昵称" class="layui-input">
                     </div>
                   </div>
                   <div class="layui-form-item">
                     <label class="layui-form-label">性别</label>
                     <div class="layui-input-block">
-                      <input type="radio" name="sex" value="男" title="男">
-                      <input type="radio" name="sex" value="女" title="女" checked>
+                      <input type="radio" name="sex" value="男" title="男" checked>
+                      <input type="radio" name="sex" value="女" title="女">
                     </div>
                   </div>
                   <div class="layui-form-item">
                     <label class="layui-form-label">手机</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="cellphone" value="" lay-verify="phone" autocomplete="off" class="layui-input">
+                      <input type="text" name="controllerPhone" th:value="${user.controllerPhone}" lay-verify="phone" autocomplete="off" class="layui-input">
                     </div>
                   </div>
                   <div class="layui-form-item">
                     <label class="layui-form-label">邮箱</label>
                     <div class="layui-input-inline">
-                      <input type="text" name="email" value="" lay-verify="email" autocomplete="off" class="layui-input">
+                      <input type="text" name="controllerEmail" th:value="${user.controllerEmail}" lay-verify="email" autocomplete="off" class="layui-input">
                     </div>
                   </div>
                   <div class="layui-form-item layui-form-text">
@@ -119,10 +127,12 @@
                   </div>
                   <div class="layui-form-item">
                     <div class="layui-input-block">
+                      <input type="hidden" th:value="${user.controllerId}" name="controllerId">
                       <button class="layui-btn" lay-submit lay-filter="setmyinfo">确认修改</button>
-                      <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
+                      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                     </div>
                   </div>
+                  </form>
                 </div>
                 
               </div>

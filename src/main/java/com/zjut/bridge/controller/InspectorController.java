@@ -1,7 +1,6 @@
 package com.zjut.bridge.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.zjut.bridge.pojo.entity.Bridge;
 import com.zjut.bridge.pojo.entity.InspectionReport;
 import com.zjut.bridge.pojo.entity.Inspector;
@@ -13,12 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/inspector")
@@ -64,12 +60,12 @@ public class InspectorController{
     @RequestMapping("modifyInspector")
     String modifyInspector(Inspector inspector,Model model){
         JSONObject json = inspectorService.modifyInspector(inspector);
-        Inspector dbuser = inspectorService.selectByPrimaryKey(inspector.getInspectorId());
         if(json.get("msg").equals("success")){
+            Inspector dbuser = inspectorService.selectByPrimaryKey(inspector.getInspectorId());
             model.addAttribute("user",dbuser);
-            model.addAttribute("msg","添加用户成功!");
+            model.addAttribute("msg","修改用户成功!");
         }else{
-            model.addAttribute("msg","添加用户失败!");
+            model.addAttribute("msg","修改用户失败!");
         }
         return "inspector/i_self";
     }

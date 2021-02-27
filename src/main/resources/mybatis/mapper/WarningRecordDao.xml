@@ -17,7 +17,12 @@
     from warning_record
     where warning_id = #{warningId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectWarningRecords" resultType="com.zjut.bridge.pojo.entity.WarningRecord">
+      select
+      <include refid="Base_Column_List" />
+      from warning_record
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from warning_record
     where warning_id = #{warningId,jdbcType=INTEGER}
   </delete>

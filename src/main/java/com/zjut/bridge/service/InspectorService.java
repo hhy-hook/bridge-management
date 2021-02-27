@@ -6,9 +6,9 @@ import com.zjut.bridge.pojo.entity.Inspector;
 import java.util.List;
 
 public interface InspectorService {
-    public boolean login(Inspector inspector);
+    boolean login(Inspector inspector);
 
-    public List<Inspector> selectInspectors();
+    List<Inspector> selectInspectors();
 
     JSONObject addInspector(Inspector inspector);
 

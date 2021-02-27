@@ -2,13 +2,14 @@ package com.zjut.bridge.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.bridge.pojo.entity.InspectionReport;
+import com.zjut.bridge.pojo.vo.ReportVO;
 
 import java.util.List;
 
 public interface InspectionReportService {
-    public JSONObject addReport(InspectionReport inspectionReport);
+    JSONObject addReport(InspectionReport inspectionReport);
 
-    public int selectMaxPrimaryKey();
+    int selectMaxPrimaryKey();
 
-    List<InspectionReport> selectReports();
+    List<ReportVO> selectReports();
 }

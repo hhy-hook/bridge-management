@@ -6,6 +6,13 @@
   <title>管理员人员界面 </title>
   <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
+<script>
+    function nofind() {
+        var img = document.getElementById("headPic");
+        img.src = "/upload/user/默认头像.svg";
+        img.onerror = null;
+    }
+</script>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
@@ -14,8 +21,8 @@
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
         <a href="javascript:;">
-          <img src="http://t.cn/RCzsdCq" class="layui-nav-img">
-          梅寒箫
+            <img th:src="@{${user.controllerImg}}" class="layui-nav-img" id="headPic" onerror="nofind()">
+            <span th:text="${user.controllerName}"/>
         </a>
         <dl class="layui-nav-child">
           <dd><a th:href="@{/controller/front/c_self}">基本资料</a></dd>

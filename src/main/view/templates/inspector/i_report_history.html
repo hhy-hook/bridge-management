@@ -80,6 +80,23 @@
 <script th:src="@{/layui/layui.all.js}"></script>
 
 <script>
+    function DateFormat(sjc){
+        var date = new Date(sjc);
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        m = m<10?'0'+m:m;
+        var d = date.getDate();
+        d = d<10?("0"+d):d;
+        var h = date.getHours();
+        h = h<10?("0"+h):h;
+        var min = date.getMinutes();
+        min = min<10?("0"+min):min;
+        var s = date.getSeconds();
+        s = s<10?("0"+s):s;
+        var str = y+"-"+m+"-"+d+" "+h+":"+min+":"+s;
+        return str;
+    }
+
 layui.use('table', function(){
   var table = layui.table;
   
@@ -97,9 +114,11 @@ layui.use('table', function(){
     ,cols: [
         [{type: 'checkbox', fixed: 'left'}
       ,{field:'inspectionId', title:'ID', fixed: 'left', unresize: true, sort: true}
-      ,{field:'bridgeId', title:'巡检桥梁', edit: 'text'}
+      ,{field:'bridgeName', title:'巡检桥梁'}
       ,{field:'inspectionNote', title:'内容', edit: 'text'}
-      ,{field:'inspectionDate', title:'时间', edit: 'text', sort: true}
+      ,{field:'inspectionDate', title:'时间', templet: function(d){
+          return DateFormat(d.inspectionDate);
+      }}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}]
       ]
     ,page: true

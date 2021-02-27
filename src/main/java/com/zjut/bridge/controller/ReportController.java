@@ -2,7 +2,7 @@ package com.zjut.bridge.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.bridge.pojo.entity.InspectionReport;
-import com.zjut.bridge.pojo.entity.Inspector;
+import com.zjut.bridge.pojo.vo.ReportVO;
 import com.zjut.bridge.service.InspectionReportService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +24,10 @@ public class ReportController {
 
     @RequestMapping("addReport")
     String addReport(InspectionReport inspectionReport, Model model){
-        inspectionReport.setInspectionDate(new Date());
+        Date current = new Date();
+        inspectionReport.setInspectionDate(current);
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println(simpleDateFormat.format(current));
         JSONObject json = inspectionReportService.addReport(inspectionReport);
         int id = inspectionReportService.selectMaxPrimaryKey();
         if(json.get("msg").equals("success")){
@@ -40,13 +45,15 @@ public class ReportController {
 
         JSONObject json = new JSONObject();
 
-        List<InspectionReport> db = inspectionReportService.selectReports();
+        List<ReportVO> db = inspectionReportService.selectReports();
         if(db == null || db.isEmpty()){
             json.put("msg","error");
-            json.put("code","222222");
+            json.put("code","201");
+            json.put("count",0);
         }else{
             json.put("msg", "success");
             json.put("code", "0");
+            json.put("count",db.size());
             json.put("data", db);
         }
         return json;
