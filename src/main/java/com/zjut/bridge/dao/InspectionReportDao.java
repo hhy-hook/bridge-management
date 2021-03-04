@@ -23,4 +23,6 @@ public interface InspectionReportDao {
     int selectMaxPrimaryKey();
 
     List<ReportVO> selectReports();
+
+    int deleteByInspectorId(int id);
 }

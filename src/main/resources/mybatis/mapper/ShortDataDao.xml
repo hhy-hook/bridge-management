@@ -23,7 +23,11 @@
     delete from short_data
     where short_data_id = #{shortDataId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="short_data_id" keyProperty="shortDataId" parameterType="com.zjut.bridge.pojo.entity.ShortData" useGeneratedKeys="true">
+    <delete id="deleteByBridgeId">
+      delete from short_data
+    where bridge_id = #{bridgeId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="short_data_id" keyProperty="shortDataId" parameterType="com.zjut.bridge.pojo.entity.ShortData" useGeneratedKeys="true">
     insert into short_data (short_data_power_id, short_data_stree_id, 
       short_data_temperature_id, bridge_id, short_data_date
       )

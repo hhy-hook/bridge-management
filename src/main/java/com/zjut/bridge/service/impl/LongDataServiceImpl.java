@@ -1,29 +1,23 @@
 package com.zjut.bridge.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.zjut.bridge.dao.WarningRecordDao;
-import com.zjut.bridge.pojo.entity.WarningRecord;
-import com.zjut.bridge.service.WarnService;
+import com.zjut.bridge.dao.LongDataDao;
+import com.zjut.bridge.service.LongDataService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Service
-public class WarnServiceImpl implements WarnService {
-    @Resource
-    WarningRecordDao warningRecordDao;
+public class LongDataServiceImpl implements LongDataService {
 
-    @Override
-    public List<WarningRecord> selectWarningRecords() {
-        return warningRecordDao.selectWarningRecords();
-    }
+    @Resource
+    LongDataDao longDataDao;
 
     @Override
     public JSONObject deleteByBridgeId(int id) {
         JSONObject json = new JSONObject();
         try{
-            warningRecordDao.deleteByBridgeId(id);
+            longDataDao.deleteByBridgeId(id);
             json.put("msg","success");
             json.put("code","0");
         }catch (Exception e){

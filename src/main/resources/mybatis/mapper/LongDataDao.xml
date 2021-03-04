@@ -24,7 +24,11 @@
     delete from long_data
     where long_data_id = #{longDataId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="long_data_id" keyProperty="longDataId" parameterType="com.zjut.bridge.pojo.entity.LongData" useGeneratedKeys="true">
+    <delete id="deleteByBridgeId">
+      delete from long_data
+      where bridge_id = #{bridgeId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="long_data_id" keyProperty="longDataId" parameterType="com.zjut.bridge.pojo.entity.LongData" useGeneratedKeys="true">
     insert into long_data (long_data_stree_id, long_data_temperature_id, 
       long_data_seam_id, long_data_settlement_id, bridge_id, 
       long_data_date)

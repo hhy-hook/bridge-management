@@ -20,4 +20,6 @@ public interface WarningRecordDao {
     int updateByPrimaryKey(WarningRecord record);
 
     List<WarningRecord> selectWarningRecords();
+
+    int deleteByBridgeId(int id);
 }

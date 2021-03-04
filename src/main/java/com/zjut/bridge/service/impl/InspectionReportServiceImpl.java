@@ -48,4 +48,19 @@ public class InspectionReportServiceImpl implements InspectionReportService {
         }
         return origin;
     }
+
+    @Override
+    public JSONObject deleteByInspectorId(int id) {
+        JSONObject json = new JSONObject();
+        try{
+            inspectionReportDao.deleteByInspectorId(id);
+            json.put("msg","success");
+            json.put("code","0");
+        }catch (Exception e){
+            e.printStackTrace();
+            json.put("msg","error");
+            json.put("code","222222");
+        }
+        return json;
+    }
 }

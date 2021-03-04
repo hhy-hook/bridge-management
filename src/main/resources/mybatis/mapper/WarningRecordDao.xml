@@ -26,7 +26,11 @@
     delete from warning_record
     where warning_id = #{warningId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="warning_id" keyProperty="warningId" parameterType="com.zjut.bridge.pojo.entity.WarningRecord" useGeneratedKeys="true">
+    <delete id="deleteByBridgeId">
+      delete from warning_record
+    where bridge_id = #{bridgeId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="warning_id" keyProperty="warningId" parameterType="com.zjut.bridge.pojo.entity.WarningRecord" useGeneratedKeys="true">
     insert into warning_record (bridge_id, warning_level, warning_point, 
       warning_date)
     values (#{bridgeId,jdbcType=INTEGER}, #{warningLevel,jdbcType=INTEGER}, #{warningPoint,jdbcType=VARCHAR}, 

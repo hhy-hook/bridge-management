@@ -9,8 +9,11 @@
 <script>
   function nofind() {
     var img = document.getElementById("headPic");
+    var img2 = document.getElementById("headPic2");
     img.src = "/upload/user/默认头像.svg";
     img.onerror = null;
+    img2.src = "/upload/user/默认头像.svg";
+    img2.onerror = null;
   }
 </script>
 <body class="layui-layout-body">
@@ -74,7 +77,6 @@
             <div class="layui-card">
               <div class="layui-card-header">设置我的资料</div>
               <div class="layui-card-body" pad15>
-                
                 <div class="layui-form" lay-filter="">
                   <form th:action="@{/controller/modifyController}" method="post">
                   <div class="layui-form-item">
@@ -134,7 +136,6 @@
                   </div>
                   </form>
                 </div>
-                
               </div>
             </div>
           </div>
@@ -149,124 +150,6 @@
   </div>
 </div>
 <script th:src="@{/layui/layui.all.js}"></script>
-<script>
-//JavaScript代码区域
-layui.use('element', function(){
-  var element = layui.element;
-  
-});
-layui.use('form', function(){
-  var form = layui.form;
-  
-  //各种基于事件的操作，下面会有进一步介绍
-});
 
-layui.use('laydate', function(){
-  var laydate = layui.laydate;
-  
-  //执行一个laydate实例
-  laydate.render({
-    elem: '#test1' //指定元素
-  });
-});
-
-layui.use('table', function(){
-  var table = layui.table;
-})
-
-
-</script>
-
-<script>
-   layui.use('layer', function(){ //独立版的layer无需执行这一句
-        var $ = layui.jquery, layer = layui.layer; //独立版的layer无需执行这一句
-
-        //触发事件
-        var active = {
-    notice: function() {
-        //示范一个公告层
-        layer.open({
-            type: 2//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层)
-            ,title: false //不显示标题栏
-            ,closeBtn: false
-            ,area: ['550px','535px']//定义宽高
-            ,shade: 0.8//遮幕
-            ,id: 'LAY_layuipro' //设定一个id，防止重复弹出
-			,closeBtn: 1
-            ,btnAlign: 'c'//按钮排列：居中对齐
-            ,moveType: 1 //拖拽模式，0或者1
-            ,content: 'c_add_i.html'//跳转到想要的界面，这里是我自己项目的跳转界面
-            ,
-            success: function (layero) {
-                var btn = layero.find('.layui-layer-btn');
-                btn.find('.layui-layer-btn0').attr({
-                    href: '${path}'
-                    , target: '_blank'
-                });
-            }
-        })
-    }}
-            $('#layerDemo .layui-btn').on('click', function(){
-            var othis = $(this), method = othis.data('method');
-            active[method] ? active[method].call(this, othis) : '';
-        });})
-</script>
-<script>
-layui.use('table', function(){
-  var table = layui.table;
-  
-  table.render({
-    elem: '#test'
-    ,url:'user.json'
-    ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
-    ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
-      title: '提示'
-      ,layEvent: 'LAYTABLE_TIPS'
-      ,icon: 'layui-icon-tips'
-    }]
-	,cellMinWidth: 80
-    ,title: '用户数据表'
-    ,cols: [
-            [{type: 'checkbox', fixed: 'left'}
-      ,{field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
-      ,{field:'username', title:'用户名', edit: 'text'}
-      ,{field:'email', title:'邮箱', edit: 'text', templet: function(res){
-        return '<em>'+ res.email +'</em>'
-      }}
-      ,{field:'sex', title:'性别', edit: 'text', sort: true}
-      ,{field:'city', title:'城市'}
-      ,{field:'sign', title:'签名'}
-      ,{field:'experience', title:'积分', sort: true}
-      ,{field:'logins', title:'登入次数', sort: true}
-      ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}]
-    ]
-    ,page: true
-  });
-  
-  //头工具栏事件
-  table.on('toolbar(test)', function(obj){
-    var checkStatus = table.checkStatus(obj.config.id);
-    switch(obj.event){
-      case 'getCheckData':
-        var data = checkStatus.data;
-        layer.alert(JSON.stringify(data));
-      break;
-      case 'getCheckLength':
-        var data = checkStatus.data;
-        layer.msg('选中了：'+ data.length + ' 个');
-      break;
-      case 'isAll':
-        layer.msg(checkStatus.isAll ? '全选': '未全选');
-      break;
-      
-      //自定义头工具栏右侧图标 - 提示
-     
-      break;
-    };
-  });
-  
-  //监听行工具事件
-});
-</script>
 </body>
 </html>

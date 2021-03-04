@@ -30,7 +30,11 @@
     delete from inspection_report
     where inspection_id = #{inspectionId,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" keyColumn="inspection_id" keyProperty="inspectionId" parameterType="com.zjut.bridge.pojo.entity.InspectionReport" useGeneratedKeys="true">
+    <delete id="deleteByInspectorId">
+      delete from inspection_report
+      where inspector_id = #{inspectorId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" keyColumn="inspection_id" keyProperty="inspectionId" parameterType="com.zjut.bridge.pojo.entity.InspectionReport" useGeneratedKeys="true">
     insert into inspection_report (bridge_id, inspector_id, inspection_note, 
       inspection_date, inspection_img)
     values (#{bridgeId,jdbcType=INTEGER}, #{inspectorId,jdbcType=INTEGER}, #{inspectionNote,jdbcType=VARCHAR}, 

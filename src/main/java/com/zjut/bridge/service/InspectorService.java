@@ -17,4 +17,6 @@ public interface InspectorService {
     JSONObject modifyInspector(Inspector inspector);
 
     Inspector selectByPrimaryKey(Integer inspectorId);
+
+    JSONObject delInspector(int id);
 }

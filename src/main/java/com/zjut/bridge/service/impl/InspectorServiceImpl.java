@@ -71,4 +71,17 @@ public class InspectorServiceImpl implements InspectorService {
     public Inspector selectByPrimaryKey(Integer inspectorId) {
         return inspectorDao.selectByPrimaryKey(inspectorId);
     }
+
+    @Override
+    public JSONObject delInspector(int id) {
+        JSONObject json = new JSONObject();
+        if(inspectorDao.deleteByPrimaryKey(id) == 1){
+            json.put("msg","success");
+            json.put("code","0");
+        }else{
+            json.put("msg","error");
+            json.put("code","201");
+        }
+        return json;
+    }
 }

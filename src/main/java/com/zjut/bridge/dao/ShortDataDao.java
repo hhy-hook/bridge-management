@@ -16,4 +16,6 @@ public interface ShortDataDao {
     int updateByPrimaryKeySelective(ShortData record);
 
     int updateByPrimaryKey(ShortData record);
+
+    int deleteByBridgeId(int id);
 }

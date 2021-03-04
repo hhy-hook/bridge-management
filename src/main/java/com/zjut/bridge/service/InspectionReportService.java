@@ -12,4 +12,6 @@ public interface InspectionReportService {
     int selectMaxPrimaryKey();
 
     List<ReportVO> selectReports();
+
+    JSONObject deleteByInspectorId(int id);
 }

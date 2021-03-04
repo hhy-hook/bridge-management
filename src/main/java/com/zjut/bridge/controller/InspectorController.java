@@ -5,6 +5,7 @@ import com.zjut.bridge.pojo.entity.Bridge;
 import com.zjut.bridge.pojo.entity.InspectionReport;
 import com.zjut.bridge.pojo.entity.Inspector;
 import com.zjut.bridge.service.BridgeService;
+import com.zjut.bridge.service.InspectionReportService;
 import com.zjut.bridge.service.InspectorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,6 +26,9 @@ public class InspectorController{
 
     @Resource
     BridgeService bridgeService;
+
+    @Resource
+    InspectionReportService inspectionReportService;
 
     @RequestMapping("login")
     String login(Inspector inspector, Model model){
@@ -54,7 +58,23 @@ public class InspectorController{
         }else{
             model.addAttribute("msg","添加用户失败!");
         }
-        return "controller/c_inspector";
+        return "/controller/c_inspector";
+    }
+
+    @RequestMapping("delInspector")
+    @ResponseBody
+    public JSONObject delInspector(int id){
+        JSONObject res2 = inspectionReportService.deleteByInspectorId(id);
+        JSONObject res1 = inspectorService.delInspector(id);
+        JSONObject res = new JSONObject();
+        if(res1.get("msg").equals("success") && res2.get("msg").equals("success")){
+            res.put("msg", "success");
+            res.put("code", "0");
+        }else{
+            res.put("msg", "error");
+            res.put("code", "201");
+        }
+        return res;
     }
 
     @RequestMapping("modifyInspector")

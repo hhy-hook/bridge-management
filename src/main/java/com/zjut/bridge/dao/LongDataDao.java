@@ -16,4 +16,6 @@ public interface LongDataDao {
     int updateByPrimaryKeySelective(LongData record);
 
     int updateByPrimaryKey(LongData record);
+
+    int deleteByBridgeId(int id);
 }

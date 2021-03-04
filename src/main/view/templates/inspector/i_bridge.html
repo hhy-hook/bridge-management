@@ -70,6 +70,7 @@
 	<table class="layui-hide" id="test" lay-filter="test"></table>
 	<script type="text/html" id="barDemo">
 	  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+      <a class="layui-btn layui-btn-xs" lay-event="detail" th:href="@{/inspector/front/i_bridge_details}">查看</a>
 	</script>
   </div>
   <div class="layui-footer">
@@ -123,13 +124,18 @@ layui.use('table', function(){
       case 'isAll':
         layer.msg(checkStatus.isAll ? '全选': '未全选');
       break;
-      
       //自定义头工具栏右侧图标 - 提示
-     
       break;
     };
   });
-  
+
+  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+      var data = obj.data //获得当前行数据
+          ,layEvent = obj.event; //获得 lay-event 对应的值
+      if(layEvent === 'edit'){
+          layer.msg("编辑");
+      }
+  });
   //监听行工具事件
 });
 </script>
