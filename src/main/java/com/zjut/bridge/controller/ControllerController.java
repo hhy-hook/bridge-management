@@ -16,11 +16,16 @@ public class ControllerController {
     @Resource
     ControllerService controllerService;
 
+    @RequestMapping("exit")
+    String exit(){
+        return "/index";
+    }
+
     @RequestMapping("login")
     String login(com.zjut.bridge.pojo.entity.Controller controller,Model model){
         if("".equals(controller.getControllerAccount()) || controller.getControllerAccount() == null ){
             model.addAttribute("errorMsg","请输入账号!");
-            return "index";
+            return "/index";
         }
 
         boolean loginResult = controllerService.login(controller);
@@ -29,10 +34,10 @@ public class ControllerController {
             model.addAttribute("successMsg","登录成功");
             com.zjut.bridge.pojo.entity.Controller db = controllerService.selectByAccount(controller.getControllerAccount());
             model.addAttribute("user",db);
-            return "controller/c_bridge";
+            return "/controller/c_bridge";
         }
         model.addAttribute("errorMsg","手机号或密码输入错误!");
-        return "index";
+        return "/index";
     }
 
     @RequestMapping("modifyController")
@@ -78,4 +83,7 @@ public class ControllerController {
     String c_self(){
         return "/controller/c_self";
     }
+
+    @RequestMapping("front/bridge")
+    String bridge(){return "/controller/bridge_test";}
 }

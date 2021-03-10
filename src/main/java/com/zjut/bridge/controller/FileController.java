@@ -50,4 +50,36 @@ public class FileController {
         json.put("code",1);
         return json;
     }
+
+    @RequestMapping("user")
+    @ResponseBody
+    protected JSONObject uploadPic(MultipartFile file){
+        JSONObject json = new JSONObject();
+
+        String uploadDir = "/upload/user/";
+        String realPath = WebMvcConfig.WINDOW_UPLOAD_PATH;
+        String filename = file.getOriginalFilename();
+        String filetype = filename.substring(filename.lastIndexOf('.')+1);
+        String uploadName = UUID.randomUUID() + "." + filetype;
+        File f = new File(realPath + uploadDir,uploadName);
+        //System.out.println(f.getParentFile());
+        if(!f.getParentFile().exists()){
+            f.getParentFile().mkdir();
+        }
+        try{
+            if(!file.isEmpty()){
+                if(file.getSize() > 0){
+                    file.transferTo(f);
+                    logger.info("图片已经保存到："+ realPath + uploadDir + uploadName);
+                    json.put("code",0);
+                    json.put("data",uploadDir + uploadName);
+                    return json;
+                }
+            }
+        } catch ( IOException e){
+            e.printStackTrace();
+        }
+        json.put("code",1);
+        return json;
+    }
 }

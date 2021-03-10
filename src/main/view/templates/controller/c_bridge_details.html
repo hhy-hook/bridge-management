@@ -29,7 +29,7 @@
           <dd><a href="">安全设置</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="">退出登录</a></li>
+      <li class="layui-nav-item"><a th:href="@{/controller/exit}">退出登录</a></li>
     </ul>
   </div>
 
@@ -87,7 +87,7 @@
 	                            <fieldset class="layui-elem-field layui-field-title">
 	                              <legend>桥梁编号</legend>
 	                              <div class="layui-field-box">
-	                                内容区域
+									  <input type="text" disabled th:value="${user}">
 	                              </div>
 	                            </fieldset>
 	                          </div>

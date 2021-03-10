@@ -9,8 +9,11 @@
 <script>
   function nofind() {
     var img = document.getElementById("headPic");
+    var img2 = document.getElementById("headPic2");
     img.src = "/upload/user/默认头像.svg";
     img.onerror = null;
+    img2.src = "/upload/user/默认头像.svg";
+    img2.onerror = null;
   }
 </script>
 <body class="layui-layout-body">
@@ -28,7 +31,7 @@
           <dd><a th:href="@{/inspector/front/i_self}">基本资料</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="">退出登录</a></li>
+      <li class="layui-nav-item"><a th:href="@{/inspector/exit}">退出登录</a></li>
     </ul>
   </div>
 
@@ -65,7 +68,7 @@
   <div class="layui-body">
     <div class="layui-fluid">
         <div class="layui-row layui-col-space15">
-          <div class="layui-col-md12">
+          <div class="layui-col-md6">
             <div class="layui-card">
               <div class="layui-card-header">设置我的资料</div>
               <div class="layui-card-body" pad15>
@@ -114,15 +117,10 @@
                       <input type="text" name="inspectorEmail" th:value="${user.inspectorEmail}" lay-verify="email" autocomplete="off" class="layui-input">
                     </div>
                   </div>
-                  <div class="layui-form-item layui-form-text">
-                    <label class="layui-form-label">备注</label>
-                    <div class="layui-input-block">
-                      <textarea name="remarks" placeholder="请输入内容" class="layui-textarea"></textarea>
-                    </div>
-                  </div>
                   <div class="layui-form-item">
                     <div class="layui-input-block">
                       <input type="hidden" th:value="${user.inspectorId}" name="inspectorId">
+                      <input type="hidden" th:value="${user.inspectorImg}" name="inspectorImg" id="picSrc">
                       <button class="layui-btn" lay-submit lay-filter="setmyinfo">确认修改</button>
                       <button type="reset" class="layui-btn layui-btn-primary">重新填写</button>
                     </div>
@@ -133,6 +131,19 @@
               </div>
             </div>
           </div>
+          <div class="layui-col-md6" style="margin-top: 40px;">
+            <div class="layui-form-item layui-form-text layui-upload-list">
+              <img  th:src="${user.inspectorImg}" style="border-radius: 10px; background-color: #0C0C0C" id="headPic2" onerror="nofind()"
+                    width="200" height="200"/>
+              <p id="demoText"></p>
+            </div>
+            <div class="layui-form-item layui-upload">
+              <button type="button" class="layui-btn layui-btn-normal" id="test1">上传本地头像</button>
+              <button type="button" class="layui-btn" id="test2">开始上传</button>
+            </div>
+          </div>
+        </div>
+
         </div>
       </div>
   
@@ -143,5 +154,43 @@
   </div>
 </div>
 <script th:src="@{/layui/layui.all.js}"></script>
+<script>
+  layui.use('upload', function(){
+    var $ = layui.jquery
+            ,upload = layui.upload;
+
+    //普通图片上传
+    var uploadInst = upload.render({
+      elem: '#test1'
+      ,url: '/upload/user' //改成您自己的上传接口
+      ,auto: false
+      ,bindAction: '#test2'
+      ,choose: function(obj){
+        //预读本地文件示例，不支持ie8
+        obj.preview(function(index, file, result){
+          $('#headPic2').attr('src', result); //图片链接（base64）
+        });
+      }
+      ,done: function(res){
+        //如果上传失败
+        if(res.code > 0){
+          return layer.msg('上传失败');
+        }
+        //上传成功
+        var src = document.getElementById("picSrc");
+        src.value = res.data;
+        return layer.msg('上传成功');
+      }
+      ,error: function(){
+        //演示失败状态，并实现重传
+        var demoText = $('#demoText');
+        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        demoText.find('.demo-reload').on('click', function(){
+          uploadInst.upload();
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>

@@ -30,12 +30,17 @@ public class InspectorController{
     @Resource
     InspectionReportService inspectionReportService;
 
+    @RequestMapping("exit")
+    String exit(){
+        return "/index";
+    }
+
     @RequestMapping("login")
     String login(Inspector inspector, Model model){
 
         if("".equals(inspector.getInspectorAccount()) || inspector.getInspectorAccount() == null ){
             model.addAttribute("errorMsg","请输入账号!");
-            return "index";
+            return "/index";
         }
 
         boolean loginResult = inspectorService.login(inspector);
@@ -44,10 +49,10 @@ public class InspectorController{
             model.addAttribute("successMsg","登录成功");
             Inspector db = inspectorService.selectByAccount(inspector.getInspectorAccount());
             model.addAttribute("user",db);
-            return "inspector/i_bridge";
+            return "/inspector/i_bridge";
         }
         model.addAttribute("errorMsg","手机号或密码输入错误!");
-        return "index";
+        return "/index";
     }
 
     @RequestMapping("addInspector")

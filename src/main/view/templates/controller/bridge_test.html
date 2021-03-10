@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <title>BuildingSceneLayer with Slice widget - 4.14</title>
+    <style>
+        html,
+        body,
+        #viewDiv {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+        }
+
+        #menu {
+            padding: 0.8em;
+        }
+    </style>
+    <link href="https://js.arcgis.com/4.14/esri/themes/light/main.css" rel="stylesheet" type="text/css" />
+    <script src="https://js.arcgis.com/4.14/"></script>
+    <script>
+        require(["esri/Map",
+            "esri/views/SceneView",
+            "esri/layers/BuildingSceneLayer",
+            "esri/widgets/Popup"
+        ], function (
+            Map,
+            SceneView,
+            BuildingSceneLayer,
+            Popup
+        ) {
+
+            const map = new Map({
+                basemap: "osm"
+            });
+            const view = new SceneView({
+                container: "viewDiv",
+                map: map
+            });
+
+            const buildingLayer = new BuildingSceneLayer({
+                url:
+                    "https://tiles.arcgis.com/tiles/SOqSu0Nc0YVnxZDD/arcgis/rest/services/bridge/SceneServer",
+                title: "Administration Building, Redlands - Building Scene Layer"
+            });
+            map.layers.add(buildingLayer);
+
+            view.goTo({
+                center: [122.7977756, 30.7236033],
+                heading: 10,
+                zoom: 20,
+                tilt: 45
+            });
+
+            view.popup.autoOpenEnabled = false;
+            view.on("click", function(event){
+                console.log(event.mapPoint);
+
+                view.hitTest(event).then(function(response) {
+                    var result = response.results[0];
+
+                    if (result) {
+                        view.popup.open({
+                            location: result.mapPoint,  // location of the click on the view
+                            title: "You clicked here",  // title displayed in the popup
+                            content: "This is a point of interest"  // content displayed in the popup
+                        });
+                    } else {
+                        console.warn("未点击到桥梁");
+                    }
+                });
+
+            });
+            // /*  添加提示窗口   */
+            // const buildingExplorer = new BuildingExplorer({
+            //     view: view,
+            //     layers: [buildingLayer],
+            // });
+            // view.ui.add(buildingExplorer, "top-right");
+            // /*    */
+        });
+    </script>
+</head>
+
+<body>
+<div id="viewDiv" class="esri-widget"></div>
+
+</body>
+</html>
