@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>管理员人员 界面 </title>
+    <script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
   <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
 <script>
@@ -70,15 +71,25 @@
   
   <div class="layui-body">
     <!-- 内容主体区域 -->
-	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-	  <legend>预警记录</legend>
-	</fieldset>
-    <div style="padding: 15px;">
-		<table class="layui-hide" id="test" lay-filter="test"></table> 
-		<script type="text/html" id="barDemo">
-		  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-		</script>
-	</div>
+      <div class="layui-fluid">
+          <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+              <legend>预警记录</legend>
+          </fieldset>
+          <div class="layui-col-md6">
+              <div id="left1" style="width: 600px;height:400px;"></div>
+          </div>
+          <div class="layui-col-md6">
+              <div id="short1" style="width: 600px;height:400px;"></div>
+          </div>
+          <div class="layui-col-md12">
+              <div style="padding: 15px;">
+                  <table class="layui-hide" id="test" lay-filter="test"></table>
+                  <script type="text/html" id="barDemo">
+                      <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                  </script>
+              </div>
+          </div>
+      </div>
   </div>
   
   <div class="layui-footer">
@@ -87,7 +98,78 @@
   </div>
 </div>
 <script th:src="@{/layui/layui.all.js}"></script>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('left1'));
 
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '当日桥梁安全信息分布',
+            subtext: '2021-3-6',
+            left: 'center'
+        },
+        tooltip: {
+            trigger: 'item'
+        },
+        color:['#00ff00','#ffaa00','#ff0000','#aa0000'],
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+        },
+        series: [
+            {
+                name: '桥梁数量',
+                type: 'pie',
+                radius: '50%',
+                data: [
+                    {value: 1048, name: '安全'},
+                    {value: 735, name: '较低风险'},
+                    {value: 580, name: '较高风险'},
+                    {value: 484, name: '危险'},
+                ],
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('short1'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: '长时应力数据'
+        },
+        tooltip: {},
+        legend: {
+            data: ['数值']
+        },
+        xAxis: {
+            data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2", "F1", "F2", "H1", "H2"]
+        },
+        yAxis: {},
+        series: [{
+            name: '数值',
+            type: 'bar',
+            data: [5, 20, 36, 10, 10, 20]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
 <script>
     layui.use('table', function(){
         var table = layui.table;

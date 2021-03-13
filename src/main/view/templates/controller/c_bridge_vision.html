@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<title>管理员人员 界面 </title>
+		<link rel="stylesheet" href="../layui/css/layui.css">
+		<script src="https://cdn.staticfile.org/echarts/4.3.0/echarts.min.js"></script>
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-layout layui-layout-admin">
+			<div class="layui-header">
+				<div class="layui-logo">管理员</div>
+				<!-- 头部区域（可配合layui已有的水平导航） -->
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href="javascript:;">
+							<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+							梅寒箫
+						</a>
+						<dl class="layui-nav-child">
+							<dd><a href="c_self.html">基本资料</a></dd>
+						</dl>
+					</li>
+					<li class="layui-nav-item"><a href="">退出登录</a></li>
+				</ul>
+			</div>
+
+			<div class="layui-side layui-bg-black">
+				<div class="layui-side-scroll">
+					<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+					<ul class="layui-nav layui-nav-tree" lay-filter="test">
+						<li class="layui-nav-item">
+							<a class="" href="javascript:;">工作人员</a>
+							<dl class="layui-nav-child">
+								<dd><a href="c_inspector.html">巡检人员</a></dd>
+								<dd><a href="c_maintainer.html">维护人员</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="c_bridge.html">桥梁</a>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">预警</a>
+							<dl class="layui-nav-child">
+								<dd><a href="c_alert_history.html">预警记录</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">维护</a>
+							<dl class="layui-nav-child">
+								<dd><a href="c_maintain_advice">维护建议</a></dd>
+							</dl>
+						</li>
+						<li class="layui-nav-item">
+							<a href="javascript:;">消息</a>
+							<dl class="layui-nav-child">
+								<dd><a href="c_message.html">全部消息</a></dd>
+							</dl>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="layui-body">
+				<!-- 内容主体区域 -->
+				<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+					<legend>桥梁信息</legend>
+				</fieldset>
+				<div class="layui-fluid">
+					<div class="layui-row layui-col-space15">
+						<div class="layui-col-md8">
+							<div class="layui-row layui-col-space15">
+								<div class="layui-col-md12">
+									<div class="layui-card">
+										<div class="layui-card-header">
+											<span class="layui-breadcrumb" lay-separator="|">
+												<a href="c_bridge_details.html">基本数据</a>
+												<a href="c_bridge_vision.html">可视化</a>
+											</span>
+										</div>
+									</div>
+									<div class="layui-col-md6">
+										<div id="left1" style="width: 450px;height:300px;">
+
+										</div>
+									</div>
+									<div class="layui-col-md6">
+										<div id="right1" style="width: 450px;height:300px;">
+
+										</div>
+									</div>
+									<div class="layui-col-md6">
+										<div id="left2" style="width: 450px;height:300px;">
+									
+										</div>
+									</div>
+									<div class="layui-col-md6">
+										<div id="right2" style="width: 450px;height:300px;">
+									
+										</div>
+									</div>
+								</div>
+
+
+
+							</div>
+						</div>
+
+						<div class="layui-col-md4">
+							<div class="layui-card">
+								<div class="layui-card-header">操作</div>
+								<div class="layui-card-body layui-text">
+									<table class="layui-table">
+										<colgroup>
+											<col width="100">
+											<col>
+										</colgroup>
+										<tbody>
+											<tr>
+												<td>桥梁名称</td>
+												<td>
+
+												</td>
+											</tr>
+											<tr>
+												<td>操作</td>
+												<td style="padding-bottom: 0;">
+													<div class="layui-btn-container">
+														<a href="" class="layui-btn layui-btn-danger  layui-btn-disabled">删除</a>
+														<a href="" class="layui-btn  layui-btn-disabled">修改</a>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+
+							<div class="layui-card">
+								<div class="layui-card-header">预警</div>
+								<div class="layui-card-body layui-text">
+									预警值设置
+									<br />
+									<br />
+									<div id="alert1" class="demo-slider"></div>
+									<br />
+									<div class="layui-btn-container">
+										<a href="" class="layui-btn layui-btn-danger">预警</a>
+									</div>
+
+								</div>
+							</div>
+							<div class="layui-card">
+								<div class="layui-card-header">最近一次预警结果</div>
+							</div>
+						</div>
+						
+						<div class="layui-col-md12">
+							<div class="layui-col-md4">
+								<div id="left3" style="width: 450px;height:300px;">
+							
+								</div>
+							</div>
+							<div class="layui-col-md4">
+								<div id="middle3" style="width: 450px;height:300px;">
+							
+								</div>
+							</div>
+							<div class="layui-col-md4">
+								<div id="right3" style="width: 450px;height:300px;">
+							
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+
+			<div class="layui-footer">
+				<!-- 底部固定区域 -->
+				中小型桥梁智能管养系统
+			</div>
+		</div>
+
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('left1'));
+
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日长时应力数据'
+				},
+				color:['#00007f'],
+				tooltip: {},
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('right1'));
+		
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日长时温度数据'
+				},
+				tooltip: {},
+				color:['#aa5500'],
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+		
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('left2'));
+		
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日长时沉降数据'
+				},
+				tooltip: {},
+				color:['#550000'],
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+		
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('right2'));
+		
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日长时伸缩缝数据'
+				},
+				tooltip: {},
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+		
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('left3'));
+		
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日短时温度数据'
+				},
+				tooltip: {},
+				color: ['#00ffff'],
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+		
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('middle3'));
+		
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日短时应力数据'
+				},
+				tooltip: {},
+				color: ['#55ff7f'],
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+		
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script type="text/javascript">
+			// 基于准备好的dom，初始化echarts实例
+			var myChart = echarts.init(document.getElementById('right3'));
+		
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '当日短时索力数据'
+				},
+				tooltip: {},
+				color: ['#aaaaff'],
+				legend: {
+					data: ['数值']
+				},
+				xAxis: {
+					data: ["A1", "A2", "B1", "B2", "C1", "C2", "D1", "D2", "E1", "E2" ,"F1" ,"F2", "G1", "G2"]
+				},
+				yAxis: {},
+				series: [{
+					name: '数值',
+					type: 'bar',
+					data: [5, 20, 36, 10, 10, 20]
+				}]
+			};
+		
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+		</script>
+		
+		<script src="../layui/layui.js"></script>
+		<script src="../layui/layui.all.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use('element', function() {
+				var element = layui.element;
+
+			});
+			layui.use('form', function() {
+				var form = layui.form;
+
+				//各种基于事件的操作，下面会有进一步介绍
+			});
+
+			layui.use('laydate', function() {
+				var laydate = layui.laydate;
+
+				//执行一个laydate实例
+				laydate.render({
+					elem: '#test1' //指定元素
+				});
+			});
+
+			layui.use('table', function() {
+				var table = layui.table;
+			})
+
+			layui.use('slider', function() {
+				var slider = layui.slider;
+
+				//渲染
+				slider.render({
+					elem: '#alert1' //绑定元素
+						,
+					input: true //输入框
+						,
+					min: 0 //最小值
+						,
+					max: 100 //最大值
+				});
+			});
+		</script>
+
+		<script>
+			layui.use('carousel', function() {
+				var carousel = layui.carousel;
+				//建造实例
+				carousel.render({
+					elem: '#picture',
+					width: '100%' //设置容器宽度
+						,
+					arrow: 'always' //始终显示箭头
+					//,anim: 'updown' //切换动画方式
+				});
+			});
+		</script>
+	</body>
+</html>
