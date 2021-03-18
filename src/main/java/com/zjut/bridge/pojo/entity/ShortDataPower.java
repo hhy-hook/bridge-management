@@ -1,13 +1,16 @@
 package com.zjut.bridge.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * short_data_power
  * @author 
  */
 public class ShortDataPower implements Serializable {
-    private Integer shortDataPowerId;
+    private Date shortDataPowerDate;
+
+    private Integer bridgeId;
 
     private Float shortDataPowerA1;
 
@@ -25,14 +28,24 @@ public class ShortDataPower implements Serializable {
 
     private Float shortDataPowerD2;
 
+    private String shortDataPowerState;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getShortDataPowerId() {
-        return shortDataPowerId;
+    public Date getShortDataPowerDate() {
+        return shortDataPowerDate;
     }
 
-    public void setShortDataPowerId(Integer shortDataPowerId) {
-        this.shortDataPowerId = shortDataPowerId;
+    public void setShortDataPowerDate(Date shortDataPowerDate) {
+        this.shortDataPowerDate = shortDataPowerDate;
+    }
+
+    public Integer getBridgeId() {
+        return bridgeId;
+    }
+
+    public void setBridgeId(Integer bridgeId) {
+        this.bridgeId = bridgeId;
     }
 
     public Float getShortDataPowerA1() {
@@ -97,5 +110,13 @@ public class ShortDataPower implements Serializable {
 
     public void setShortDataPowerD2(Float shortDataPowerD2) {
         this.shortDataPowerD2 = shortDataPowerD2;
+    }
+
+    public String getShortDataPowerState() {
+        return shortDataPowerState;
+    }
+
+    public void setShortDataPowerState(String shortDataPowerState) {
+        this.shortDataPowerState = shortDataPowerState;
     }
 }

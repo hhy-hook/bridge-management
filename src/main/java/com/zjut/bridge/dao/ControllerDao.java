@@ -17,5 +17,5 @@ public interface ControllerDao {
 
     int updateByPrimaryKey(Controller record);
 
-    Controller selectByAccount(String account);
+    Controller selectByAccount(String controllerAccount);
 }

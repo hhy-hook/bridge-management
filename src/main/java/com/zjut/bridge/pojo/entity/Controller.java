@@ -15,6 +15,8 @@ public class Controller implements Serializable {
 
     private String controllerName;
 
+    private Byte controllerSex;
+
     private String controllerPhone;
 
     private String controllerEmail;
@@ -57,6 +59,14 @@ public class Controller implements Serializable {
 
     public void setControllerName(String controllerName) {
         this.controllerName = controllerName;
+    }
+
+    public Byte getControllerSex() {
+        return controllerSex;
+    }
+
+    public void setControllerSex(Byte controllerSex) {
+        this.controllerSex = controllerSex;
     }
 
     public String getControllerPhone() {

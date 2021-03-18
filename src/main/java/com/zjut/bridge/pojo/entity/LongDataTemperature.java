@@ -1,13 +1,16 @@
 package com.zjut.bridge.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * long_data_temperature
  * @author 
  */
 public class LongDataTemperature implements Serializable {
-    private Integer longDataTemperatureId;
+    private Date longDataTemperatureDate;
+
+    private Integer bridgeId;
 
     private Float longDataTemperatureA1;
 
@@ -41,14 +44,24 @@ public class LongDataTemperature implements Serializable {
 
     private Float longDataTemperatureH2;
 
+    private String longDataTemperatureState;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getLongDataTemperatureId() {
-        return longDataTemperatureId;
+    public Date getLongDataTemperatureDate() {
+        return longDataTemperatureDate;
     }
 
-    public void setLongDataTemperatureId(Integer longDataTemperatureId) {
-        this.longDataTemperatureId = longDataTemperatureId;
+    public void setLongDataTemperatureDate(Date longDataTemperatureDate) {
+        this.longDataTemperatureDate = longDataTemperatureDate;
+    }
+
+    public Integer getBridgeId() {
+        return bridgeId;
+    }
+
+    public void setBridgeId(Integer bridgeId) {
+        this.bridgeId = bridgeId;
     }
 
     public Float getLongDataTemperatureA1() {
@@ -177,5 +190,13 @@ public class LongDataTemperature implements Serializable {
 
     public void setLongDataTemperatureH2(Float longDataTemperatureH2) {
         this.longDataTemperatureH2 = longDataTemperatureH2;
+    }
+
+    public String getLongDataTemperatureState() {
+        return longDataTemperatureState;
+    }
+
+    public void setLongDataTemperatureState(String longDataTemperatureState) {
+        this.longDataTemperatureState = longDataTemperatureState;
     }
 }

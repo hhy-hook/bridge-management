@@ -9,6 +9,8 @@ import java.io.Serializable;
 public class Bridge implements Serializable {
     private Integer bridgeId;
 
+    private String bridgeType;
+
     private String bridgeName;
 
     private Float bridgeLength;
@@ -18,6 +20,8 @@ public class Bridge implements Serializable {
     private String bridgeCompany;
 
     private String bridgeState;
+
+    private String bridgeLocation;
 
     private String bridgeNote;
 
@@ -29,6 +33,14 @@ public class Bridge implements Serializable {
 
     public void setBridgeId(Integer bridgeId) {
         this.bridgeId = bridgeId;
+    }
+
+    public String getBridgeType() {
+        return bridgeType;
+    }
+
+    public void setBridgeType(String bridgeType) {
+        this.bridgeType = bridgeType;
     }
 
     public String getBridgeName() {
@@ -69,6 +81,14 @@ public class Bridge implements Serializable {
 
     public void setBridgeState(String bridgeState) {
         this.bridgeState = bridgeState;
+    }
+
+    public String getBridgeLocation() {
+        return bridgeLocation;
+    }
+
+    public void setBridgeLocation(String bridgeLocation) {
+        this.bridgeLocation = bridgeLocation;
     }
 
     public String getBridgeNote() {

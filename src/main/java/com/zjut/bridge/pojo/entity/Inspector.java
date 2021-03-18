@@ -15,6 +15,8 @@ public class Inspector implements Serializable {
 
     private String inspectorName;
 
+    private Byte inspectorSex;
+
     private String inspectorPhone;
 
     private String inspectorEmail;
@@ -57,6 +59,14 @@ public class Inspector implements Serializable {
 
     public void setInspectorName(String inspectorName) {
         this.inspectorName = inspectorName;
+    }
+
+    public Byte getInspectorSex() {
+        return inspectorSex;
+    }
+
+    public void setInspectorSex(Byte inspectorSex) {
+        this.inspectorSex = inspectorSex;
     }
 
     public String getInspectorPhone() {

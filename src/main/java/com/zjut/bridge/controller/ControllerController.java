@@ -86,4 +86,10 @@ public class ControllerController {
 
     @RequestMapping("front/bridge")
     String bridge(){return "/controller/bridge_test";}
+
+    @RequestMapping("front/c_job")
+    String job(){return "/controller/c_job";}
+
+    @RequestMapping("front/c_job_add")
+    String c_job_add(){return "/controller/c_job_add";}
 }

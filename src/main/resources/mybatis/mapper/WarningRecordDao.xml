@@ -6,7 +6,7 @@
     <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
     <result column="warning_level" jdbcType="INTEGER" property="warningLevel" />
     <result column="warning_point" jdbcType="VARCHAR" property="warningPoint" />
-    <result column="warning_date" jdbcType="DATE" property="warningDate" />
+    <result column="warning_date" jdbcType="TIMESTAMP" property="warningDate" />
   </resultMap>
   <sql id="Base_Column_List">
     warning_id, bridge_id, warning_level, warning_point, warning_date
@@ -17,24 +17,24 @@
     from warning_record
     where warning_id = #{warningId,jdbcType=INTEGER}
   </select>
-    <select id="selectWarningRecords" resultType="com.zjut.bridge.pojo.entity.WarningRecord">
-      select
-      <include refid="Base_Column_List" />
-      from warning_record
-    </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <select id="selectWarningRecords" resultType="com.zjut.bridge.pojo.entity.WarningRecord">
+    select
+    <include refid="Base_Column_List" />
+    from warning_record
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from warning_record
     where warning_id = #{warningId,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByBridgeId">
-      delete from warning_record
+        delete from warning_record
     where bridge_id = #{bridgeId,jdbcType=INTEGER}
     </delete>
     <insert id="insert" keyColumn="warning_id" keyProperty="warningId" parameterType="com.zjut.bridge.pojo.entity.WarningRecord" useGeneratedKeys="true">
     insert into warning_record (bridge_id, warning_level, warning_point, 
       warning_date)
     values (#{bridgeId,jdbcType=INTEGER}, #{warningLevel,jdbcType=INTEGER}, #{warningPoint,jdbcType=VARCHAR}, 
-      #{warningDate,jdbcType=DATE})
+      #{warningDate,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" keyColumn="warning_id" keyProperty="warningId" parameterType="com.zjut.bridge.pojo.entity.WarningRecord" useGeneratedKeys="true">
     insert into warning_record
@@ -63,7 +63,7 @@
         #{warningPoint,jdbcType=VARCHAR},
       </if>
       <if test="warningDate != null">
-        #{warningDate,jdbcType=DATE},
+        #{warningDate,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -80,7 +80,7 @@
         warning_point = #{warningPoint,jdbcType=VARCHAR},
       </if>
       <if test="warningDate != null">
-        warning_date = #{warningDate,jdbcType=DATE},
+        warning_date = #{warningDate,jdbcType=TIMESTAMP},
       </if>
     </set>
     where warning_id = #{warningId,jdbcType=INTEGER}
@@ -90,7 +90,7 @@
     set bridge_id = #{bridgeId,jdbcType=INTEGER},
       warning_level = #{warningLevel,jdbcType=INTEGER},
       warning_point = #{warningPoint,jdbcType=VARCHAR},
-      warning_date = #{warningDate,jdbcType=DATE}
+      warning_date = #{warningDate,jdbcType=TIMESTAMP}
     where warning_id = #{warningId,jdbcType=INTEGER}
   </update>
 </mapper>

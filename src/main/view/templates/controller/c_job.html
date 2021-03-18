@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <title>管理员人员界面 </title>
-  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+  <title>管理员人员 界面 </title>
+    <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
 </head>
 <script>
     function nofind() {
@@ -16,7 +16,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo">巡检员</div>
+    <div class="layui-logo">管理员</div>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
@@ -26,69 +26,68 @@
         </a>
         <dl class="layui-nav-child">
           <dd><a th:href="@{/controller/front/c_self}">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
         </dl>
       </li>
       <li class="layui-nav-item"><a th:href="@{/controller/exit}">退出登录</a></li>
     </ul>
   </div>
-  
-  <div class="layui-side layui-bg-black">
-    <div class="layui-side-scroll">
-      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-        <li class="layui-nav-item">
-          <a class="" href="javascript:;">工作人员</a>
-          <dl class="layui-nav-child">
-            <dd><a th:href="@{/controller/front/c_inspector}">巡检人员</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a th:href="@{/controller/front/c_bridge}">桥梁</a>
-        </li>
-		<li class="layui-nav-item">
-		  <a href="javascript:;">预警</a>
-		  <dl class="layui-nav-child">
-		    <dd><a th:href="@{/controller/front/c_alert_history}">预警记录</a></dd>
-		  </dl>
-		</li>
-		<li class="layui-nav-item">
-		  <a href="javascript:;">维护</a>
-		  <dl class="layui-nav-child">
-		    <dd><a th:href="c_maintain_advice">维护建议</a></dd>
-		  </dl>
-		</li>
-          <li class="layui-nav-item">
-              <a href="javascript:;">巡检</a>
-              <dl class="layui-nav-child">
-                  <dd><a th:href="@{/controller/front/c_job}">巡检任务</a></dd>
-              </dl>
-          </li>
-		<li class="layui-nav-item">
-		  <a href="javascript:;">消息</a>
-		  <dl class="layui-nav-child">
-		    <dd><a th:href="@{/controller/front/c_message}">全部消息</a></dd>
-		  </dl>
-		</li>
-      </ul>
+
+    <div class="layui-side layui-bg-black">
+        <div class="layui-side-scroll">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+                <li class="layui-nav-item">
+                    <a class="" href="javascript:;">工作人员</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_inspector}">巡检人员</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a th:href="@{/controller/front/c_bridge}">桥梁</a>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">预警</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_alert_history}">预警记录</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">维护</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="c_maintain_advice">维护建议</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">巡检</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_job}">巡检任务</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">消息</a>
+                    <dl class="layui-nav-child">
+                        <dd><a th:href="@{/controller/front/c_message}">全部消息</a></dd>
+                    </dl>
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
   
   <div class="layui-body">
     <!-- 内容主体区域 -->
 	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-	  <legend>巡检人员</legend>
+	  <legend>巡检任务分配</legend>
 	</fieldset>
     <div style="padding: 15px;">
 		<div style="padding-bottom: 10px;">
           <div id="layerDemo" style="margin-top:10px ">
-          <button type="button" class="layui-btn layui-btn-sm"  data-method="notice"><i class="layui-icon layui-icon-add-1" style="font-size: 30px; color: white;"></i>新增</button>
+          <button type="button" class="layui-btn layui-btn-sm"  data-method="notice" ><i class="layui-icon layui-icon-add-1" style="font-size: 30px; color: white;"></i>  新增</button>
           </div>
         </div>
 		<table class="layui-hide" id="test" lay-filter="test"></table> 
 		<script type="text/html" id="barDemo">
 		  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-          <a class="layui-btn layui-btn-xs" lay-event="delete">删除</a>
+		  <a class="layui-btn layui-btn-xs" lay-event="edit">修改</a>
 		</script>
 	</div>
   </div>
@@ -117,7 +116,7 @@
 			,closeBtn: 1
             ,btnAlign: 'c'//按钮排列：居中对齐
             ,moveType: 1 //拖拽模式，0或者1
-            ,content: '/controller/front/c_add_i'//跳转到想要的界面，这里是我自己项目的跳转界面
+            ,content: '/controller/front/c_job_add'//跳转到想要的界面，这里是我自己项目的跳转界面
             ,
             success: function (layero) {
                 var btn = layero.find('.layui-layer-btn');
@@ -136,11 +135,10 @@
 <script>
 layui.use('table', function(){
   var table = layui.table;
-    $ = layui.$;
   
   table.render({
     elem: '#test'
-    ,url:'/inspector/data/inspectors'
+    ,url:'user.json'
     ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
     ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
       title: '提示'
@@ -148,23 +146,19 @@ layui.use('table', function(){
       ,icon: 'layui-icon-tips'
     }]
 	,cellMinWidth: 80
-    ,title: '巡检人员表'
+    ,title: '用户数据表'
     ,cols: [
         [{type: 'checkbox', fixed: 'left'}
-      ,{field:'inspectorId', title:'ID', fixed: 'left', unresize: true, sort: true}
-      ,{field:'inspectorName', title:'姓名', edit: 'text'}
-      ,{field:'inspectorSex', title:'性别', templet: function (d) {
-            if(d.inspectorSex == 0){
-                return "女" ;
-            }else{
-                return "男" ;
-            }
-      }
-      }
-      ,{field:'inspectorEmail', title:'邮箱', edit: 'text'}
-      ,{field:'inspectorAge', title:'年龄', edit: 'text', sort: true}
-      ,{field:'inspectorAddress', title:'地址'}
-      ,{field:'inspectorPhone', title:'联系方式'}
+      ,{field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
+      ,{field:'username', title:'用户名', edit: 'text'}
+      ,{field:'email', title:'邮箱', edit: 'text', templet: function(res){
+        return '<em>'+ res.email +'</em>'
+      }}
+      ,{field:'sex', title:'性别', edit: 'text', sort: true}
+      ,{field:'city', title:'城市'}
+      ,{field:'sign', title:'签名'}
+      ,{field:'experience', title:'积分', sort: true}
+      ,{field:'logins', title:'登入次数', sort: true}
       ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}]
       ]
     ,page: true
@@ -191,41 +185,7 @@ layui.use('table', function(){
       break;
     };
   });
-
-  table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
-      var data = obj.data //获得当前行数据
-          , layEvent = obj.event; //获得 lay-event 对应的值
-      if (layEvent === 'edit') {
-          layer.msg("编辑");
-      }
-      else if(layEvent === 'delete'){
-          layer.confirm('真的删除['+ data.inspectorName +']这条记录么？', function(index){
-              deleteUser(data,index,obj);
-          });
-      }
-  });
-
-  function deleteUser(data,index,obj){
-      $.ajax({
-          url: "/inspector/delInspector",    //这个是后台的路由地址
-          type: "POST",
-          data:{"id":data.inspectorId},//传给后台的值
-          dataType: "json",
-          success: function(data){
-              if(data['msg']=="success"){   //从前台取回的状态值
-                  layer.close(index);
-                  console.log(data);
-                  //同步更新表格和缓存对应的值
-                  obj.del();
-                  layer.msg("删除成功", {icon: 6});
-              }else{
-                  console.log(data);
-                  layer.msg("删除失败", {icon: 5});
-              }
-          }
-      });
-  }
-
+  
   //监听行工具事件
 });
 </script>

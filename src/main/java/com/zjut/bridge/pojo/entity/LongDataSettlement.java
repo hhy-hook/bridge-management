@@ -1,13 +1,16 @@
 package com.zjut.bridge.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * long_data_settlement
  * @author 
  */
 public class LongDataSettlement implements Serializable {
-    private Integer longDataSettlementId;
+    private Date longDataSettlementDate;
+
+    private Integer bridgeId;
 
     private Float longDataSettlementA1;
 
@@ -25,14 +28,24 @@ public class LongDataSettlement implements Serializable {
 
     private Float longDataSettlementH1;
 
+    private String longDataSettlementState;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getLongDataSettlementId() {
-        return longDataSettlementId;
+    public Date getLongDataSettlementDate() {
+        return longDataSettlementDate;
     }
 
-    public void setLongDataSettlementId(Integer longDataSettlementId) {
-        this.longDataSettlementId = longDataSettlementId;
+    public void setLongDataSettlementDate(Date longDataSettlementDate) {
+        this.longDataSettlementDate = longDataSettlementDate;
+    }
+
+    public Integer getBridgeId() {
+        return bridgeId;
+    }
+
+    public void setBridgeId(Integer bridgeId) {
+        this.bridgeId = bridgeId;
     }
 
     public Float getLongDataSettlementA1() {
@@ -97,5 +110,13 @@ public class LongDataSettlement implements Serializable {
 
     public void setLongDataSettlementH1(Float longDataSettlementH1) {
         this.longDataSettlementH1 = longDataSettlementH1;
+    }
+
+    public String getLongDataSettlementState() {
+        return longDataSettlementState;
+    }
+
+    public void setLongDataSettlementState(String longDataSettlementState) {
+        this.longDataSettlementState = longDataSettlementState;
     }
 }

@@ -3,15 +3,17 @@ package com.zjut.bridge.dao;
 import com.zjut.bridge.pojo.entity.LongDataSeam;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.Date;
+
 @Mapper
 public interface LongDataSeamDao {
-    int deleteByPrimaryKey(Integer longDataSeamId);
+    int deleteByPrimaryKey(Date longDataSeamDate);
 
     int insert(LongDataSeam record);
 
     int insertSelective(LongDataSeam record);
 
-    LongDataSeam selectByPrimaryKey(Integer longDataSeamId);
+    LongDataSeam selectByPrimaryKey(Date longDataSeamDate);
 
     int updateByPrimaryKeySelective(LongDataSeam record);
 

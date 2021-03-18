@@ -26,4 +26,5 @@ public class ReportVO extends InspectionReport {
     public String getBridgeName() {
         return bridge.getBridgeName();
     }
+
 }

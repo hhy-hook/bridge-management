@@ -3,7 +3,6 @@ package com.zjut.bridge.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.bridge.dao.ControllerDao;
 import com.zjut.bridge.pojo.entity.Controller;
-import com.zjut.bridge.pojo.entity.Inspector;
 import com.zjut.bridge.service.ControllerService;
 import org.springframework.stereotype.Service;
 

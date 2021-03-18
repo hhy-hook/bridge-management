@@ -1,13 +1,16 @@
 package com.zjut.bridge.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * long_data_seam
  * @author 
  */
 public class LongDataSeam implements Serializable {
-    private Integer longDataSeamId;
+    private Date longDataSeamDate;
+
+    private Integer bridgeId;
 
     private Float longDataSeamA1;
 
@@ -25,14 +28,24 @@ public class LongDataSeam implements Serializable {
 
     private Float longDataSeamH1;
 
+    private String longDataSeamState;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getLongDataSeamId() {
-        return longDataSeamId;
+    public Date getLongDataSeamDate() {
+        return longDataSeamDate;
     }
 
-    public void setLongDataSeamId(Integer longDataSeamId) {
-        this.longDataSeamId = longDataSeamId;
+    public void setLongDataSeamDate(Date longDataSeamDate) {
+        this.longDataSeamDate = longDataSeamDate;
+    }
+
+    public Integer getBridgeId() {
+        return bridgeId;
+    }
+
+    public void setBridgeId(Integer bridgeId) {
+        this.bridgeId = bridgeId;
     }
 
     public Float getLongDataSeamA1() {
@@ -97,5 +110,13 @@ public class LongDataSeam implements Serializable {
 
     public void setLongDataSeamH1(Float longDataSeamH1) {
         this.longDataSeamH1 = longDataSeamH1;
+    }
+
+    public String getLongDataSeamState() {
+        return longDataSeamState;
+    }
+
+    public void setLongDataSeamState(String longDataSeamState) {
+        this.longDataSeamState = longDataSeamState;
     }
 }

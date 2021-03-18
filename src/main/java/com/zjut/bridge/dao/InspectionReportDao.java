@@ -24,5 +24,5 @@ public interface InspectionReportDao {
 
     List<ReportVO> selectReports();
 
-    int deleteByInspectorId(int id);
+    void deleteByInspectorId(int id);
 }

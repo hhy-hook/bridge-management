@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjut.bridge.dao.ShortDataTemperatureDao">
   <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.ShortDataTemperature">
-    <id column="short_data_temperature_id" jdbcType="INTEGER" property="shortDataTemperatureId" />
+    <id column="short_data_temperature_date" jdbcType="TIMESTAMP" property="shortDataTemperatureDate" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
     <result column="short_data_temperature_a1" jdbcType="REAL" property="shortDataTemperatureA1" />
     <result column="short_data_temperature_a2" jdbcType="REAL" property="shortDataTemperatureA2" />
     <result column="short_data_temperature_b1" jdbcType="REAL" property="shortDataTemperatureB1" />
@@ -11,37 +12,42 @@
     <result column="short_data_temperature_c2" jdbcType="REAL" property="shortDataTemperatureC2" />
     <result column="short_data_temperature_d1" jdbcType="REAL" property="shortDataTemperatureD1" />
     <result column="short_data_temperature_d2" jdbcType="REAL" property="shortDataTemperatureD2" />
+    <result column="short_data_temperature_state" jdbcType="VARCHAR" property="shortDataTemperatureState" />
   </resultMap>
   <sql id="Base_Column_List">
-    short_data_temperature_id, short_data_temperature_a1, short_data_temperature_a2, 
+    short_data_temperature_date, bridge_id, short_data_temperature_a1, short_data_temperature_a2, 
     short_data_temperature_b1, short_data_temperature_b2, short_data_temperature_c1, 
-    short_data_temperature_c2, short_data_temperature_d1, short_data_temperature_d2
+    short_data_temperature_c2, short_data_temperature_d1, short_data_temperature_d2, 
+    short_data_temperature_state
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from short_data_temperature
-    where short_data_temperature_id = #{shortDataTemperatureId,jdbcType=INTEGER}
+    where short_data_temperature_date = #{shortDataTemperatureDate,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
     delete from short_data_temperature
-    where short_data_temperature_id = #{shortDataTemperatureId,jdbcType=INTEGER}
+    where short_data_temperature_date = #{shortDataTemperatureDate,jdbcType=TIMESTAMP}
   </delete>
-  <insert id="insert" keyColumn="short_data_temperature_id" keyProperty="shortDataTemperatureId" parameterType="com.zjut.bridge.pojo.entity.ShortDataTemperature" useGeneratedKeys="true">
-    insert into short_data_temperature (short_data_temperature_a1, short_data_temperature_a2, 
+  <insert id="insert" keyColumn="short_data_temperature_date" keyProperty="shortDataTemperatureDate" parameterType="com.zjut.bridge.pojo.entity.ShortDataTemperature" useGeneratedKeys="true">
+    insert into short_data_temperature (bridge_id, short_data_temperature_a1, short_data_temperature_a2, 
       short_data_temperature_b1, short_data_temperature_b2, 
       short_data_temperature_c1, short_data_temperature_c2, 
-      short_data_temperature_d1, short_data_temperature_d2
-      )
-    values (#{shortDataTemperatureA1,jdbcType=REAL}, #{shortDataTemperatureA2,jdbcType=REAL}, 
+      short_data_temperature_d1, short_data_temperature_d2, 
+      short_data_temperature_state)
+    values (#{bridgeId,jdbcType=INTEGER}, #{shortDataTemperatureA1,jdbcType=REAL}, #{shortDataTemperatureA2,jdbcType=REAL}, 
       #{shortDataTemperatureB1,jdbcType=REAL}, #{shortDataTemperatureB2,jdbcType=REAL}, 
       #{shortDataTemperatureC1,jdbcType=REAL}, #{shortDataTemperatureC2,jdbcType=REAL}, 
-      #{shortDataTemperatureD1,jdbcType=REAL}, #{shortDataTemperatureD2,jdbcType=REAL}
-      )
+      #{shortDataTemperatureD1,jdbcType=REAL}, #{shortDataTemperatureD2,jdbcType=REAL}, 
+      #{shortDataTemperatureState,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="short_data_temperature_id" keyProperty="shortDataTemperatureId" parameterType="com.zjut.bridge.pojo.entity.ShortDataTemperature" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="short_data_temperature_date" keyProperty="shortDataTemperatureDate" parameterType="com.zjut.bridge.pojo.entity.ShortDataTemperature" useGeneratedKeys="true">
     insert into short_data_temperature
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
       <if test="shortDataTemperatureA1 != null">
         short_data_temperature_a1,
       </if>
@@ -66,8 +72,14 @@
       <if test="shortDataTemperatureD2 != null">
         short_data_temperature_d2,
       </if>
+      <if test="shortDataTemperatureState != null">
+        short_data_temperature_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="shortDataTemperatureA1 != null">
         #{shortDataTemperatureA1,jdbcType=REAL},
       </if>
@@ -92,11 +104,17 @@
       <if test="shortDataTemperatureD2 != null">
         #{shortDataTemperatureD2,jdbcType=REAL},
       </if>
+      <if test="shortDataTemperatureState != null">
+        #{shortDataTemperatureState,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.ShortDataTemperature">
     update short_data_temperature
     <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="shortDataTemperatureA1 != null">
         short_data_temperature_a1 = #{shortDataTemperatureA1,jdbcType=REAL},
       </if>
@@ -121,19 +139,24 @@
       <if test="shortDataTemperatureD2 != null">
         short_data_temperature_d2 = #{shortDataTemperatureD2,jdbcType=REAL},
       </if>
+      <if test="shortDataTemperatureState != null">
+        short_data_temperature_state = #{shortDataTemperatureState,jdbcType=VARCHAR},
+      </if>
     </set>
-    where short_data_temperature_id = #{shortDataTemperatureId,jdbcType=INTEGER}
+    where short_data_temperature_date = #{shortDataTemperatureDate,jdbcType=TIMESTAMP}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.ShortDataTemperature">
     update short_data_temperature
-    set short_data_temperature_a1 = #{shortDataTemperatureA1,jdbcType=REAL},
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      short_data_temperature_a1 = #{shortDataTemperatureA1,jdbcType=REAL},
       short_data_temperature_a2 = #{shortDataTemperatureA2,jdbcType=REAL},
       short_data_temperature_b1 = #{shortDataTemperatureB1,jdbcType=REAL},
       short_data_temperature_b2 = #{shortDataTemperatureB2,jdbcType=REAL},
       short_data_temperature_c1 = #{shortDataTemperatureC1,jdbcType=REAL},
       short_data_temperature_c2 = #{shortDataTemperatureC2,jdbcType=REAL},
       short_data_temperature_d1 = #{shortDataTemperatureD1,jdbcType=REAL},
-      short_data_temperature_d2 = #{shortDataTemperatureD2,jdbcType=REAL}
-    where short_data_temperature_id = #{shortDataTemperatureId,jdbcType=INTEGER}
+      short_data_temperature_d2 = #{shortDataTemperatureD2,jdbcType=REAL},
+      short_data_temperature_state = #{shortDataTemperatureState,jdbcType=VARCHAR}
+    where short_data_temperature_date = #{shortDataTemperatureDate,jdbcType=TIMESTAMP}
   </update>
 </mapper>

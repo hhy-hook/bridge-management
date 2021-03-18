@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjut.bridge.dao.ShortDataPowerDao">
   <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.ShortDataPower">
-    <id column="short_data_power_id" jdbcType="INTEGER" property="shortDataPowerId" />
+    <id column="short_data_power_date" jdbcType="TIMESTAMP" property="shortDataPowerDate" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
     <result column="short_data_power_a1" jdbcType="REAL" property="shortDataPowerA1" />
     <result column="short_data_power_a2" jdbcType="REAL" property="shortDataPowerA2" />
     <result column="short_data_power_b1" jdbcType="REAL" property="shortDataPowerB1" />
@@ -11,33 +12,39 @@
     <result column="short_data_power_c2" jdbcType="REAL" property="shortDataPowerC2" />
     <result column="short_data_power_d1" jdbcType="REAL" property="shortDataPowerD1" />
     <result column="short_data_power_d2" jdbcType="REAL" property="shortDataPowerD2" />
+    <result column="short_data_power_state" jdbcType="VARCHAR" property="shortDataPowerState" />
   </resultMap>
   <sql id="Base_Column_List">
-    short_data_power_id, short_data_power_a1, short_data_power_a2, short_data_power_b1, 
+    short_data_power_date, bridge_id, short_data_power_a1, short_data_power_a2, short_data_power_b1, 
     short_data_power_b2, short_data_power_c1, short_data_power_c2, short_data_power_d1, 
-    short_data_power_d2
+    short_data_power_d2, short_data_power_state
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from short_data_power
-    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+    where short_data_power_date = #{shortDataPowerDate,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
     delete from short_data_power
-    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+    where short_data_power_date = #{shortDataPowerDate,jdbcType=TIMESTAMP}
   </delete>
-  <insert id="insert" keyColumn="short_data_power_id" keyProperty="shortDataPowerId" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower" useGeneratedKeys="true">
-    insert into short_data_power (short_data_power_a1, short_data_power_a2, short_data_power_b1, 
-      short_data_power_b2, short_data_power_c1, short_data_power_c2, 
-      short_data_power_d1, short_data_power_d2)
-    values (#{shortDataPowerA1,jdbcType=REAL}, #{shortDataPowerA2,jdbcType=REAL}, #{shortDataPowerB1,jdbcType=REAL}, 
-      #{shortDataPowerB2,jdbcType=REAL}, #{shortDataPowerC1,jdbcType=REAL}, #{shortDataPowerC2,jdbcType=REAL}, 
-      #{shortDataPowerD1,jdbcType=REAL}, #{shortDataPowerD2,jdbcType=REAL})
+  <insert id="insert" keyColumn="short_data_power_date" keyProperty="shortDataPowerDate" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower" useGeneratedKeys="true">
+    insert into short_data_power (bridge_id, short_data_power_a1, short_data_power_a2, 
+      short_data_power_b1, short_data_power_b2, short_data_power_c1, 
+      short_data_power_c2, short_data_power_d1, short_data_power_d2, 
+      short_data_power_state)
+    values (#{bridgeId,jdbcType=INTEGER}, #{shortDataPowerA1,jdbcType=REAL}, #{shortDataPowerA2,jdbcType=REAL}, 
+      #{shortDataPowerB1,jdbcType=REAL}, #{shortDataPowerB2,jdbcType=REAL}, #{shortDataPowerC1,jdbcType=REAL}, 
+      #{shortDataPowerC2,jdbcType=REAL}, #{shortDataPowerD1,jdbcType=REAL}, #{shortDataPowerD2,jdbcType=REAL}, 
+      #{shortDataPowerState,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="short_data_power_id" keyProperty="shortDataPowerId" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="short_data_power_date" keyProperty="shortDataPowerDate" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower" useGeneratedKeys="true">
     insert into short_data_power
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
       <if test="shortDataPowerA1 != null">
         short_data_power_a1,
       </if>
@@ -62,8 +69,14 @@
       <if test="shortDataPowerD2 != null">
         short_data_power_d2,
       </if>
+      <if test="shortDataPowerState != null">
+        short_data_power_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="shortDataPowerA1 != null">
         #{shortDataPowerA1,jdbcType=REAL},
       </if>
@@ -88,11 +101,17 @@
       <if test="shortDataPowerD2 != null">
         #{shortDataPowerD2,jdbcType=REAL},
       </if>
+      <if test="shortDataPowerState != null">
+        #{shortDataPowerState,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower">
     update short_data_power
     <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="shortDataPowerA1 != null">
         short_data_power_a1 = #{shortDataPowerA1,jdbcType=REAL},
       </if>
@@ -117,19 +136,24 @@
       <if test="shortDataPowerD2 != null">
         short_data_power_d2 = #{shortDataPowerD2,jdbcType=REAL},
       </if>
+      <if test="shortDataPowerState != null">
+        short_data_power_state = #{shortDataPowerState,jdbcType=VARCHAR},
+      </if>
     </set>
-    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+    where short_data_power_date = #{shortDataPowerDate,jdbcType=TIMESTAMP}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.ShortDataPower">
     update short_data_power
-    set short_data_power_a1 = #{shortDataPowerA1,jdbcType=REAL},
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      short_data_power_a1 = #{shortDataPowerA1,jdbcType=REAL},
       short_data_power_a2 = #{shortDataPowerA2,jdbcType=REAL},
       short_data_power_b1 = #{shortDataPowerB1,jdbcType=REAL},
       short_data_power_b2 = #{shortDataPowerB2,jdbcType=REAL},
       short_data_power_c1 = #{shortDataPowerC1,jdbcType=REAL},
       short_data_power_c2 = #{shortDataPowerC2,jdbcType=REAL},
       short_data_power_d1 = #{shortDataPowerD1,jdbcType=REAL},
-      short_data_power_d2 = #{shortDataPowerD2,jdbcType=REAL}
-    where short_data_power_id = #{shortDataPowerId,jdbcType=INTEGER}
+      short_data_power_d2 = #{shortDataPowerD2,jdbcType=REAL},
+      short_data_power_state = #{shortDataPowerState,jdbcType=VARCHAR}
+    where short_data_power_date = #{shortDataPowerDate,jdbcType=TIMESTAMP}
   </update>
 </mapper>

@@ -1,13 +1,16 @@
 package com.zjut.bridge.pojo.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * long_data_stree
  * @author 
  */
 public class LongDataStree implements Serializable {
-    private Integer longDataStreeId;
+    private Date longDataStreeDate;
+
+    private Integer bridgeId;
 
     private Float longDataStreeA1;
 
@@ -41,14 +44,24 @@ public class LongDataStree implements Serializable {
 
     private Float longDataStreeH2;
 
+    private String longDataStreeState;
+
     private static final long serialVersionUID = 1L;
 
-    public Integer getLongDataStreeId() {
-        return longDataStreeId;
+    public Date getLongDataStreeDate() {
+        return longDataStreeDate;
     }
 
-    public void setLongDataStreeId(Integer longDataStreeId) {
-        this.longDataStreeId = longDataStreeId;
+    public void setLongDataStreeDate(Date longDataStreeDate) {
+        this.longDataStreeDate = longDataStreeDate;
+    }
+
+    public Integer getBridgeId() {
+        return bridgeId;
+    }
+
+    public void setBridgeId(Integer bridgeId) {
+        this.bridgeId = bridgeId;
     }
 
     public Float getLongDataStreeA1() {
@@ -177,5 +190,13 @@ public class LongDataStree implements Serializable {
 
     public void setLongDataStreeH2(Float longDataStreeH2) {
         this.longDataStreeH2 = longDataStreeH2;
+    }
+
+    public String getLongDataStreeState() {
+        return longDataStreeState;
+    }
+
+    public void setLongDataStreeState(String longDataStreeState) {
+        this.longDataStreeState = longDataStreeState;
     }
 }

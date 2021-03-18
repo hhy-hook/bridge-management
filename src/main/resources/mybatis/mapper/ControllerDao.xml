@@ -6,6 +6,7 @@
     <result column="controller_account" jdbcType="VARCHAR" property="controllerAccount" />
     <result column="controller_password" jdbcType="VARCHAR" property="controllerPassword" />
     <result column="controller_name" jdbcType="VARCHAR" property="controllerName" />
+    <result column="controller_sex" jdbcType="TINYINT" property="controllerSex" />
     <result column="controller_phone" jdbcType="VARCHAR" property="controllerPhone" />
     <result column="controller_email" jdbcType="VARCHAR" property="controllerEmail" />
     <result column="controller_age" jdbcType="INTEGER" property="controllerAge" />
@@ -13,8 +14,8 @@
     <result column="controller_img" jdbcType="VARCHAR" property="controllerImg" />
   </resultMap>
   <sql id="Base_Column_List">
-    controller_id, controller_account, controller_password, controller_name, controller_phone, 
-    controller_email, controller_age, controller_address, controller_img
+    controller_id, controller_account, controller_password, controller_name, controller_sex, 
+    controller_phone, controller_email, controller_age, controller_address, controller_img
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -34,13 +35,13 @@
   </delete>
   <insert id="insert" keyColumn="controller_id" keyProperty="controllerId" parameterType="com.zjut.bridge.pojo.entity.Controller" useGeneratedKeys="true">
     insert into controller (controller_account, controller_password, 
-      controller_name, controller_phone, controller_email, 
-      controller_age, controller_address, controller_img
-      )
+      controller_name, controller_sex, controller_phone, 
+      controller_email, controller_age, controller_address, 
+      controller_img)
     values (#{controllerAccount,jdbcType=VARCHAR}, #{controllerPassword,jdbcType=VARCHAR}, 
-      #{controllerName,jdbcType=VARCHAR}, #{controllerPhone,jdbcType=VARCHAR}, #{controllerEmail,jdbcType=VARCHAR}, 
-      #{controllerAge,jdbcType=INTEGER}, #{controllerAddress,jdbcType=VARCHAR}, #{controllerImg,jdbcType=VARCHAR}
-      )
+      #{controllerName,jdbcType=VARCHAR}, #{controllerSex,jdbcType=TINYINT}, #{controllerPhone,jdbcType=VARCHAR}, 
+      #{controllerEmail,jdbcType=VARCHAR}, #{controllerAge,jdbcType=INTEGER}, #{controllerAddress,jdbcType=VARCHAR}, 
+      #{controllerImg,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="controller_id" keyProperty="controllerId" parameterType="com.zjut.bridge.pojo.entity.Controller" useGeneratedKeys="true">
     insert into controller
@@ -53,6 +54,9 @@
       </if>
       <if test="controllerName != null">
         controller_name,
+      </if>
+      <if test="controllerSex != null">
+        controller_sex,
       </if>
       <if test="controllerPhone != null">
         controller_phone,
@@ -79,6 +83,9 @@
       </if>
       <if test="controllerName != null">
         #{controllerName,jdbcType=VARCHAR},
+      </if>
+      <if test="controllerSex != null">
+        #{controllerSex,jdbcType=TINYINT},
       </if>
       <if test="controllerPhone != null">
         #{controllerPhone,jdbcType=VARCHAR},
@@ -109,6 +116,9 @@
       <if test="controllerName != null">
         controller_name = #{controllerName,jdbcType=VARCHAR},
       </if>
+      <if test="controllerSex != null">
+        controller_sex = #{controllerSex,jdbcType=TINYINT},
+      </if>
       <if test="controllerPhone != null">
         controller_phone = #{controllerPhone,jdbcType=VARCHAR},
       </if>
@@ -132,6 +142,7 @@
     set controller_account = #{controllerAccount,jdbcType=VARCHAR},
       controller_password = #{controllerPassword,jdbcType=VARCHAR},
       controller_name = #{controllerName,jdbcType=VARCHAR},
+      controller_sex = #{controllerSex,jdbcType=TINYINT},
       controller_phone = #{controllerPhone,jdbcType=VARCHAR},
       controller_email = #{controllerEmail,jdbcType=VARCHAR},
       controller_age = #{controllerAge,jdbcType=INTEGER},

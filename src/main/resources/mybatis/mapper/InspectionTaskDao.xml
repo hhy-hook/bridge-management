@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjut.bridge.dao.InspectionTaskDao">
+  <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.InspectionTask">
+    <id column="task_id" jdbcType="INTEGER" property="taskId" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
+    <result column="inspector_id" jdbcType="INTEGER" property="inspectorId" />
+    <result column="task_point" jdbcType="VARCHAR" property="taskPoint" />
+    <result column="task_state" jdbcType="VARCHAR" property="taskState" />
+    <result column="task_date" jdbcType="TIMESTAMP" property="taskDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    task_id, bridge_id, inspector_id, task_point, task_state, task_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from inspection_task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from inspection_task
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="task_id" keyProperty="taskId" parameterType="com.zjut.bridge.pojo.entity.InspectionTask" useGeneratedKeys="true">
+    insert into inspection_task (bridge_id, inspector_id, task_point, 
+      task_state, task_date)
+    values (#{bridgeId,jdbcType=INTEGER}, #{inspectorId,jdbcType=INTEGER}, #{taskPoint,jdbcType=VARCHAR}, 
+      #{taskState,jdbcType=VARCHAR}, #{taskDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" keyColumn="task_id" keyProperty="taskId" parameterType="com.zjut.bridge.pojo.entity.InspectionTask" useGeneratedKeys="true">
+    insert into inspection_task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
+      <if test="inspectorId != null">
+        inspector_id,
+      </if>
+      <if test="taskPoint != null">
+        task_point,
+      </if>
+      <if test="taskState != null">
+        task_state,
+      </if>
+      <if test="taskDate != null">
+        task_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectorId != null">
+        #{inspectorId,jdbcType=INTEGER},
+      </if>
+      <if test="taskPoint != null">
+        #{taskPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="taskState != null">
+        #{taskState,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null">
+        #{taskDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.InspectionTask">
+    update inspection_task
+    <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
+      <if test="inspectorId != null">
+        inspector_id = #{inspectorId,jdbcType=INTEGER},
+      </if>
+      <if test="taskPoint != null">
+        task_point = #{taskPoint,jdbcType=VARCHAR},
+      </if>
+      <if test="taskState != null">
+        task_state = #{taskState,jdbcType=VARCHAR},
+      </if>
+      <if test="taskDate != null">
+        task_date = #{taskDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.InspectionTask">
+    update inspection_task
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      inspector_id = #{inspectorId,jdbcType=INTEGER},
+      task_point = #{taskPoint,jdbcType=VARCHAR},
+      task_state = #{taskState,jdbcType=VARCHAR},
+      task_date = #{taskDate,jdbcType=TIMESTAMP}
+    where task_id = #{taskId,jdbcType=INTEGER}
+  </update>
+</mapper>

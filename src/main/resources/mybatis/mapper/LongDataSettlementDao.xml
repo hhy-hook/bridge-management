@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjut.bridge.dao.LongDataSettlementDao">
   <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.LongDataSettlement">
-    <id column="long_data_settlement_id" jdbcType="INTEGER" property="longDataSettlementId" />
+    <id column="long_data_settlement_date" jdbcType="TIMESTAMP" property="longDataSettlementDate" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
     <result column="long_data_settlement_a1" jdbcType="REAL" property="longDataSettlementA1" />
     <result column="long_data_settlement_b1" jdbcType="REAL" property="longDataSettlementB1" />
     <result column="long_data_settlement_c1" jdbcType="REAL" property="longDataSettlementC1" />
@@ -11,35 +12,39 @@
     <result column="long_data_settlement_f1" jdbcType="REAL" property="longDataSettlementF1" />
     <result column="long_data_settlement_g1" jdbcType="REAL" property="longDataSettlementG1" />
     <result column="long_data_settlement_h1" jdbcType="REAL" property="longDataSettlementH1" />
+    <result column="long_data_settlement_state" jdbcType="VARCHAR" property="longDataSettlementState" />
   </resultMap>
   <sql id="Base_Column_List">
-    long_data_settlement_id, long_data_settlement_a1, long_data_settlement_b1, long_data_settlement_c1, 
-    long_data_settlement_d1, long_data_settlement_e1, long_data_settlement_f1, long_data_settlement_g1, 
-    long_data_settlement_h1
+    long_data_settlement_date, bridge_id, long_data_settlement_a1, long_data_settlement_b1, 
+    long_data_settlement_c1, long_data_settlement_d1, long_data_settlement_e1, long_data_settlement_f1, 
+    long_data_settlement_g1, long_data_settlement_h1, long_data_settlement_state
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from long_data_settlement
-    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+    where long_data_settlement_date = #{longDataSettlementDate,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
     delete from long_data_settlement
-    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+    where long_data_settlement_date = #{longDataSettlementDate,jdbcType=TIMESTAMP}
   </delete>
-  <insert id="insert" keyColumn="long_data_settlement_id" keyProperty="longDataSettlementId" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement" useGeneratedKeys="true">
-    insert into long_data_settlement (long_data_settlement_a1, long_data_settlement_b1, 
+  <insert id="insert" keyColumn="long_data_settlement_date" keyProperty="longDataSettlementDate" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement" useGeneratedKeys="true">
+    insert into long_data_settlement (bridge_id, long_data_settlement_a1, long_data_settlement_b1, 
       long_data_settlement_c1, long_data_settlement_d1, long_data_settlement_e1, 
-      long_data_settlement_f1, long_data_settlement_g1, long_data_settlement_h1
-      )
-    values (#{longDataSettlementA1,jdbcType=REAL}, #{longDataSettlementB1,jdbcType=REAL}, 
+      long_data_settlement_f1, long_data_settlement_g1, long_data_settlement_h1, 
+      long_data_settlement_state)
+    values (#{bridgeId,jdbcType=INTEGER}, #{longDataSettlementA1,jdbcType=REAL}, #{longDataSettlementB1,jdbcType=REAL}, 
       #{longDataSettlementC1,jdbcType=REAL}, #{longDataSettlementD1,jdbcType=REAL}, #{longDataSettlementE1,jdbcType=REAL}, 
-      #{longDataSettlementF1,jdbcType=REAL}, #{longDataSettlementG1,jdbcType=REAL}, #{longDataSettlementH1,jdbcType=REAL}
-      )
+      #{longDataSettlementF1,jdbcType=REAL}, #{longDataSettlementG1,jdbcType=REAL}, #{longDataSettlementH1,jdbcType=REAL}, 
+      #{longDataSettlementState,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="long_data_settlement_id" keyProperty="longDataSettlementId" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="long_data_settlement_date" keyProperty="longDataSettlementDate" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement" useGeneratedKeys="true">
     insert into long_data_settlement
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
       <if test="longDataSettlementA1 != null">
         long_data_settlement_a1,
       </if>
@@ -64,8 +69,14 @@
       <if test="longDataSettlementH1 != null">
         long_data_settlement_h1,
       </if>
+      <if test="longDataSettlementState != null">
+        long_data_settlement_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="longDataSettlementA1 != null">
         #{longDataSettlementA1,jdbcType=REAL},
       </if>
@@ -90,11 +101,17 @@
       <if test="longDataSettlementH1 != null">
         #{longDataSettlementH1,jdbcType=REAL},
       </if>
+      <if test="longDataSettlementState != null">
+        #{longDataSettlementState,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement">
     update long_data_settlement
     <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="longDataSettlementA1 != null">
         long_data_settlement_a1 = #{longDataSettlementA1,jdbcType=REAL},
       </if>
@@ -119,19 +136,24 @@
       <if test="longDataSettlementH1 != null">
         long_data_settlement_h1 = #{longDataSettlementH1,jdbcType=REAL},
       </if>
+      <if test="longDataSettlementState != null">
+        long_data_settlement_state = #{longDataSettlementState,jdbcType=VARCHAR},
+      </if>
     </set>
-    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+    where long_data_settlement_date = #{longDataSettlementDate,jdbcType=TIMESTAMP}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.LongDataSettlement">
     update long_data_settlement
-    set long_data_settlement_a1 = #{longDataSettlementA1,jdbcType=REAL},
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      long_data_settlement_a1 = #{longDataSettlementA1,jdbcType=REAL},
       long_data_settlement_b1 = #{longDataSettlementB1,jdbcType=REAL},
       long_data_settlement_c1 = #{longDataSettlementC1,jdbcType=REAL},
       long_data_settlement_d1 = #{longDataSettlementD1,jdbcType=REAL},
       long_data_settlement_e1 = #{longDataSettlementE1,jdbcType=REAL},
       long_data_settlement_f1 = #{longDataSettlementF1,jdbcType=REAL},
       long_data_settlement_g1 = #{longDataSettlementG1,jdbcType=REAL},
-      long_data_settlement_h1 = #{longDataSettlementH1,jdbcType=REAL}
-    where long_data_settlement_id = #{longDataSettlementId,jdbcType=INTEGER}
+      long_data_settlement_h1 = #{longDataSettlementH1,jdbcType=REAL},
+      long_data_settlement_state = #{longDataSettlementState,jdbcType=VARCHAR}
+    where long_data_settlement_date = #{longDataSettlementDate,jdbcType=TIMESTAMP}
   </update>
 </mapper>

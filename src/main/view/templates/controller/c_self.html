@@ -60,6 +60,12 @@
 		    <dd><a href="c_maintain_advice">维护建议</a></dd>
 		  </dl>
 		</li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">巡检</a>
+          <dl class="layui-nav-child">
+            <dd><a th:href="@{/controller/front/c_job}">巡检任务</a></dd>
+          </dl>
+        </li>
 		<li class="layui-nav-item">
 		  <a href="javascript:;">消息</a>
 		  <dl class="layui-nav-child">
@@ -109,6 +115,12 @@
                       <input type="radio" name="sex" value="女" title="女">
                     </div>
                   </div>
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">年龄</label>
+                      <div class="layui-input-inline">
+                        <input type="number" name="controllerAge" th:value="${user.controllerAge}" lay-verify="number" autocomplete="off" class="layui-input">
+                      </div>
+                    </div>
                   <div class="layui-form-item">
                     <label class="layui-form-label">手机</label>
                     <div class="layui-input-inline">

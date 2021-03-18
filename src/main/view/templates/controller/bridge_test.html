@@ -65,7 +65,11 @@
                         view.popup.open({
                             location: result.mapPoint,  // location of the click on the view
                             title: "You clicked here",  // title displayed in the popup
-                            content: "This is a point of interest"  // content displayed in the popup
+                            content: "<table>" +"<tr><td>123</td></tr>"+
+                                "<tr><td>123</td></tr>"+
+                                "<tr><td>123</td></tr>"+
+                                "<tr><td>123</td></tr>"+
+                                "</table>"// content displayed in the popup
                         });
                     } else {
                         console.warn("未点击到桥梁");

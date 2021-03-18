@@ -2,7 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zjut.bridge.dao.ShortDataStreeDao">
   <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.ShortDataStree">
-    <id column="short_data_stree_id" jdbcType="INTEGER" property="shortDataStreeId" />
+    <id column="short_data_stree_date" jdbcType="TIMESTAMP" property="shortDataStreeDate" />
+    <result column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
     <result column="short_data_stree_a1" jdbcType="REAL" property="shortDataStreeA1" />
     <result column="short_data_stree_a2" jdbcType="REAL" property="shortDataStreeA2" />
     <result column="short_data_stree_b1" jdbcType="REAL" property="shortDataStreeB1" />
@@ -11,33 +12,39 @@
     <result column="short_data_stree_c2" jdbcType="REAL" property="shortDataStreeC2" />
     <result column="short_data_stree_d1" jdbcType="REAL" property="shortDataStreeD1" />
     <result column="short_data_stree_d2" jdbcType="REAL" property="shortDataStreeD2" />
+    <result column="short_data_stree_state" jdbcType="VARCHAR" property="shortDataStreeState" />
   </resultMap>
   <sql id="Base_Column_List">
-    short_data_stree_id, short_data_stree_a1, short_data_stree_a2, short_data_stree_b1, 
+    short_data_stree_date, bridge_id, short_data_stree_a1, short_data_stree_a2, short_data_stree_b1, 
     short_data_stree_b2, short_data_stree_c1, short_data_stree_c2, short_data_stree_d1, 
-    short_data_stree_d2
+    short_data_stree_d2, short_data_stree_state
   </sql>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.util.Date" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
     from short_data_stree
-    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+    where short_data_stree_date = #{shortDataStreeDate,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
     delete from short_data_stree
-    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+    where short_data_stree_date = #{shortDataStreeDate,jdbcType=TIMESTAMP}
   </delete>
-  <insert id="insert" keyColumn="short_data_stree_id" keyProperty="shortDataStreeId" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree" useGeneratedKeys="true">
-    insert into short_data_stree (short_data_stree_a1, short_data_stree_a2, short_data_stree_b1, 
-      short_data_stree_b2, short_data_stree_c1, short_data_stree_c2, 
-      short_data_stree_d1, short_data_stree_d2)
-    values (#{shortDataStreeA1,jdbcType=REAL}, #{shortDataStreeA2,jdbcType=REAL}, #{shortDataStreeB1,jdbcType=REAL}, 
-      #{shortDataStreeB2,jdbcType=REAL}, #{shortDataStreeC1,jdbcType=REAL}, #{shortDataStreeC2,jdbcType=REAL}, 
-      #{shortDataStreeD1,jdbcType=REAL}, #{shortDataStreeD2,jdbcType=REAL})
+  <insert id="insert" keyColumn="short_data_stree_date" keyProperty="shortDataStreeDate" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree" useGeneratedKeys="true">
+    insert into short_data_stree (bridge_id, short_data_stree_a1, short_data_stree_a2, 
+      short_data_stree_b1, short_data_stree_b2, short_data_stree_c1, 
+      short_data_stree_c2, short_data_stree_d1, short_data_stree_d2, 
+      short_data_stree_state)
+    values (#{bridgeId,jdbcType=INTEGER}, #{shortDataStreeA1,jdbcType=REAL}, #{shortDataStreeA2,jdbcType=REAL}, 
+      #{shortDataStreeB1,jdbcType=REAL}, #{shortDataStreeB2,jdbcType=REAL}, #{shortDataStreeC1,jdbcType=REAL}, 
+      #{shortDataStreeC2,jdbcType=REAL}, #{shortDataStreeD1,jdbcType=REAL}, #{shortDataStreeD2,jdbcType=REAL}, 
+      #{shortDataStreeState,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="short_data_stree_id" keyProperty="shortDataStreeId" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="short_data_stree_date" keyProperty="shortDataStreeDate" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree" useGeneratedKeys="true">
     insert into short_data_stree
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        bridge_id,
+      </if>
       <if test="shortDataStreeA1 != null">
         short_data_stree_a1,
       </if>
@@ -62,8 +69,14 @@
       <if test="shortDataStreeD2 != null">
         short_data_stree_d2,
       </if>
+      <if test="shortDataStreeState != null">
+        short_data_stree_state,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeId != null">
+        #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="shortDataStreeA1 != null">
         #{shortDataStreeA1,jdbcType=REAL},
       </if>
@@ -88,11 +101,17 @@
       <if test="shortDataStreeD2 != null">
         #{shortDataStreeD2,jdbcType=REAL},
       </if>
+      <if test="shortDataStreeState != null">
+        #{shortDataStreeState,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree">
     update short_data_stree
     <set>
+      <if test="bridgeId != null">
+        bridge_id = #{bridgeId,jdbcType=INTEGER},
+      </if>
       <if test="shortDataStreeA1 != null">
         short_data_stree_a1 = #{shortDataStreeA1,jdbcType=REAL},
       </if>
@@ -117,19 +136,24 @@
       <if test="shortDataStreeD2 != null">
         short_data_stree_d2 = #{shortDataStreeD2,jdbcType=REAL},
       </if>
+      <if test="shortDataStreeState != null">
+        short_data_stree_state = #{shortDataStreeState,jdbcType=VARCHAR},
+      </if>
     </set>
-    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+    where short_data_stree_date = #{shortDataStreeDate,jdbcType=TIMESTAMP}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.ShortDataStree">
     update short_data_stree
-    set short_data_stree_a1 = #{shortDataStreeA1,jdbcType=REAL},
+    set bridge_id = #{bridgeId,jdbcType=INTEGER},
+      short_data_stree_a1 = #{shortDataStreeA1,jdbcType=REAL},
       short_data_stree_a2 = #{shortDataStreeA2,jdbcType=REAL},
       short_data_stree_b1 = #{shortDataStreeB1,jdbcType=REAL},
       short_data_stree_b2 = #{shortDataStreeB2,jdbcType=REAL},
       short_data_stree_c1 = #{shortDataStreeC1,jdbcType=REAL},
       short_data_stree_c2 = #{shortDataStreeC2,jdbcType=REAL},
       short_data_stree_d1 = #{shortDataStreeD1,jdbcType=REAL},
-      short_data_stree_d2 = #{shortDataStreeD2,jdbcType=REAL}
-    where short_data_stree_id = #{shortDataStreeId,jdbcType=INTEGER}
+      short_data_stree_d2 = #{shortDataStreeD2,jdbcType=REAL},
+      short_data_stree_state = #{shortDataStreeState,jdbcType=VARCHAR}
+    where short_data_stree_date = #{shortDataStreeDate,jdbcType=TIMESTAMP}
   </update>
 </mapper>

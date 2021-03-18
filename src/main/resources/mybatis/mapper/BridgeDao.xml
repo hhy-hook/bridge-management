@@ -3,16 +3,18 @@
 <mapper namespace="com.zjut.bridge.dao.BridgeDao">
   <resultMap id="BaseResultMap" type="com.zjut.bridge.pojo.entity.Bridge">
     <id column="bridge_id" jdbcType="INTEGER" property="bridgeId" />
+    <result column="bridge_type" jdbcType="VARCHAR" property="bridgeType" />
     <result column="bridge_name" jdbcType="VARCHAR" property="bridgeName" />
     <result column="bridge_length" jdbcType="REAL" property="bridgeLength" />
     <result column="bridge_width" jdbcType="REAL" property="bridgeWidth" />
     <result column="bridge_company" jdbcType="VARCHAR" property="bridgeCompany" />
     <result column="bridge_state" jdbcType="VARCHAR" property="bridgeState" />
+    <result column="bridge_location" jdbcType="VARCHAR" property="bridgeLocation" />
     <result column="bridge_note" jdbcType="VARCHAR" property="bridgeNote" />
   </resultMap>
   <sql id="Base_Column_List">
-    bridge_id, bridge_name, bridge_length, bridge_width, bridge_company, bridge_state, 
-    bridge_note
+    bridge_id, bridge_type, bridge_name, bridge_length, bridge_width, bridge_company, 
+    bridge_state, bridge_location, bridge_note
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -30,16 +32,19 @@
     where bridge_id = #{bridgeId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" keyColumn="bridge_id" keyProperty="bridgeId" parameterType="com.zjut.bridge.pojo.entity.Bridge" useGeneratedKeys="true">
-    insert into bridge (bridge_name, bridge_length, bridge_width, 
-      bridge_company, bridge_state, bridge_note
-      )
-    values (#{bridgeName,jdbcType=VARCHAR}, #{bridgeLength,jdbcType=REAL}, #{bridgeWidth,jdbcType=REAL}, 
-      #{bridgeCompany,jdbcType=VARCHAR}, #{bridgeState,jdbcType=VARCHAR}, #{bridgeNote,jdbcType=VARCHAR}
-      )
+    insert into bridge (bridge_type, bridge_name, bridge_length, 
+      bridge_width, bridge_company, bridge_state, 
+      bridge_location, bridge_note)
+    values (#{bridgeType,jdbcType=VARCHAR}, #{bridgeName,jdbcType=VARCHAR}, #{bridgeLength,jdbcType=REAL}, 
+      #{bridgeWidth,jdbcType=REAL}, #{bridgeCompany,jdbcType=VARCHAR}, #{bridgeState,jdbcType=VARCHAR}, 
+      #{bridgeLocation,jdbcType=VARCHAR}, #{bridgeNote,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="bridge_id" keyProperty="bridgeId" parameterType="com.zjut.bridge.pojo.entity.Bridge" useGeneratedKeys="true">
     insert into bridge
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="bridgeType != null">
+        bridge_type,
+      </if>
       <if test="bridgeName != null">
         bridge_name,
       </if>
@@ -55,11 +60,17 @@
       <if test="bridgeState != null">
         bridge_state,
       </if>
+      <if test="bridgeLocation != null">
+        bridge_location,
+      </if>
       <if test="bridgeNote != null">
         bridge_note,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="bridgeType != null">
+        #{bridgeType,jdbcType=VARCHAR},
+      </if>
       <if test="bridgeName != null">
         #{bridgeName,jdbcType=VARCHAR},
       </if>
@@ -75,6 +86,9 @@
       <if test="bridgeState != null">
         #{bridgeState,jdbcType=VARCHAR},
       </if>
+      <if test="bridgeLocation != null">
+        #{bridgeLocation,jdbcType=VARCHAR},
+      </if>
       <if test="bridgeNote != null">
         #{bridgeNote,jdbcType=VARCHAR},
       </if>
@@ -83,6 +97,9 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.zjut.bridge.pojo.entity.Bridge">
     update bridge
     <set>
+      <if test="bridgeType != null">
+        bridge_type = #{bridgeType,jdbcType=VARCHAR},
+      </if>
       <if test="bridgeName != null">
         bridge_name = #{bridgeName,jdbcType=VARCHAR},
       </if>
@@ -98,6 +115,9 @@
       <if test="bridgeState != null">
         bridge_state = #{bridgeState,jdbcType=VARCHAR},
       </if>
+      <if test="bridgeLocation != null">
+        bridge_location = #{bridgeLocation,jdbcType=VARCHAR},
+      </if>
       <if test="bridgeNote != null">
         bridge_note = #{bridgeNote,jdbcType=VARCHAR},
       </if>
@@ -106,11 +126,13 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.zjut.bridge.pojo.entity.Bridge">
     update bridge
-    set bridge_name = #{bridgeName,jdbcType=VARCHAR},
+    set bridge_type = #{bridgeType,jdbcType=VARCHAR},
+      bridge_name = #{bridgeName,jdbcType=VARCHAR},
       bridge_length = #{bridgeLength,jdbcType=REAL},
       bridge_width = #{bridgeWidth,jdbcType=REAL},
       bridge_company = #{bridgeCompany,jdbcType=VARCHAR},
       bridge_state = #{bridgeState,jdbcType=VARCHAR},
+      bridge_location = #{bridgeLocation,jdbcType=VARCHAR},
       bridge_note = #{bridgeNote,jdbcType=VARCHAR}
     where bridge_id = #{bridgeId,jdbcType=INTEGER}
   </update>

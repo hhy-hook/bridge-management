@@ -109,11 +109,12 @@ public class InspectorController{
         List<Inspector> db =inspectorService.selectInspectors();
         if(db == null || db.isEmpty()){
             json.put("msg","error");
-            json.put("code","222222");
+            json.put("code","201");
         }else{
             json.put("msg", "success");
             json.put("code", "0");
             json.put("data", db);
+            json.put("count",db.size());
         }
         return json;
     }

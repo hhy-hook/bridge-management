@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+	  <meta charset="utf-8">
+	  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	  <title>管理员人员添加界面 </title>
+	  <link rel="stylesheet" th:href="@{/layui/css/layui.css}">
+	</head>
+	<body class="layui-layout-body">
+		<div class="layui-container">  
+		<div class="layui-header">
+		</div>
+		<form class="layui-form" action="">
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">姓名</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="title" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">桥梁</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="phone" required  lay-verify="required" placeholder="请输入桥梁名称" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">巡检点</label>
+		    <div class="layui-input-block">
+		      <input type="text" name="phone" required  lay-verify="required" placeholder="请输入巡检位置" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+			  <label class="layui-form-label">巡检日期</label>
+			  <div class="layui-input-block"> <!-- 注意：这一层元素并不是必须的 -->
+			    <input type="text" class="layui-input" id="test1" placeholder="yyyy-mm-dd">
+			  </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn" lay-submit lay-filter="formDemo">修改</button>
+		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		  </div>
+		</form>
+		</div>
+	</body>
+
+
+	<script th:src="@{/layui/layui.all.js}"></script>
+	<script>
+	//Demo
+	layui.use('form', function(){
+	  var form = layui.form;
+	  
+	  //监听提交
+	  form.on('submit(formDemo)', function(data){
+	    layer.msg(JSON.stringify(data.field));
+	    return false;
+	  });
+	});
+	
+	layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+	  
+	  //执行一个laydate实例
+	  laydate.render({
+	    elem: '#test1' //指定元素
+	  });
+	});
+	
+	</script>
+</html>

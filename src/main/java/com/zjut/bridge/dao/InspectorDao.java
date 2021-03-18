@@ -19,9 +19,7 @@ public interface InspectorDao {
 
     int updateByPrimaryKey(Inspector record);
 
-    Inspector selectByAccount(String account);
+    Inspector selectByAccount(String inspectorAccount);
 
     List<Inspector> selectInspectors();
-
-    int selectMaxPrimaryKey();
 }

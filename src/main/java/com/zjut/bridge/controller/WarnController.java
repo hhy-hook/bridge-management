@@ -2,7 +2,6 @@ package com.zjut.bridge.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.bridge.pojo.entity.WarningRecord;
-import com.zjut.bridge.pojo.vo.ReportVO;
 import com.zjut.bridge.service.WarnService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
