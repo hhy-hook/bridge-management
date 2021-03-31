@@ -1,13 +1,18 @@
 package com.zjut.bridge.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.zjut.bridge.pojo.entity.Bridge;
+import com.zjut.bridge.pojo.entity.Inspector;
+import com.zjut.bridge.service.BridgeService;
 import com.zjut.bridge.service.ControllerService;
+import com.zjut.bridge.service.InspectorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Controller
 @RequestMapping("/controller")
@@ -15,6 +20,10 @@ import javax.annotation.Resource;
 public class ControllerController {
     @Resource
     ControllerService controllerService;
+    @Resource
+    InspectorService inspectorService;
+    @Resource
+    BridgeService bridgeService;
 
     @RequestMapping("exit")
     String exit(){
@@ -91,5 +100,11 @@ public class ControllerController {
     String job(){return "/controller/c_job";}
 
     @RequestMapping("front/c_job_add")
-    String c_job_add(){return "/controller/c_job_add";}
+    String c_job_add(Model model){
+        List<Bridge> bridges = bridgeService.selectBridges();
+        List<Inspector> inspectors = inspectorService.selectInspectors();
+        model.addAttribute("bridges",bridges);
+        model.addAttribute("inspectors",inspectors);
+        return "/controller/c_job_add";
+    }
 }

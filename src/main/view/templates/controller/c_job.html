@@ -11,7 +11,7 @@
         var img = document.getElementById("headPic");
         img.src = "/upload/user/默认头像.svg";
         img.onerror = null;
-    }
+    } 
 </script>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -133,12 +133,24 @@
         });})
 </script>
 <script>
+    function DateFormat(sjc){
+        var date = new Date(sjc);
+        var y = date.getFullYear();
+        var m = date.getMonth()+1;
+        m = m<10?'0'+m:m;
+        var d = date.getDate();
+        d = d<10?("0"+d):d;
+        var str = y+"-"+m+"-"+d;
+        return str;
+    }
+
 layui.use('table', function(){
   var table = layui.table;
   
   table.render({
     elem: '#test'
-    ,url:'user.json'
+    ,url:'/task/data/tasks'
+      ,where: { inspectorId : -1}
     ,toolbar: '#toolbarDemo' //开启头部工具栏，并为其绑定左侧模板
     ,defaultToolbar: ['filter', 'exports', 'print', { //自定义头部工具栏右侧图标。如无需自定义，去除该参数即可
       title: '提示'
@@ -146,22 +158,31 @@ layui.use('table', function(){
       ,icon: 'layui-icon-tips'
     }]
 	,cellMinWidth: 80
-    ,title: '用户数据表'
+    ,title: '巡检任务'
     ,cols: [
         [{type: 'checkbox', fixed: 'left'}
-      ,{field:'id', title:'ID', fixed: 'left', unresize: true, sort: true}
-      ,{field:'username', title:'用户名', edit: 'text'}
-      ,{field:'email', title:'邮箱', edit: 'text', templet: function(res){
-        return '<em>'+ res.email +'</em>'
-      }}
-      ,{field:'sex', title:'性别', edit: 'text', sort: true}
-      ,{field:'city', title:'城市'}
-      ,{field:'sign', title:'签名'}
-      ,{field:'experience', title:'积分', sort: true}
-      ,{field:'logins', title:'登入次数', sort: true}
-      ,{fixed: 'right', title:'操作', toolbar: '#barDemo'}]
+      ,{field:'taskId', title:'ID', fixed: 'left', unresize: true, sort: true}
+      ,{field:'bridgeName', title:'桥梁名称'}
+      ,{field:'inspectorName', title:'巡检员'}
+      ,{field:'inspectorPhone', title:'联系方式'}
+      ,{field:'taskPoint', title:'巡检点'}
+      ,{field:'taskState', title:'状态',sort: true}
+      ,{field:'taskDate', title:'日期', sort: true ,templet: function(d){
+        return DateFormat(d.taskDate);
+      }}]
       ]
     ,page: true
+      ,parseData: function (res) {
+          if(res.count == 0)
+          {
+              return {
+                  'code': 201, //接口状态
+                  'msg': '无数据', //提示文本
+                  'count': 0, //数据长度
+                  'data': [] //数据列表，是直接填充进表格中的数组
+              }
+          }
+      }
   });
   
   //头工具栏事件

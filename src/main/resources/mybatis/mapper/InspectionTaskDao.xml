@@ -18,7 +18,22 @@
     from inspection_task
     where task_id = #{taskId,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    <select id="selectTasks" resultType="com.zjut.bridge.pojo.vo.TaskVO">
+      select
+      <include refid="Base_Column_List" />
+      from inspection_task
+    </select>
+    <select id="selectTasksByInspectorId" resultType="com.zjut.bridge.pojo.vo.TaskVO">
+      select
+      <include refid="Base_Column_List" />
+      from inspection_task
+      where inspector_id = #{taskId,jdbcType=INTEGER}
+    </select>
+    <select id="selectMaxPrimaryKey" resultType="java.lang.Integer">
+      select max(task_id)
+      from inspection_task
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from inspection_task
     where task_id = #{taskId,jdbcType=INTEGER}
   </delete>

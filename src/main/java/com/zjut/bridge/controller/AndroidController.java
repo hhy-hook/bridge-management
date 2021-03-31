@@ -3,7 +3,9 @@ package com.zjut.bridge.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.zjut.bridge.pojo.entity.InspectionReport;
 import com.zjut.bridge.pojo.entity.Inspector;
+import com.zjut.bridge.pojo.vo.TaskVO;
 import com.zjut.bridge.service.InspectionReportService;
+import com.zjut.bridge.service.InspectionTaskService;
 import com.zjut.bridge.service.InspectorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/as")
@@ -22,6 +25,9 @@ public class AndroidController {
 
     @Resource
     InspectionReportService inspectionReportService;
+
+    @Resource
+    InspectionTaskService inspectionTaskService;
 
     @RequestMapping("login")
     @ResponseBody
@@ -62,6 +68,26 @@ public class AndroidController {
         }else{
             res.put("code","201");
             res.put("msg","上传失败");
+        }
+        return res;
+    }
+
+    @RequestMapping("taskData")
+    @ResponseBody
+    public JSONObject taskData(int inspectorId)
+    {
+        JSONObject res = new JSONObject();
+        List<TaskVO> db;
+        if(inspectorId == -1) db = inspectionTaskService.selectTasks();
+        else db = inspectionTaskService.selectTasksByInspectorId(inspectorId);
+
+        if(db == null) {
+            res.put("code","201");
+            res.put("msg","查询失败");
+        } else {
+            res.put("code","0");
+            res.put("data",db);
+            res.put("msg","查询成功");
         }
         return res;
     }
