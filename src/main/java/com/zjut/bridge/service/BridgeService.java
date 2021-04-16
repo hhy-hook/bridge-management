@@ -9,4 +9,6 @@ public interface BridgeService {
     List<Bridge> selectBridges();
 
     JSONObject delBridge(int id);
+
+    Bridge selectBridgeById(int bridgeId);
 }

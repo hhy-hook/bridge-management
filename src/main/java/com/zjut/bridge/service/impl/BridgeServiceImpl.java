@@ -32,4 +32,9 @@ public class BridgeServiceImpl implements BridgeService {
         }
         return json;
     }
+
+    @Override
+    public Bridge selectBridgeById(int bridgeId) {
+        return bridgeDao.selectByPrimaryKey(bridgeId);
+    }
 }

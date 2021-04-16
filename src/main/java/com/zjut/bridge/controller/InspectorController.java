@@ -32,7 +32,7 @@ public class InspectorController{
 
     @RequestMapping("exit")
     String exit(){
-        return "/index";
+        return "/index2";
     }
 
     @RequestMapping("login")

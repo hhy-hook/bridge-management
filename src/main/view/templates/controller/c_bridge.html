@@ -26,7 +26,6 @@
         </a>
         <dl class="layui-nav-child">
           <dd><a th:href="@{/controller/front/c_self}">基本资料</a></dd>
-          <dd><a href="">安全设置</a></dd>
         </dl>
       </li>
       <li class="layui-nav-item"><a th:href="@{/controller/exit}">退出登录</a></li>
@@ -38,34 +37,34 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;"><img class="layui-icon" src="/picture/icon/message1.png" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;工作人员</a>
+                    <a class="" href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/people.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;工作人员</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_inspector}">巡检人员</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a th:href="@{/controller/front/c_bridge}"><img class="layui-icon" src="/picture/icon/message1.png" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;桥梁</a>
+                    <a th:href="@{/controller/front/c_bridge}"><img class="layui-icon" th:src="@{/picture/icon/bridge.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;桥梁</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><img class="layui-icon" src="/picture/icon/message1.png" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;预警</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/warn.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;预警</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_alert_history}">预警记录</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><img class="layui-icon" src="/picture/icon/message1.png" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;维护</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/maintain.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;维护</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="c_maintain_advice">维护建议</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><img class="layui-icon" src="/picture/icon/message1.png" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;巡检</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/inspection.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;巡检</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_job}">巡检任务</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;"><img class="layui-icon" src="/picture/icon/message1.png" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;消息</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/message1.png}" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;消息</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_message}">全部消息</a></dd>
                     </dl>
@@ -81,10 +80,9 @@
 	</fieldset>
 	<table class="layui-hide" id="test" lay-filter="test"></table>
 	<script type="text/html" id="barDemo">
-	  <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-      <a class="layui-btn layui-btn-xs" lay-event="delete">删除</a>
-      <a class="layui-btn layui-btn-xs" lay-event="detail" th:href="@{/controller/front/bridge}">查看</a>
-      <a class="layui-btn layui-btn-xs" lay-event="detail" th:href="@{/controller/front/c_bridge_details}">详情</a>
+        <a class="layui-btn layui-btn-xs" lay-event="info" th:href="@{/controller/front/c_bridge_details?bridgeId={{d.bridgeId}}}">查看</a>
+        <a class="layui-btn layui-btn-xs" lay-event="detail" th:href="@{/controller/front/bridge}">详情</a>
+        <a class="layui-btn layui-btn-xs" lay-event="delete">删除</a>
 	</script>
   </div>
   <div class="layui-footer">
@@ -124,39 +122,16 @@
             ,page: true
         });
 
-        //头工具栏事件
-        table.on('toolbar(test)', function(obj){
-            var checkStatus = table.checkStatus(obj.config.id);
-            switch(obj.event){
-                case 'getCheckData':
-                    var data = checkStatus.data;
-                    layer.alert(JSON.stringify(data));
-                    break;
-                case 'getCheckLength':
-                    var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.length + ' 个');
-                    break;
-                case 'isAll':
-                    layer.msg(checkStatus.isAll ? '全选': '未全选');
-                    break;
-                    //自定义头工具栏右侧图标 - 提示
-                    break;
-            };
-        });
-
         table.on('tool(test)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
             var data = obj.data //获得当前行数据
                 , layEvent = obj.event; //获得 lay-event 对应的值
-            if (layEvent === 'edit') {
-                layer.msg("编辑");
-            }
-            else if(layEvent === 'delete'){
+            if(layEvent === 'delete'){
                 layer.confirm('真的删除['+ data.bridgeName +']这条记录么？', function(index){
                     deleteBridge(data,index,obj);
                 });
             }
             else if(layEvent === 'detail'){
-                layer.msg("查看");
+                layer.msg("详情");
             }
         });
 

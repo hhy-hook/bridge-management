@@ -4,6 +4,7 @@ import com.zjut.bridge.pojo.entity.LongDataStree;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.Date;
+import java.util.List;
 
 @Mapper
 public interface LongDataStreeDao {
@@ -18,4 +19,6 @@ public interface LongDataStreeDao {
     int updateByPrimaryKeySelective(LongDataStree record);
 
     int updateByPrimaryKey(LongDataStree record);
+
+    List<LongDataStree> selectByBridgeId(int bridgeId);
 }

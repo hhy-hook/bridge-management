@@ -34,7 +34,13 @@
     from long_data_stree
     where long_data_stree_date = #{longDataStreeDate,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
+    <select id="selectByBridgeId" resultType="com.zjut.bridge.pojo.entity.LongDataStree">
+      select
+      <include refid="Base_Column_List" />
+      from long_data_stree
+      where bridge_id = #{bridgeId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.util.Date">
     delete from long_data_stree
     where long_data_stree_date = #{longDataStreeDate,jdbcType=TIMESTAMP}
   </delete>

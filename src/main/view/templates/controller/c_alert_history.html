@@ -39,34 +39,34 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item">
-                    <a class="" href="javascript:;">工作人员</a>
+                    <a class="" href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/people.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;工作人员</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_inspector}">巡检人员</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a th:href="@{/controller/front/c_bridge}">桥梁</a>
+                    <a th:href="@{/controller/front/c_bridge}"><img class="layui-icon" th:src="@{/picture/icon/bridge.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;桥梁</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">预警</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/warn.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;预警</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_alert_history}">预警记录</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">维护</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/maintain.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;维护</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="c_maintain_advice">维护建议</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">巡检</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/inspection.png}" style="height: 25px; width: 25px ; color: white"/>&nbsp;&nbsp;巡检</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_job}">巡检任务</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;">消息</a>
+                    <a href="javascript:;"><img class="layui-icon" th:src="@{/picture/icon/message1.png}" style="height: 30px; width: 30px ; color: white"/>&nbsp;&nbsp;消息</a>
                     <dl class="layui-nav-child">
                         <dd><a th:href="@{/controller/front/c_message}">全部消息</a></dd>
                     </dl>
@@ -84,9 +84,9 @@
           <div class="layui-col-md6">
               <div id="left1" style="width: 600px;height:400px;"></div>
           </div>
-          <div class="layui-col-md6">
-              <div id="short1" style="width: 600px;height:400px;"></div>
-          </div>
+<!--          <div class="layui-col-md6">-->
+<!--              <div id="short1" style="width: 600px;height:400px;"></div>-->
+<!--          </div>-->
           <div class="layui-col-md12">
               <div style="padding: 15px;">
                   <table class="layui-hide" id="test" lay-filter="test"></table>

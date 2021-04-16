@@ -9,6 +9,7 @@ import com.zjut.bridge.service.InspectorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import javax.annotation.Resource;
@@ -71,7 +72,10 @@ public class ControllerController {
     }
 
     @RequestMapping("front/c_bridge_details")
-    String c_bridge_details(){
+    String c_bridge_details(Model model,@RequestParam Integer bridgeId){
+        Bridge bridge = bridgeService.selectBridgeById(bridgeId);
+        model.addAttribute("bridge",bridge);
+        //System.out.println(bridge.getBridgeName());
         return "/controller/c_bridge_details";
     }
 
@@ -81,7 +85,7 @@ public class ControllerController {
     }
 
     @RequestMapping("front/c_inspector")
-    String c_inspector(Model model){ return "/controller/c_inspector"; }
+    String c_inspector(){ return "/controller/c_inspector"; }
 
     @RequestMapping("front/c_add_i")
     String c_add_i(){
@@ -106,5 +110,13 @@ public class ControllerController {
         model.addAttribute("bridges",bridges);
         model.addAttribute("inspectors",inspectors);
         return "/controller/c_job_add";
+    }
+
+    @RequestMapping("front/c_bridge_vision")
+    String c_bridge_vision(Model model,@RequestParam Integer bridgeId){
+        Bridge bridge = bridgeService.selectBridgeById(bridgeId);
+        model.addAttribute("bridge",bridge);
+        //System.out.println(bridge.getBridgeName());
+        return "/controller/c_bridge_vision";
     }
 }
